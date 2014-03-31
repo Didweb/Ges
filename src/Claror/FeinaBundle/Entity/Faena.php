@@ -17,10 +17,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Faena
 {
     /**
-     * @var string
-     * @Gedmo\Slug(fields={"titulo"}, updatable=false, separator="-")
-     * @ORM\Column(length=32, unique=true)
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
