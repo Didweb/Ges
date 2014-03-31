@@ -1,8 +1,0 @@
-claror_feines_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ClarorFeinesBundle:Default:index }
-
-Anota:
-    resource: "@ClarorFeinesBundle/Controller/"
-    prefix:   /
-    type:     annotation    

@@ -1,7 +1,0 @@
-parameters:
-#    claror_feines.example.class: Claror\FeinesBundle\Example
-
-services:
-#    claror_feines.example:
-#        class: %claror_feines.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
