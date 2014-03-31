@@ -1,0 +1,4 @@
+claror_feines:
+    resource: "@ClarorFeinesBundle/Resources/config/routing.yml"
+    prefix:   /
+

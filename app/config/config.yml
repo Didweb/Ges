@@ -71,7 +71,7 @@ swiftmailer:
 #Stof internalizacion de bbdd
 stof_doctrine_extensions:
     default_locale:       ca
-    transation_fallback:  true
+    translation_fallback:  true
     orm:
         default:
             translatable:  true
