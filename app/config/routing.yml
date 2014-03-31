@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-claror_feines:
-    resource: "@ClarorFeinesBundle/Resources/config/routing.yml"
-=======
 claror_feina:
     resource: "@ClarorFeinaBundle/Resources/config/routing.yml"
->>>>>>> traductor
     prefix:   /
 
