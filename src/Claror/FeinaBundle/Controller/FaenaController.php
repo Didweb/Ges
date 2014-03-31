@@ -7,21 +7,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Claror\FeinaBundle\Entity\BlogPost;
-use Claror\FeinaBundle\Form\BlogPostType;
+use Claror\FeinaBundle\Entity\Faena;
+use Claror\FeinaBundle\Form\FaenaType;
 
 /**
- * BlogPost controller.
+ * Faena controller.
  *
- * @Route("/blogpost")
+ * @Route("/gestor/faena")
  */
-class BlogPostController extends Controller
+class FaenaController extends Controller
 {
 
+
     /**
-     * Lists all BlogPost entities.
+     * Lists all Faena entities.
      *
-     * @Route("/", name="blogpost")
+     * @Route("/", name="gestor_faena")
      * @Method("GET")
      * @Template()
      */
@@ -29,22 +30,22 @@ class BlogPostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ClarorFeinaBundle:BlogPost')->findAll();
+        $entities = $em->getRepository('ClarorFeinaBundle:Faena')->findAll();
 
         return array(
             'entities' => $entities,
         );
     }
     /**
-     * Creates a new BlogPost entity.
+     * Creates a new Faena entity.
      *
-     * @Route("/", name="blogpost_create")
+     * @Route("/", name="gestor_faena_create")
      * @Method("POST")
-     * @Template("ClarorFeinaBundle:BlogPost:new.html.twig")
+     * @Template("ClarorFeinaBundle:Faena:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity = new BlogPost();
+        $entity = new Faena();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -53,7 +54,7 @@ class BlogPostController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('blogpost_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('gestor_faena_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -63,16 +64,16 @@ class BlogPostController extends Controller
     }
 
     /**
-    * Creates a form to create a BlogPost entity.
+    * Creates a form to create a Faena entity.
     *
-    * @param BlogPost $entity The entity
+    * @param Faena $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(BlogPost $entity)
+    private function createCreateForm(Faena $entity)
     {
-        $form = $this->createForm(new BlogPostType(), $entity, array(
-            'action' => $this->generateUrl('blogpost_create'),
+        $form = $this->createForm(new FaenaType(), $entity, array(
+            'action' => $this->generateUrl('gestor_faena_create'),
             'method' => 'POST',
         ));
 
@@ -82,15 +83,15 @@ class BlogPostController extends Controller
     }
 
     /**
-     * Displays a form to create a new BlogPost entity.
+     * Displays a form to create a new Faena entity.
      *
-     * @Route("/new", name="blogpost_new")
+     * @Route("/new", name="gestor_faena_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new BlogPost();
+        $entity = new Faena();
         $form   = $this->createCreateForm($entity);
 
         return array(
@@ -100,9 +101,9 @@ class BlogPostController extends Controller
     }
 
     /**
-     * Finds and displays a BlogPost entity.
+     * Finds and displays a Faena entity.
      *
-     * @Route("/{id}", name="blogpost_show")
+     * @Route("/{id}", name="gestor_faena_show")
      * @Method("GET")
      * @Template()
      */
@@ -110,10 +111,10 @@ class BlogPostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ClarorFeinaBundle:BlogPost')->find($id);
+        $entity = $em->getRepository('ClarorFeinaBundle:Faena')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find BlogPost entity.');
+            throw $this->createNotFoundException('Unable to find Faena entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -125,16 +126,15 @@ class BlogPostController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing BlogPost entity.
+     * Displays a form to edit an existing Faena entity.
      *
-     * @Route("/{id}/edit", name="blogpost_edit")
+     * @Route("/{id}/edit", name="gestor_faena_edit")
      * @Method("GET")
      * @Template()
      */
     public function editAction(Request $request,$id,$locale='')
     {
-		
-		if($locale=='es'){
+			if($locale=='es'){
 			$cam='ca';
 			}elseif($locale=='ca'){
 				$cam='es';
@@ -142,13 +142,13 @@ class BlogPostController extends Controller
 				{
 				$cam=$request->getSession()->get('_locale');	
 				}
-		$request->getSession()->set('_locale', $cam);
+		$request->getSession()->set('_locale', $cam);	
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ClarorFeinaBundle:BlogPost')->find($id);
+        $entity = $em->getRepository('ClarorFeinaBundle:Faena')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find BlogPost entity.');
+            throw $this->createNotFoundException('Unable to find Faena entity.');
         }
 
         $editForm = $this->createEditForm($entity);
@@ -157,21 +157,22 @@ class BlogPostController extends Controller
         return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),'cam'=>$cam
+            'delete_form' => $deleteForm->createView(),
+            'cam'		  => $cam
         );
     }
 
     /**
-    * Creates a form to edit a BlogPost entity.
+    * Creates a form to edit a Faena entity.
     *
-    * @param BlogPost $entity The entity
+    * @param Faena $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(BlogPost $entity)
+    private function createEditForm(Faena $entity)
     {
-        $form = $this->createForm(new BlogPostType(), $entity, array(
-            'action' => $this->generateUrl('blogpost_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new FaenaType(), $entity, array(
+            'action' => $this->generateUrl('gestor_faena_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -180,20 +181,20 @@ class BlogPostController extends Controller
         return $form;
     }
     /**
-     * Edits an existing BlogPost entity.
+     * Edits an existing Faena entity.
      *
-     * @Route("/{id}", name="blogpost_update")
+     * @Route("/{id}", name="gestor_faena_update")
      * @Method("PUT")
-     * @Template("ClarorFeinaBundle:BlogPost:edit.html.twig")
+     * @Template("ClarorFeinaBundle:Faena:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ClarorFeinaBundle:BlogPost')->find($id);
+        $entity = $em->getRepository('ClarorFeinaBundle:Faena')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find BlogPost entity.');
+            throw $this->createNotFoundException('Unable to find Faena entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -203,7 +204,7 @@ class BlogPostController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('blogpost_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('gestor_faena_edit', array('id' => $id)));
         }
 
         return array(
@@ -213,9 +214,9 @@ class BlogPostController extends Controller
         );
     }
     /**
-     * Deletes a BlogPost entity.
+     * Deletes a Faena entity.
      *
-     * @Route("/{id}", name="blogpost_delete")
+     * @Route("/{id}", name="gestor_faena_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -225,21 +226,21 @@ class BlogPostController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ClarorFeinaBundle:BlogPost')->find($id);
+            $entity = $em->getRepository('ClarorFeinaBundle:Faena')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find BlogPost entity.');
+                throw $this->createNotFoundException('Unable to find Faena entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('blogpost'));
+        return $this->redirect($this->generateUrl('gestor_faena'));
     }
 
     /**
-     * Creates a form to delete a BlogPost entity by id.
+     * Creates a form to delete a Faena entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -248,7 +249,7 @@ class BlogPostController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('blogpost_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('gestor_faena_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

@@ -1,0 +1,11 @@
+{% set actual1=app.request.get('_locale') %}
+{% if actual1=='es' %}
+{% set actual='ca' %}
+{% elseif actual1=='ca'%}
+{% set actual='es' %}
+{% endif %}
+
+<a href="{{ path('home_gestor',{'_locale':actual}) }}">Inicio</a>
+<a href="{{ path('gestor_faena',{'_locale':actual }) }}">Faena</a>
+<a href="{{ path('gestor_fabricante',{'_locale':actual }) }}">Fabricante</a>
+<a href="{{ path('gestor_categoria',{'_locale':actual }) }}">Categoria</a>

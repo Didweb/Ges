@@ -6,11 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class DefaultController extends Controller
+class FijasController extends Controller
 {
-    public function indexAction($name)
+    public function indexAction()
     {
-        return $this->render('ClarorFeinaBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('ClarorFeinaBundle:Default:index_gestor.html.twig');
     }
 
 	/**

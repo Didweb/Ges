@@ -2,6 +2,13 @@ claror_feina_homepage:
     pattern:  /demo/post
     defaults: { _controller: ClarorFeinaBundle:Default:posts }
 
+home_gestor:
+    pattern:  /gestor
+    defaults: { _controller: ClarorFeinaBundle:Fijas:index }
+    requirements:
+        _locale: ca|es
+    prefix: /{_locale}/
+    
 Anota:
     resource: "@ClarorFeinaBundle/Controller/"
     prefix:   /

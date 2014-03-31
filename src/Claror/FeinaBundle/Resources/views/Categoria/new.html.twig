@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+{% include 'ClarorFeinaBundle:Default:menu_gestor.html.twig' %} 
+    <h1>Categoria creation</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('gestor_categoria') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}
