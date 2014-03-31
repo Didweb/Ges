@@ -3,7 +3,7 @@
 services:
     # KernelRequest listener
     extension.listener:
-        class: Acme\DemoBundle\Listener\DoctrineExtensionListener
+        class: Claror\FeinaBundle\Listener\DoctrineExtensionListener
         calls:
             - [ setContainer, [ @service_container ] ]
         tags:

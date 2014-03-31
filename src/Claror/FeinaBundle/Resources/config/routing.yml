@@ -1,3 +1,11 @@
 claror_feina_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ClarorFeinaBundle:Default:index }
+    pattern:  /demo/post
+    defaults: { _controller: ClarorFeinaBundle:Default:posts }
+
+Anota:
+    resource: "@ClarorFeinaBundle/Controller/"
+    prefix:   /
+    type:     annotation
+    requirements:
+        _locale: ca|es
+    prefix: /{_locale}/        

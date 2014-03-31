@@ -1,0 +1,24 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+{% set actual=app.request.get('_locale') %}
+{% if actual=='es' %}
+{% set actual='ca' %}
+{% elseif actual=='ca'%}
+{% set actual='es' %}
+{% endif %}
+<a href="{{ path('blogpost_edit',{'id':entity.id,'_locale':actual })}}">cambio #{{ cam }}#</a>
+
+    <h1>BlogPost edit</h1>
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('blogpost') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}
