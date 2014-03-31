@@ -1,0 +1,7 @@
+parameters:
+#    claror_feina.example.class: Claror\FeinaBundle\Example
+
+services:
+#    claror_feina.example:
+#        class: %claror_feina.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

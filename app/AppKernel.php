@@ -16,12 +16,20 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+<<<<<<< HEAD
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Claror\FeinesBundle\ClarorFeinesBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
            // $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
+=======
+            new Claror\FeinaBundle\ClarorFeinaBundle(),
+        );
+
+        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+          //  $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
+>>>>>>> traductor
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();

@@ -19,7 +19,11 @@
         "sensio/framework-extra-bundle": "~3.0",
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
+<<<<<<< HEAD
         "stof/doctrine-extensions-bundle":"dev-master"
+=======
+        "gedmo/doctrine-extensions":      "dev-master"
+>>>>>>> traductor
     },
     "scripts": {
         "post-install-cmd": [
