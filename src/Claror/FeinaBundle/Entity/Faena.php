@@ -71,6 +71,18 @@ class Faena
 	 */ 
 	 private $fabricante;
 
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Imagen", mappedBy="imagen")
+	 * 
+	 */ 
+	 protected $imagenes;
+
+	public function __construct()
+	{
+		$this->imagenes = new ArrayCollection();
+	}
+
     /**
      * Get id
      *
