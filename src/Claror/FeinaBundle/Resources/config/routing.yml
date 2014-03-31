@@ -1,0 +1,3 @@
+claror_feina_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ClarorFeinaBundle:Default:index }
