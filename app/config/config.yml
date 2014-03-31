@@ -67,3 +67,11 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+    
+#Stof internalizacion de bbdd
+stof_doctrine_extensions:
+    default_locale:       ca
+    translation_fallback:  true
+    orm:
+        default:
+            translatable:  true
