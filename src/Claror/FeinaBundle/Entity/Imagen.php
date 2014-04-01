@@ -273,10 +273,10 @@ class Imagen
 	public function upload($size_ancho,$size_alto,$ultimo)
 		{
 			
-		    // the file property can be empty if the field is not required
-		   // if (null === $this->getFile()) {
-			//return;
-		    //}
+		    
+		   if (null === $this->getFile()) {
+			return;
+		    }
 			//--->> Sacamos extension
 			$nombredelpath=$this->getFile()->getClientOriginalName();
 			

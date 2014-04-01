@@ -1,6 +1,19 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
+
+ {% for flashMessage2 in app.session.flashbag.get('faena') %}
+    <div class="flash_ok">
+        {{ flashMessage2 | raw }}
+    </div>
+{% endfor %}
+
+{% for flashMessage2 in app.session.flashbag.get('faena_error') %}
+    <div class="flash_error">
+        {{ flashMessage2 | raw }}
+    </div>
+{% endfor %}
+
 {% include 'ClarorFeinaBundle:Default:menu_gestor.html.twig' %} 
 {% include 'ClarorFeinaBundle:Default:idioma.html.twig' %} 
     <h1>Faena edit</h1>

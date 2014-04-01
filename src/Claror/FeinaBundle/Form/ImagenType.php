@@ -17,8 +17,8 @@ class ImagenType extends AbstractType
 		
 		
         $builder
-            ->add('nombre')
-            ->add('file')
+            ->add('nombre','text',array('required' => true))
+            ->add('file','file',array('required' => true))
             ->add('orden')
             ->add('slug','hidden')
             ->add('faena', 'entity_id', array(

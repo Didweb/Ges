@@ -46,19 +46,35 @@ class ImagenController extends Controller
      */
     public function createAction(Request $request)
     {
+		 
+		
         $entity = new Imagen();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
 			
+			
+			$tipoarchivo=$entity->getFile()->getMimeType();
+			
+			if($tipoarchivo<>'image/jpeg' &&  $tipoarchivo<>'image/png')
+			{
+			$this->get('session')->getFlashBag()
+					->add('faena_error',
+					'Formato de archivo no permitido. Solamente se pueden subir archivos de tipo Jpg/Jpeg o Png.');	
+			return $this->redirect($this->generateUrl('gestor_faena_edit', array('id' => $entity->getFaena()->getId())));	
+			}
+			
+			
             $em = $this->getDoctrine()->getManager();
-            echo "---> ".$entity->getNombre();
-            echo "---> ".$entity->getSlug().'.'.$entity->getExtension();
+            
+            
+            
+            
             $entity->setExtension();
             $em->persist($entity);
             $em->flush();
-             echo "---> ".$entity->getSlug().'.'.$entity->getExtension();
+             
 			$elnombre = $entity->getSlug().'.'.$entity->getExtension();
           
            $entity->upload(100,100,$elnombre);
@@ -100,7 +116,7 @@ class ImagenController extends Controller
      */
     public function newAction($idfaena)
     {
-		
+		 
 		$em = $this->getDoctrine()->getManager();
        
 		
