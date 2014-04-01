@@ -151,14 +151,23 @@ class ImagenController extends Controller
 		for ($i=0;$i<=count($entity)-1;$i++){
 			 $editForm = $this->createEditForm($entity[$i])
 			->createView();
+			
 			$losf[$i]=$editForm;
+			
 			}
+		$i=0;	
+        foreach($entity as $nom=>$val)
+        {echo "<br />---->".$val->getSlug().'.'.$val->getExtension();
+        $imagen[$i]=$val->getSlug().'.'.$val->getExtension();
         
+        $i++;
+        }
 
         return array(
             'entity'    => $entity,
             'texto'		=> $texto,
-            'edit_form_img'   => $losf
+            'edit_form_img'   => $losf,
+            'imagen'	=> $imagen
         );
     }
 
