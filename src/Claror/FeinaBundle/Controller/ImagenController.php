@@ -155,9 +155,10 @@ class ImagenController extends Controller
 			$losf[$i]=$editForm;
 			
 			}
-		$i=0;	
+		$i=0;
+		$imagen=array();	
         foreach($entity as $nom=>$val)
-        {echo "<br />---->".$val->getSlug().'.'.$val->getExtension();
+        {
         $imagen[$i]=$val->getSlug().'.'.$val->getExtension();
         
         $i++;
