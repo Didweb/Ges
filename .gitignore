@@ -3,4 +3,5 @@
 /app/cache/*
 /app/logs/*
 /vendor/
+/web/fotos-vidres/*
 /app/config/parameters.yml

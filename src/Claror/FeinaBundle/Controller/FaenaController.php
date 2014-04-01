@@ -54,7 +54,7 @@ class FaenaController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('gestor_faena_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('gestor_faena_edit', array('id' => $entity->getId())));
         }
 
         return array(

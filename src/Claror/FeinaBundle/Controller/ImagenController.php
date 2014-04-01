@@ -9,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Claror\FeinaBundle\Entity\Imagen;
 use Claror\FeinaBundle\Form\ImagenType;
+use Claror\FeinaBundle\Form\ImagenShowType;
+
 
 /**
  * Imagen controller.
@@ -101,7 +103,6 @@ class ImagenController extends Controller
 		
 		$em = $this->getDoctrine()->getManager();
        
-       // $form   = $this->createForm(new RangoHoraType($idoperario), $entity);
 		
         $entity = new Imagen();
         $idfa= $em->getReference('ClarorFeinaBundle:Faena', $idfaena);
@@ -130,12 +131,18 @@ class ImagenController extends Controller
         if (!$entity) {
             $texto = 'Aquesta feina no té cap imatge assignada.';
         }
-
+		$losf = array();
+		for ($i=0;$i<=count($entity)-1;$i++){
+			 $editForm = $this->createEditForm($entity[$i])
+			->createView();
+			$losf[$i]=$editForm;
+			}
         
 
         return array(
             'entity'    => $entity,
-            'texto'		=> $texto
+            'texto'		=> $texto,
+            'edit_form_img'   => $losf
         );
     }
 
@@ -157,12 +164,10 @@ class ImagenController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         );
     }
 
@@ -175,7 +180,7 @@ class ImagenController extends Controller
     */
     private function createEditForm(Imagen $entity)
     {
-        $form = $this->createForm(new ImagenType(), $entity, array(
+        $form = $this->createForm(new ImagenShowType(), $entity, array(
             'action' => $this->generateUrl('gestor_imagen_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
@@ -201,14 +206,13 @@ class ImagenController extends Controller
             throw $this->createNotFoundException('Unable to find Imagen entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('gestor_imagen_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('gestor_faena_edit', array('id' => $entity->getFaena()->getId())));
         }
 
         return array(
