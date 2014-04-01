@@ -219,4 +219,10 @@ class Faena
     {
         return $this->updated;
     }
+
+	public function __toString()
+	{
+		return $this->titulo;	
+	}   
+
 }

@@ -1,0 +1,32 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Imagen</h1>
+{{ texto }}
+{% for imagen in entity %}
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ imagen.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ imagen.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ imagen.slug }}</td>
+            </tr>
+           
+            <tr>
+                <th>Extension</th>
+                <td>{{ imagen.extension }}</td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+     <a href="{{ path('gestor_imagen_delete',{'id':imagen.id,'idfaena':imagen.faena.id}) }}"  title="Eliminar Imagen">Eliminar</a>
+{% endfor %}
+{% endblock %}

@@ -15,4 +15,8 @@
     </li>
     <li>{{ form(delete_form) }}</li>
 </ul>
+
+{{ render(controller('ClarorFeinaBundle:Imagen:show',{'idfaena':entity.id})) }}
+{{ render(controller('ClarorFeinaBundle:Imagen:new',{'idfaena':entity.id})) }}
+
 {% endblock %}

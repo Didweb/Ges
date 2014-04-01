@@ -24,6 +24,13 @@ class Imagen
     private $id;
 
     /**
+     * @var integer
+     * @ORM\Column(name="orden", type="integer")
+     */
+    private $orden;
+
+
+    /**
      * @var string
      * @Gedmo\Translatable
      * @ORM\Column(name="nombre", type="string", length=255)
@@ -32,17 +39,12 @@ class Imagen
 
     /**
      * @var string
-     *
+     * @Gedmo\Slug(fields={"nombre"})
      * @ORM\Column(name="slug", type="string", length=255)
      */
     private $slug;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="url", type="string", length=255)
-     */
-    private $url;
+
 
     /**
      * @var string
@@ -51,10 +53,7 @@ class Imagen
      */
     private $extension;
 
-    /**
-     * @ORM\Column(type="string", length=300, nullable=true)
-     */
-    public $path;
+
 
     /**
      * @Assert\File(maxSize="6000000")
@@ -81,15 +80,6 @@ class Imagen
 
 
 
-	public function setPath($path)
-	{
-		$this->path=$path;
-	}
-
-	public function getPath()
-	{
-		return $this->path;
-	}
 
 
     public function getAbsolutePath()
@@ -111,14 +101,15 @@ class Imagen
         // la ruta absoluta del directorio donde se deben
         // guardar los archivos cargados
         //return __DIR__.'/../../../../web/'.$this->getUploadDir();
-        return '/usr/home/vbd93i4wsR1z/rutashistoria.com/web/'.$this->getUploadDir();
+        return '/var/www/claror/web/'.$this->getUploadDir();
+        //return $this->get('kernel')->getRootDir() . '/../web'.$this->getUploadDir();
     }
 
     protected function getUploadDir()
     {
         // se deshace del __DIR__ para no meter la pata
         // al mostrar el documento/imagen cargada en la vista.
-        return 'images';
+        return 'fotos-vidres';
     }
 
 
@@ -144,7 +135,52 @@ class Imagen
         return $this->file;
     }
 
+  /**
+     * Set orden
+     *
+     * @param integer $orden
+     * @return Imagen
+     */
+    public function setOrden($orden)
+    {
+        $this->orden = $orden;
 
+        return $this;
+    }
+
+    /**
+     * Get orden
+     *
+     * @return integer 
+     */
+    public function getOrden()
+    {
+        return $this->orden;
+    }
+
+  /**
+     * Set faena
+     *
+     * @param string $faena
+     * @return Imagen
+     */
+    public function setFaena($faena)
+    {
+        $this->faena = $faena;
+
+        return $this;
+    }
+
+    /**
+     * Get faena
+     *
+     * @return string 
+     */
+    public function getFaena()
+    {
+        return $this->faena;
+    }
+    
     /**
      * Set nombre
      *
@@ -191,28 +227,7 @@ class Imagen
         return $this->slug;
     }
 
-    /**
-     * Set url
-     *
-     * @param string $url
-     * @return Imagen
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
 
-        return $this;
-    }
-
-    /**
-     * Get url
-     *
-     * @return string 
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
 
     /**
      * Set extension
@@ -220,8 +235,13 @@ class Imagen
      * @param string $extension
      * @return Imagen
      */
-    public function setExtension($extension)
+    public function setExtension()
     {
+		$nombredelpath=$this->getFile()->getClientOriginalName();
+		$extension	=	explode(".",$nombredelpath);
+		$corte		=	count($extension)-1;
+		$extension	=	$extension[$corte];	
+		
         $this->extension = $extension;
 
         return $this;
@@ -239,7 +259,7 @@ class Imagen
 
 	public function eliminararchivo($nomruta)
 		{
-		$ruta=$this->getUploadDir()."/".$nomruta;
+		$ruta=$this->getUploadDir()."/g/".$nomruta;
 		$rutap=$this->getUploadDir()."/p/".$nomruta;
 		if (file_exists($ruta))
 		{unlink($ruta);
@@ -250,46 +270,43 @@ class Imagen
 
 
 
-	public function upload($elslugarchi,$tipo)
+	public function upload($size_ancho,$size_alto,$ultimo)
 		{
+			
 		    // the file property can be empty if the field is not required
-		    if (null === $this->getFile()) {
-			return;
-		    }
-			//--->> Ponemos un nombre unico y limpio de caracteres extraños
+		   // if (null === $this->getFile()) {
+			//return;
+		    //}
+			//--->> Sacamos extension
 			$nombredelpath=$this->getFile()->getClientOriginalName();
-			$extension=explode(".",$nombredelpath);
-			$corte=count($extension)-1;
-			$extension=$extension[$corte];
-			$nombreunicopath=date('U')."-".$elslugarchi.".".$extension; 
-		   
-
+			
+			//$nom 		=	$ultimo->getSlug();
+			//$extension 	=	$ultimo->getExtension();
+			//echo "-------------------".$nombreunicopath.'.'.$extension; exit;
 		    // Subimos el archivo con el nuevo nombre
-		    $this->getFile()->move($this->getUploadRootDir(),$nombreunicopath);
+		    $this->getFile()->move($this->getUploadRootDir().'/g/',$ultimo);
 		
-		   // en el caso de que sea una imagen procedemos ala miniatura
-		   if($tipo=='imagen')
-			{
+		   
 			//$pImageOrigen=$this->getFile()->getClientOriginalName();
-			$tmpname=$this->getUploadRootDir()."/".$nombreunicopath;	
-			$save_dir=$this->getUploadRootDir().'/p/';
-			$save_name=$nombreunicopath;
-			$size=100;
-			$size_alto=100;
-			 $this->img_resize( $tmpname, $size,$size_alto, $save_dir, $save_name );
-			}		
+			$tmpname=$this->getUploadRootDir()."/g/".$ultimo;	
+			$save_dir_p=$this->getUploadRootDir().'/p/';
+			$save_dir_g=$this->getUploadRootDir().'/g/';
+			$save_name=$ultimo;
+			
+			$this->img_resize( $tmpname, 240,196, $save_dir_p, $save_name );
+			$this->img_resize( $tmpname, 1024,768, $save_dir_g, $save_name );
+					
 
 
-		    // Guradamos el nombre nuevo del archivo en el campo path
-		    $this->path =$nombreunicopath; 
 		
 		    // limpia la propiedad «file» ya que no la necesitas más
 		    $this->file = null;
 		}
 
 
-	public function img_resize( $tmpname, $size,$size_alto, $save_dir, $save_name )
+	public function img_resize( $tmpname, $size_ancho,$size_alto, $save_dir, $save_name )
 	    {
+		$size = $size_ancho;	
 	    $save_dir .= ( substr($save_dir,-1) != "/") ? "/" : "";
 	    $gis       = GetImageSize($tmpname);
 	    $type       = $gis[2];
@@ -336,4 +353,17 @@ class Imagen
 		    else
 		    return false;
 	    }
+
+
+public function borrarArchivos($nomruta)
+	{
+	$ruta=$this->getUploadDir()."/g/".$nomruta;
+	$rutap=$this->getUploadDir()."/p/".$nomruta;
+			if (file_exists($ruta))
+				{unlink($ruta);
+				unlink($rutap);
+				}	
+		return 0;
+	}
+		
 }
