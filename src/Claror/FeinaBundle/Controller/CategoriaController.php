@@ -28,11 +28,19 @@ class CategoriaController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('ClarorFeinaBundle:Categoria')->findAll();
-
+		$dql = "SELECT c FROM ClarorFeinaBundle:Categoria c";
+        //$entities = $em->getRepository('ClarorFeinaBundle:Categoria')->findAll();
+		$query = $em->createQuery($dql);
+        
+         $paginator  = $this->get('knp_paginator');
+		$pagination = $paginator->paginate(
+        $query,
+        $this->get('request')->query->get('p', 1),
+        1
+		);
+        
         return array(
-            'entities' => $entities,
+            'pagination' => $pagination
         );
     }
     /**

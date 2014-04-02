@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Claror\FeinaBundle\ClarorFeinaBundle(),
             new Claror\SecurityBundle\ClarorSecurityBundle(),
             new Claror\IdiomaBundle\ClarorIdiomaBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
