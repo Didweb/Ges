@@ -97,7 +97,7 @@ section#nueva_foto form {float:left; background-color:#E8EBEC; padding:25px;
 				width:90%; margin-bottom:40px; margin-left:-50px;
 				border-radius: 5px 5px 5px 5px;
 				-moz-border-radius: 5px 5px 5px 5px;
-				-webkit-border-radius: 5px 5px 5px 5px;}}
+				-webkit-border-radius: 5px 5px 5px 5px;}
 
 section#nueva_foto  label { width:50%; background-color:red;
 			text-align:right; padding-right:4px; font-size:13px; 
@@ -109,10 +109,32 @@ section#nueva_foto input { margin-left:5px;
 
 .cap_f{ float:left; width:100%; }
 
-section#mostrar_fotos { float:right; width:40%;} 
+section#mostrar_fotos { float:left; width:45%; margin-left:-40px;} 
 section#mostrar_fotos h2 {font-size:16px; color:#999999;}
-.cuadro_img	{float:left; width:150px; }
-.cuadro_img img {width:100px;}
+
+.cuadro_img	{float:left; width:350px; height:150px; 
+			background-color:#E6ECEE;
+			margin:5px; padding:5px; border-radius: 5px 5px 5px 5px;
+				-moz-border-radius: 5px 5px 5px 5px;
+				-webkit-border-radius: 5px 5px 5px 5px;}
+
+ 
+.marco	{float:left; border:1px solid #F2F8FA; width:100px; 
+		height:100px; overflow:hidden; }
+ 
+section#mostrar_fotos form {float:left; width:225px; padding-left:10px;
+			color:#999999; font-size:13px;
+			}
+section#mostrar_fotos label {clear:both; width:150px;}
+
+
+.bo_borrar_foto {position:absolute;
+			background-image:url(../images/borrar.png); 
+			width:22px; height:22px; display:block; margin-top:115px;
+			opacity:0.4; filter:alpha(opacity=40);
+			background-repeat:no-repeat;}
+.bo_borrar_foto:hover {opacity:1.0; filter:alpha(opacity=100);}
+
  
 /*
  * Editar otros

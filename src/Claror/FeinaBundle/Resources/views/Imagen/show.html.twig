@@ -7,11 +7,14 @@
 			
 	<div class="cuadro_img">
 					
-			{{ form(elfor) }}
+			
 		{% for key,img in entity if key==x %}
+		<div class="marco">
 			<img src="{{asset('fotos-vidres/p/')}}{{ img.slug }}.{{ img.extension }} " title="{{ img.nombre }}" />
-			<a href="{{ path('gestor_imagen_delete',{'id':img.id,'idfaena':img.faena.id}) }}"  title="Eliminar Imagen">Eliminar</a>
+		</div>	
+			<a href="{{ path('gestor_imagen_delete',{'id':img.id,'idfaena':img.faena.id}) }}"  title="Eliminar Imagen" class="bo_borrar_foto"></a>
 		{% endfor %}
+		{{ form(elfor) }}
 {% set x=x+1 %}
 
 	</div>	
