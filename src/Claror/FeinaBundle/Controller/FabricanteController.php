@@ -137,11 +137,13 @@ class FabricanteController extends Controller
 			$cam='ca';
 			}elseif($locale=='ca'){
 				$cam='es';
+				
 				}elseif ($locale=='')
 				{
 				$cam=$request->getSession()->get('_locale');	
 				}
-		$request->getSession()->set('_locale', $cam);	
+		
+		$request->getSession()->set('_locale', $cam);
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ClarorFeinaBundle:Fabricante')->find($id);

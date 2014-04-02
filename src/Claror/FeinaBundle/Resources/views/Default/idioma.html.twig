@@ -1,26 +1,27 @@
 <nav id="idiomas">
 
 {% set actual1=app.request.get('_locale') %}
-{% if actual1=='es' %}
-{% set actual='ca' %}
-{% elseif actual1=='ca'%}
-{% set actual='es' %}
-{% endif %}
+	{% if actual1=='es' %}
+		{% set actual='ca' %}
+	{% elseif actual1=='ca'%}
+		{% set actual='es' %}
+	{% endif %}
+
 
 <b>{{ actual1 }}</b>
 {% set a=app.request.uri|split('/') %} 
 {% for datos in a %}
 
-{% if datos=='fabricante' %}
-	<a href="{{ path('gestor_fabricante_edit',{'id':entity.id,'_locale':actual })}}">cambio</a>
+	{% if datos=='fabricante' %}
+		<a href="{{ path('gestor_fabricante_edit',{'id':entity.id,'_locale':actual })}}">cambio</a>
 
-{% elseif datos=='categoria' %}
-	<a href="{{ path('gestor_categoria_edit',{'id':entity.id,'_locale':actual })}}">cambio</a>	
+	{% elseif datos=='categoria' %}
+		<a href="{{ path('gestor_categoria_edit',{'id':entity.id,'_locale':actual })}}">cambio</a>	
 
-{% elseif datos=='faena' %}
-	<a href="{{ path('gestor_faena_edit',{'id':entity.id,'_locale':actual })}}">cambio</a>	
+	{% elseif datos=='faena' %}
+		<a href="{{ path('gestor_faena_edit',{'id':entity.id,'_locale':actual })}}">cambio</a>	
 
-{% endif %}
+	{% endif %}
 
 {% endfor %}
 
