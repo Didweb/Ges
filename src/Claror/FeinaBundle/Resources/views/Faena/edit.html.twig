@@ -1,8 +1,21 @@
-{% extends '::base.html.twig' %}
+{% extends '::backend.html.twig' %}
 
-{% block body -%}
+{% block contenidos %}
+<nav id="secundario">
+ <a href="{{ path('gestor_faena') }}">
+            Tornar al llistat de feines
+        </a>
+        
+            <a href="{{ path('gestor_faena_new') }}" title="Crear nova feina">
+                Crear nova feina
+            </a>
+</nav>
 
- {% for flashMessage2 in app.session.flashbag.get('faena') %}
+
+
+<section id="nova_feina">
+    <h1>Editar feina</h1>
+ {% for flashMessage2 in app.session.flashbag.get('faena_ok') %}
     <div class="flash_ok">
         {{ flashMessage2 | raw }}
     </div>
@@ -14,22 +27,52 @@
     </div>
 {% endfor %}
 
-{% include 'ClarorFeinaBundle:Default:menu_gestor.html.twig' %} 
-{% include 'ClarorFeinaBundle:Default:idioma.html.twig' %} 
-    <h1>Faena edit</h1>
 
-    {{ form(edit_form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('gestor_faena') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
 
-{{ render(controller('ClarorFeinaBundle:Imagen:show',{'idfaena':entity.id})) }}
+	 <form action="{{ path('gestor_faena_update',{ 'id':entity.id}) }}" 
+				method="post" {{ form_enctype(edit_form) }}>
+				<input type="hidden" name="_method" value="PUT" />
+	{{ form_errors(edit_form) }}
+			{{ form_label(edit_form.titulo,"Títol:") }}
+			{{ form_errors(edit_form.titulo) }}
+			{{ form_widget(edit_form.titulo) }}
+			
+			{{ form_label(edit_form.texto,"Text:") }}
+			{{ form_errors(edit_form.texto) }}
+			{{ form_widget(edit_form.texto) }}
+
+			{{ form_label(edit_form.etiqueta,"Tags (separats per comes):") }}
+			{{ form_errors(edit_form.etiqueta) }}
+			{{ form_widget(edit_form.etiqueta) }}
+
+
+			{{ form_label(edit_form.categoria,"Categoria:") }}
+			{{ form_errors(edit_form.categoria) }}
+			{{ form_widget(edit_form.categoria) }}			
+
+
+			{{ form_label(edit_form.fabricante,"Fabricant:") }}
+			{{ form_errors(edit_form.fabricante) }}
+			{{ form_widget(edit_form.fabricante) }}
+
+
+
+       <nav id="boton_accion">
+		{{ form_rest(edit_form) }}
+		</nav>
+		</form>
+
+</section>
+
+<section id="nueva_foto">
 {{ render(controller('ClarorFeinaBundle:Imagen:new',{'idfaena':entity.id})) }}
+</section>
+
+<section id="mostrar_fotos">
+{{ render(controller('ClarorFeinaBundle:Imagen:show',{'idfaena':entity.id})) }}
+</section>
+
+
 
 {% endblock %}

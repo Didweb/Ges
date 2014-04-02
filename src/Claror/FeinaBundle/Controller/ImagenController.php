@@ -61,7 +61,7 @@ class ImagenController extends Controller
 			{
 			$this->get('session')->getFlashBag()
 					->add('faena_error',
-					'Formato de archivo no permitido. Solamente se pueden subir archivos de tipo Jpg/Jpeg o Png.');	
+					'Format d\'arxiu no permès. Formats permesos:Jpg/Jpeg o Png.');	
 			return $this->redirect($this->generateUrl('gestor_faena_edit', array('id' => $entity->getFaena()->getId())));	
 			}
 			
@@ -74,7 +74,9 @@ class ImagenController extends Controller
             $entity->setExtension();
             $em->persist($entity);
             $em->flush();
-             
+            $this->get('session')->getFlashBag()
+					->add('faena_ok',
+					'Imatge pujada al servidor de forma correcta.');	
 			$elnombre = $entity->getSlug().'.'.$entity->getExtension();
           
            $entity->upload(100,100,$elnombre);
@@ -102,7 +104,7 @@ class ImagenController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Pujar imatge'));
 
         return $form;
     }

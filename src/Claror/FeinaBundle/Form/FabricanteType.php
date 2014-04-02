@@ -16,7 +16,7 @@ class FabricanteType extends AbstractType
     {
         $builder
             ->add('nombre')
-            ->add('url')
+            ->add('url','url')
         ;
     }
     

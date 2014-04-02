@@ -1,52 +1,52 @@
-{% extends '::base.html.twig' %}
+{% extends '::backend.html.twig' %}
 
-{% block body -%}
-{% include 'ClarorFeinaBundle:Default:menu_gestor.html.twig' %} 
-{% include 'ClarorFeinaBundle:Default:idioma.html.twig' %} 
+{% block contenidos %}
+<nav id="secundario">
+            <a href="{{ path('gestor_faena_new') }}" title="Crear nova feina">
+                Crear nova feina
+            </a>
+</nav>
 
-    <h1>Faena list</h1>
-
+<section id="listado">
+    <h1>Llistat de Feines</h1>
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
     <table class="records_list">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Titulo</th>
-                <th>Texto</th>
-                <th>Etiqueta</th>
-                <th>Created</th>
-                <th>Updated</th>
-                <th>Actions</th>
+                
+                <th>{{ knp_pagination_sortable(pagination, 'Ordre', 'f.titulo') }} Titulo</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Ordre', 'f.created') }} Creat</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Ordre', 'f.updated') }} Actualitzat</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('gestor_faena_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+        {% set n=1 %}
+        {% for entity in pagination %}
+        	{% if n is divisibleby(2)  %}
+				{% set linea="impar" %} 
+            {% else %}
+				{% set linea="par" %}
+            {% endif %}
+        
+            <tr class="{{ linea }}">
                 <td>{{ entity.titulo }}</td>
-                <td>{{ entity.texto }}</td>
-                <td>{{ entity.etiqueta }}</td>
-                <td>{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.updated %}{{ entity.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.created %}{{ entity.created|date('d-m-Y') }}{% endif %}</td>
+                <td>{% if entity.updated %}{{ entity.updated|date('d-m-Y') }}{% endif %}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('gestor_faena_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('gestor_faena_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+               
+                <a href="{{ path('gestor_faena_edit', { 'id': entity.id }) }}" title="Editar" class="bo_editar"></a>
+                 
                 </td>
             </tr>
+            {% set n=n+1 %}
         {% endfor %}
         </tbody>
     </table>
 
-        <ul>
-        <li>
-            <a href="{{ path('gestor_faena_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
     {% endblock %}

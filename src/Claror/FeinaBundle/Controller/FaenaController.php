@@ -29,11 +29,19 @@ class FaenaController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+		$dql = "SELECT f FROM ClarorFeinaBundle:Faena f ";
+		$query = $em->createQuery($dql);
 
-        $entities = $em->getRepository('ClarorFeinaBundle:Faena')->findAll();
+		$paginator  = $this->get('knp_paginator');
+		$pagination = $paginator->paginate(
+        $query,
+        $this->get('request')->query->get('p', 1),
+        25
+		);		
+        //$entities = $em->getRepository('ClarorFeinaBundle:Faena')->findAll();
 
         return array(
-            'entities' => $entities,
+            'pagination' => $pagination,
         );
     }
     /**
@@ -53,7 +61,9 @@ class FaenaController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
+			$this->get('session')->getFlashBag()
+						->add('faena_ok',
+						's\'ha creat una nova  feina.');
             return $this->redirect($this->generateUrl('gestor_faena_edit', array('id' => $entity->getId())));
         }
 
@@ -77,7 +87,7 @@ class FaenaController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Crear nova feina'));
 
         return $form;
     }
@@ -176,7 +186,7 @@ class FaenaController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Actualitzar Feina'));
 
         return $form;
     }
@@ -203,7 +213,9 @@ class FaenaController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-
+			$this->get('session')->getFlashBag()
+						->add('faena_ok',
+						's\'ha actualitzat la feina de forma correcta.');
             return $this->redirect($this->generateUrl('gestor_faena_edit', array('id' => $id)));
         }
 

@@ -7,6 +7,7 @@
 {% set nom='Castellà' %}
 {% endif %}
 	<nav id="idiomas">
+	<img src="{{ asset('images/')}}{{ actual1 }}.png" alt="versio actual" title="idioma actual {{ nom }}" id="versioactual"/>
 	<a href="{{ path('cambio_idioma',{'newlang':actual })}}">Veure continguts versió [ {{ nom }} ]</a>
 	<a href="http://{{ global.url_web }}" class="cerrar_sesion" target="_blank">veure web: {{ global.url_web }}</a>
 	<a href="{{ path('logout') }}" id="cerrar_sesion" class="color_rojo">Tancar Sessió</a>

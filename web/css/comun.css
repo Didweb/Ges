@@ -35,6 +35,9 @@ nav#secundario {clear:both; float:left; width:100%;
 				border-radius: 5px 5px 5px 5px;
 				-moz-border-radius: 5px 5px 5px 5px;
 				-webkit-border-radius: 5px 5px 5px 5px;}
+
+#versioactual {float:left;}
+
 /*
  * Listados
  * */
@@ -58,3 +61,107 @@ section#listado tbody tr:hover {background-color:#F8F6D3;}
 			opacity:0.4; filter:alpha(opacity=40);
 			background-repeat:no-repeat;}
 .bo_editar:hover {opacity:1.0; filter:alpha(opacity=100);}
+
+aside#eliminar {clear:both; width:90%; flot:left;  
+				text-align:right; margin-bottom:15px;}
+aside#eliminar button {background-color:#FBCD83; color:#6C100D; 
+				padding:6px; font-weight:bold; border:1px solid #7E0703;
+				border-radius: 5px 5px 5px 5px;
+				-moz-border-radius: 5px 5px 5px 5px;
+				-webkit-border-radius: 5px 5px 5px 5px;}
+
+aside#eliminar button:hover {background-color:#FBF304; color:#2B0503; }
+
+/*
+ * Editar feina
+ * */
+ 
+section#nova_feina {float:left; width:50%;
+			padding:15px;}
+section#nova_feina h1 {font-size:16px; color:#999999;}
+
+section#nova_feina form {padding:5px;}
+section#nova_feina label {clear:both; float:left; width:150px;
+			text-align:right; padding-right:4px; font-size:13px; 
+			color:#999999; padding:3px; margin-bottom:5px;}
+
+section#nova_feina input, select, textarea {float:left; margin-left:5px;
+			margin-bottom:5px; padding:3px; font-size:13px; width:500px;
+			} 
+/*
+ * Imagenes
+ * */
+section#nueva_foto { float:right; width:45%; }
+section#nueva_foto h2 {font-size:16px; color:#999999;}
+section#nueva_foto form {float:left; background-color:#E8EBEC; padding:25px; 
+				width:90%; margin-bottom:40px; margin-left:-50px;
+				border-radius: 5px 5px 5px 5px;
+				-moz-border-radius: 5px 5px 5px 5px;
+				-webkit-border-radius: 5px 5px 5px 5px;}}
+
+section#nueva_foto  label { width:50%; background-color:red;
+			text-align:right; padding-right:4px; font-size:13px; 
+			color:#999999; padding:3px; margin-bottom:5px;}
+
+section#nueva_foto input { margin-left:5px;
+			margin-bottom:5px; padding:3px; font-size:13px; width:50%;
+			}
+
+.cap_f{ float:left; width:100%; }
+
+section#mostrar_fotos { float:right; width:40%;} 
+section#mostrar_fotos h2 {font-size:16px; color:#999999;}
+.cuadro_img	{float:left; width:150px; }
+.cuadro_img img {width:100px;}
+ 
+/*
+ * Editar otros
+ * */ 
+ 
+section#editar_registro {clear:both; float:left; width:100%;
+			padding:15px;}
+section#editar_registro h1 {font-size:16px; color:#999999;}
+
+section#editar_registro form {padding:5px;}
+section#editar_registro label {clear:both; float:left; width:150px;
+			text-align:right; padding-right:4px; font-size:13px; 
+			color:#999999; padding:3px; margin-bottom:5px;}
+
+section#editar_registro input, textarea {float:left; margin-left:5px;
+			margin-bottom:5px; padding:3px; font-size:13px; width:500px;
+			}
+textarea {height:300px;}
+
+nav#boton_accion {clear:both; float:left; margin-top:15px;
+					margin-left:510px;}
+
+nav#boton_accion button {background-color:#8DFB83; color:#1A6C0D; 
+				padding:6px; font-weight:bold; border:1px solid #077E03;
+				border-radius: 5px 5px 5px 5px;
+				-moz-border-radius: 5px 5px 5px 5px;
+				-webkit-border-radius: 5px 5px 5px 5px;}
+
+nav#boton_accion button:hover {background-color:#C4FB04; color:#042B03; 
+				}
+
+/*
+ * Flash
+ * */
+
+.flash_ok {position:absolute; margin-top:-44px; font-size:16px; 
+			padding:10px; background-color:#DEF2CD; width:490px;
+			font-weight:bold; float:left; margin-left:165px; 
+			text-align:center; color:#20521E;
+			border-radius: 5px 5px 5px 5px;
+				-moz-border-radius: 5px 5px 5px 5px;
+				-webkit-border-radius: 5px 5px 5px 5px;}
+
+.flash_error {position:absolute; margin-top:-44px; font-size:16px; 
+			padding:10px; background-color:#F2CDD3; width:490px;
+			font-weight:bold; float:left; margin-left:165px; 
+			text-align:center; color:#521E1E;
+			border-radius: 5px 5px 5px 5px;
+				-moz-border-radius: 5px 5px 5px 5px;
+				-webkit-border-radius: 5px 5px 5px 5px;}
+
+

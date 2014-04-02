@@ -1,45 +1,50 @@
-{% extends '::base.html.twig' %}
+{% extends '::backend.html.twig' %}
 
-{% block body -%}
-{% include 'ClarorFeinaBundle:Default:menu_gestor.html.twig' %} 
-{% include 'ClarorFeinaBundle:Default:idioma.html.twig' %} 
-    <h1>Fabricante list</h1>
+{% block contenidos %}
+<nav id="secundario">
+            <a href="{{ path('gestor_fabricante_new') }}" title="Crear nou fabricant">
+                Crear nou fabricant
+            </a>
+</nav>
 
+
+<section id="listado">
+
+    <h1>Llistat de fabricants</h1>
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
     <table class="records_list">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Nombre</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Ordre', 'f.nombre') }} Nombre</th>
                 <th>Url</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('gestor_fabricante_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+        {% set n=1 %}
+        {% for entity in pagination %}
+         	{% if n is divisibleby(2)  %}
+				{% set linea="impar" %} 
+            {% else %}
+				{% set linea="par" %}
+            {% endif %}
+            <tr class="{{ linea }}">
                 <td>{{ entity.nombre }}</td>
                 <td>{{ entity.url }}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('gestor_fabricante_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('gestor_fabricante_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                
+                  <a href="{{ path('gestor_fabricante_edit', { 'id': entity.id }) }}" title="Editar" class="bo_editar"></a>
+                   
                 </td>
             </tr>
+            {% set n=n+1 %}
         {% endfor %}
         </tbody>
     </table>
 
-        <ul>
-        <li>
-            <a href="{{ path('gestor_fabricante_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
     {% endblock %}

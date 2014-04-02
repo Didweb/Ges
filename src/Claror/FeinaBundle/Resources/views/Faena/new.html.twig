@@ -1,16 +1,61 @@
-{% extends '::base.html.twig' %}
+{% extends '::backend.html.twig' %}
 
-{% block body -%}
-{% include 'ClarorFeinaBundle:Default:menu_gestor.html.twig' %} 
-    <h1>Faena creation</h1>
-
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('gestor_faena') }}">
-            Back to the list
+{% block contenidos %}
+<nav id="secundario">
+ <a href="{{ path('gestor_faena') }}">
+            Tornar al llistat de feines
         </a>
-    </li>
-</ul>
+</nav>   
+
+<section id="editar_registro">
+    <h1>Crear feina</h1>
+ {% for flashMessage2 in app.session.flashbag.get('faena_ok') %}
+    <div class="flash_ok">
+        {{ flashMessage2 | raw }}
+    </div>
+{% endfor %}
+
+{% for flashMessage2 in app.session.flashbag.get('faena_error') %}
+    <div class="flash_error">
+        {{ flashMessage2 | raw }}
+    </div>
+{% endfor %}
+
+
+	 <form action="{{ path('gestor_faena_create') }}" 
+				method="post" {{ form_enctype(form) }}>
+				<input type="hidden" name="_method" value="POST" />
+	{{ form_errors(form) }}
+			{{ form_label(form.titulo,"Títol:") }}
+			{{ form_errors(form.titulo) }}
+			{{ form_widget(form.titulo) }}
+			
+			{{ form_label(form.texto,"Text:") }}
+			{{ form_errors(form.texto) }}
+			{{ form_widget(form.texto) }}
+
+			{{ form_label(form.etiqueta,"Tags (separats per comes):") }}
+			{{ form_errors(form.etiqueta) }}
+			{{ form_widget(form.etiqueta) }}
+
+
+			{{ form_label(form.categoria,"Categoria:") }}
+			{{ form_errors(form.categoria) }}
+			{{ form_widget(form.categoria) }}			
+
+
+			{{ form_label(form.fabricante,"Fabricant:") }}
+			{{ form_errors(form.fabricante) }}
+			{{ form_widget(form.fabricante) }}
+
+
+
+       <nav id="boton_accion">
+		{{ form_rest(form) }}
+		</nav>
+		</form>
+
+
+</section>
+  
 {% endblock %}

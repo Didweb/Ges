@@ -29,14 +29,13 @@ class CategoriaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 		$dql = "SELECT c FROM ClarorFeinaBundle:Categoria c";
-        //$entities = $em->getRepository('ClarorFeinaBundle:Categoria')->findAll();
 		$query = $em->createQuery($dql);
         
-         $paginator  = $this->get('knp_paginator');
+        $paginator  = $this->get('knp_paginator');
 		$pagination = $paginator->paginate(
         $query,
         $this->get('request')->query->get('p', 1),
-        1
+        25
 		);
         
         return array(
@@ -60,8 +59,10 @@ class CategoriaController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
-            return $this->redirect($this->generateUrl('gestor_categoria_show', array('id' => $entity->getId())));
+			$this->get('session')->getFlashBag()
+						->add('categoria_ok',
+						's\'ha creat una nova categoria.');
+            return $this->redirect($this->generateUrl('gestor_categoria_edit', array('id' => $entity->getId())));
         }
 
         return array(
@@ -84,7 +85,7 @@ class CategoriaController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Crear nova categoria'));
 
         return $form;
     }
@@ -183,7 +184,7 @@ class CategoriaController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Actualitzar categoria'));
 
         return $form;
     }
@@ -210,7 +211,9 @@ class CategoriaController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-
+			$this->get('session')->getFlashBag()
+						->add('categoria_ok',
+						's\'ha actualitzat la categoria de forma correcta.');
             return $this->redirect($this->generateUrl('gestor_categoria_edit', array('id' => $id)));
         }
 
@@ -258,7 +261,7 @@ class CategoriaController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('gestor_categoria_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Eliminar categoria'))
             ->getForm()
         ;
     }

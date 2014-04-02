@@ -28,11 +28,17 @@ class FabricanteController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('ClarorFeinaBundle:Fabricante')->findAll();
-
+		$dql = "SELECT f FROM ClarorFeinaBundle:Fabricante f";
+		$query = $em->createQuery($dql);
+       
+		$paginator  = $this->get('knp_paginator');
+		$pagination = $paginator->paginate(
+        $query,
+        $this->get('request')->query->get('p', 1),
+        25
+		);
         return array(
-            'entities' => $entities,
+            'pagination' => $pagination,
         );
     }
     /**
@@ -52,8 +58,10 @@ class FabricanteController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
-            return $this->redirect($this->generateUrl('gestor_fabricante_show', array('id' => $entity->getId())));
+			$this->get('session')->getFlashBag()
+						->add('fabricante_ok',
+						's\'ha creat un nou  fabricant.');
+            return $this->redirect($this->generateUrl('gestor_fabricante_edit', array('id' => $entity->getId())));
         }
 
         return array(
@@ -76,7 +84,7 @@ class FabricanteController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Crear nou fabricant'));
 
         return $form;
     }
@@ -177,7 +185,7 @@ class FabricanteController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Actualitzar fabricant'));
 
         return $form;
     }
@@ -204,7 +212,9 @@ class FabricanteController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-
+			$this->get('session')->getFlashBag()
+						->add('fabricante_ok',
+						's\'ha actualitzat el fabricant de forma correcta.');
             return $this->redirect($this->generateUrl('gestor_fabricante_edit', array('id' => $id)));
         }
 
@@ -252,7 +262,7 @@ class FabricanteController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('gestor_fabricante_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Eliminar fabricant'))
             ->getForm()
         ;
     }
