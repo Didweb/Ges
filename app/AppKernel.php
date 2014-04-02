@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Claror\FeinaBundle\ClarorFeinaBundle(),
             new Claror\SecurityBundle\ClarorSecurityBundle(),
+            new Claror\IdiomaBundle\ClarorIdiomaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
