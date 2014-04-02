@@ -1,4 +1,16 @@
+claror_security:
+    resource: "@ClarorSecurityBundle/Resources/config/routing.yml"
+    prefix:   /
+
 claror_feina:
     resource: "@ClarorFeinaBundle/Resources/config/routing.yml"
     prefix:   /
 
+login:
+    pattern:   /gestor/login
+    defaults:  { _controller: ClarorSecurityBundle:Security:login }
+login_check:
+    pattern:   /gestor/login_check
+
+logout:
+    path:   /gestor/logout

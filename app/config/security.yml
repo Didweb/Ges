@@ -1,38 +1,35 @@
 security:
-    encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
-
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_USUARIO:    IS_AUTHENTICATED_ANONYMOUSLY
+        ROLE_ADMIN:       ROLE_USUARIO
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, IS_AUTHENTICATED_ANONYMOUSLY ,ROLE_ALLOWED_TO_SWITCH]
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext        
+    encoders:
+        Symfony\Component\Security\Core\User\User: 
+            algorithm:  sha1
+            iterations: 1
+            encode_as_base64: false
+            
 
     providers:
-        in_memory:
+        default_provider:
             memory:
                 users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+                    a: { password:86f7e437faa5a7fce15d1ddcb9eaeaea377667b8, roles: 'ROLE_SUPER_ADMIN'}    
 
     firewalls:
-        dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
-        login:
-            pattern:  ^/demo/secured/login$
-            security: false
-
         secured_area:
-            pattern:    ^/demo/secured/
+            pattern:    /gestor/*
+            anonymous: ~
             form_login:
-                check_path: _security_check
-                login_path: _demo_login
+                login_path:  login
+                check_path:  login_check
             logout:
-                path:   _demo_logout
-                target: _demo
-            #anonymous: ~
-            #http_basic:
-            #    realm: "Secured Demo Area"
+                path: /gestor/logout
+                target: /gestor/login
 
     access_control:
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+      - { path: /gestor/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: /gestor, roles: [ROLE_USUARIO,ROLE_VISITA] }
+

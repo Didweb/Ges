@@ -4,6 +4,7 @@ home_gestor:
     prefix:   /
     requirements:
         _locale: ca|es
+    prefix: /{_locale}/     
     
 Anota:
     resource: "@ClarorFeinaBundle/Controller/"
