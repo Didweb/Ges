@@ -16,7 +16,9 @@ security:
         default_provider:
             memory:
                 users:
-                    a: { password:86f7e437faa5a7fce15d1ddcb9eaeaea377667b8, roles: 'ROLE_SUPER_ADMIN'}    
+                    raspinu: { password:0cab848c82426d8cd47736c8fb42f1403047a661, roles: 'ROLE_SUPER_ADMIN'}  
+                    trepax: { password:aa15d5b0317368871c42acaa4e4ed2935ed5041c, roles: 'ROLE_ADMIN'}
+                    adminclaror: { password:6dd7cd79b06cdbe86a910ca021f9ec0c6d439914, roles: 'ROLE_ADMIN'}   
 
     firewalls:
         secured_area:
