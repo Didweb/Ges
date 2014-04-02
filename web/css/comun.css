@@ -1,0 +1,60 @@
+/*
+ * Footer
+ * */
+
+footer {clear:both; float:left; width:100%; text-align:center;
+		padding-top:15px; padding-bottom:25px; background-color:#EAEBED;
+		font-size:13px; color:#999999;
+		}
+/*
+ * Cabecera
+ * */
+header {clear:both; float:left; width:100%; padding:15px; 
+		background-color:#EAEBED; color:#333333; text-align:left;
+		}
+#menu_gestor {font-size:13px; font-weight:bold;}
+nav a {float:left; color:#999999; font-size:13px; display:block; 
+		text-decoration:none; margin: 0px 09px 0px 9px; padding:6px;}
+nav a:hover {color:#333333; text-decoration:underline;}
+
+.cerrar_sesion {color:#999999;  font-size:13px; display:block;  
+				text-decoration:none;font-weight:bold; 
+				float:rigth; margin: 0px 9px 0px 9px;}
+.cerrar_sesion:hover {color:#333333;  text-decoration:underline;}
+
+.color_rojo {color:#6E0618;}
+nav#idiomas {float:right; padding-right:15px;}
+#idiomas a {border-left:1px solid #999999; padding-left:15px; }
+
+
+nav#secundario {clear:both; float:left; width:100%; 
+			padding:10px; background-color:#F2F3F5;
+			border-top:3px solid #DBDCDE;}
+
+.sele {color:#333333; background-color:#F7F7DD; 
+				border-radius: 5px 5px 5px 5px;
+				-moz-border-radius: 5px 5px 5px 5px;
+				-webkit-border-radius: 5px 5px 5px 5px;}
+/*
+ * Listados
+ * */
+
+section#listado {clear:both; float:left; width:100%; padding:15px; }
+section#listado h1 {font-size:16px; color:#999999;}
+
+section#listado table {width:90%; margin:auto; text-align:left;}
+section#listado thead {background-color:#424B55; color:#A6A9AB; }
+section#listado td,th {padding:4px;}
+section#listado td {font-size:14px; color:#333333;}
+section#listado tbody tr:hover {background-color:#F8F6D3;}
+.par {background-color:#EEF0F3;}
+.impar {background-color:#FAFAF5;}
+
+/*
+ * Botones
+ * */
+.bo_editar {background-image:url(../images/editar.png); 
+			width:22px; height:22px; display:block; 
+			opacity:0.4; filter:alpha(opacity=40);
+			background-repeat:no-repeat;}
+.bo_editar:hover {opacity:1.0; filter:alpha(opacity=100);}

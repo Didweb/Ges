@@ -1,45 +1,48 @@
-{% extends '::base.html.twig' %}
+{% extends '::backend.html.twig' %}
 
-{% block body -%}
-{% include 'ClarorFeinaBundle:Default:menu_gestor.html.twig' %} 
-{% include 'ClarorFeinaBundle:Default:idioma.html.twig' %} 
-    <h1>Categoria list</h1>
+{% block contenidos %}
+
+<nav id="secundario">
+<a href="{{ path('gestor_categoria_new') }}" title="Crear nova categoria">
+                Crear nova categoria
+            </a>
+</nav>
+
+<section id="listado">
+
+    <h1>Llistat de categories</h1>
 
     <table class="records_list">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Actions</th>
+                <th>Nom</th>
+                <th>Descripció</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
+        {% set n=1 %}
         {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('gestor_categoria_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+			{% if n is divisibleby(2)  %}
+				{% set linea="impar" %} 
+            {% else %}
+				{% set linea="par" %}
+            {% endif %}
+        
+		
+			<tr class="{{ linea }}">
                 <td>{{ entity.nombre }}</td>
                 <td>{{ entity.descripcion }}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('gestor_categoria_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('gestor_categoria_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                
+                 <a href="{{ path('gestor_categoria_edit', { 'id': entity.id }) }}" title="Editar" class="bo_editar"></a>
+                    
                 </td>
             </tr>
+            {% set n=n+1 %} 
         {% endfor %}
         </tbody>
     </table>
 
-        <ul>
-        <li>
-            <a href="{{ path('gestor_categoria_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+</section>    
     {% endblock %}

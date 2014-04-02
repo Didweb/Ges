@@ -30,6 +30,12 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        global:
+            version: v1.0
+            cliente_mayor: Trepax.com
+            cliente_detalle: Vidres Claror
+            url_web: www.vidresclaror.cat
 
 # Assetic Configuration
 assetic:
