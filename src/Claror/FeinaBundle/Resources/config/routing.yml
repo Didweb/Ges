@@ -1,7 +1,6 @@
 home_gestor:
     pattern:  /{_locale}/gestor
     defaults: { _controller: ClarorFeinaBundle:Fijas:index }
-    prefix:   /
     requirements:
         _locale: ca|es
     prefix: /{_locale}/     
