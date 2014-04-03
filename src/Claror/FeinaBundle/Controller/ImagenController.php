@@ -143,7 +143,7 @@ class ImagenController extends Controller
     public function showAction($idfaena)
     {
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('ClarorFeinaBundle:Imagen')->findByFaena($idfaena);
+        $entity = $em->getRepository('ClarorFeinaBundle:Imagen')->findByFaena($idfaena,array('orden' => 'ASC'));
         
 		$texto = '';
         if (!$entity) {

@@ -13,11 +13,6 @@ use Doctrine\ORM\EntityRepository;
 class CategoriaRepository extends EntityRepository
 {
 	
-    public function getNasociados()
-    {
-        return $this->getEntityManager()
-                ->createQuery('SELECT COUNT(f.id) FROM ClarorFeinaBundle:Faena WHERE f.categoria >0')
-                ->getResults;
-    }
+
 	
 }

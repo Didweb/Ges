@@ -13,5 +13,17 @@ use Doctrine\ORM\EntityRepository;
 class FaenaRepository extends EntityRepository
 {
 	
-	
+    public function findByTieneCategoria($id)
+    {
+        return $this->getEntityManager()
+                ->createQuery('SELECT COUNT(f.id) as total FROM ClarorFeinaBundle:Faena f WHERE f.categoria=:idcat ')->setParameter('idcat',$id);
+    }	
+
+
+    public function findByTieneFabricante($id)
+    {
+        return $this->getEntityManager()
+                ->createQuery('SELECT COUNT(f.id) as total FROM ClarorFeinaBundle:Faena f WHERE f.fabricante=:idcat ')->setParameter('idcat',$id);
+    }
+
 }
