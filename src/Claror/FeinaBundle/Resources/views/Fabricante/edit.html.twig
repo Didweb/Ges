@@ -49,6 +49,13 @@
 </section>
 
 <aside id="eliminar">
-{{ form(delete_form) }}
+	{% if borrar_perm>0 %}
+		<div class="mensa_borra">
+		Aquest fabricant no es pot eliminar.<br />
+		 Degut a que alguna feina  depèn d'aquesta fabricant.
+		</div>
+	{% else %}
+		{{ form(delete_form) }}
+	{% endif%}
 </aside>
 {% endblock %}

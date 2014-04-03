@@ -163,11 +163,17 @@ class FabricanteController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
+		$dql = "SELECT COUNT(f.id) as total FROM ClarorFeinaBundle:Faena f WHERE f.fabricante=:idcat ";
+		$query = $em->createQuery($dql)->setParameter('idcat',$id);
+		$perbor = $query->getResult();
+
+
         return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-            'cam'		  => $cam
+            'cam'		  => $cam,
+            'borrar_perm' => $perbor[0]['total']
         );
     }
 
