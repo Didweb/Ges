@@ -1,26 +1,31 @@
-{% extends '::base.html.twig' %}
-{% block body -%}
+{% extends '::backend_login.html.twig' %}
 
-<h1>Login</h1>
-
+{% block contenidos %}
+<section id="contenidos_login">
+<h1>Procés d'identificació</h1>
+<p>
+Accés al panell de control de {{ global.cliente_detalle }}.
+</p>
 {% if error %}
 <div id="mensa_error">{{ error.message|trans() }}</div>
 {% endif %}
 
+<div  id="f_login">
+		<form action="{{ path('login_check') }}" method="post" id="ellogin">
+		 <div class="ca_log">
+		<label for="username" class="lab_log">Usuario:</label>
+		 <input id="username" type="text" name="_username" value="{{ last_username }}" class="inp_log" />
+		 </div>
+		 
+		 <div class="ca_log">
+		 <label for="password" class="lab_log">Contraseña:</label>
+		 <input id="password" type="password" name="_password"  class="inp_log" />
+		 </div>
+		 <input type="hidden" name="_target_path" value="home_gestor" />
+		 <input type="submit"  name="login" id="boton_login" value="Accés" title="Iniciar el proceso de identificación"   />
+		</form>
+</div>
 
-<form action="{{ path('login_check') }}" method="post" id="ellogin">
- <div class="ca_log">
-<label for="username" class="lab_log">Usuario:</label>
- <input id="username" type="text" name="_username" value="{{ last_username }}" class="inp_log" />
- </div>
- 
- <div class="ca_log">
- <label for="password" class="lab_log">Contraseña:</label>
- <input id="password" type="password" name="_password"  class="inp_log" />
- </div>
- <input type="hidden" name="_target_path" value="home_gestor" />
- <input type="submit" name="login" id="boton_login" value="Login" title="Iniciar el proceso de identificación"   />
-</form>
-
+</section>  
 
 {% endblock %}

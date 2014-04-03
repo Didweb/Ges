@@ -10,6 +10,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Claror\FeinaBundle\Entity\Categoria;
 use Claror\FeinaBundle\Form\CategoriaType;
 
+
+
 /**
  * Categoria controller.
  *
@@ -162,11 +164,20 @@ class CategoriaController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
+		
+		$dql = "SELECT COUNT(f.id) as total FROM ClarorFeinaBundle:Faena f WHERE f.categoria=:idcat ";
+		$query = $em->createQuery($dql)->setParameter('idcat',$id);
+		$perbor = $query->getResult();
+		
+		
+		
         return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-            'cam'		  => $cam
+            'cam'		  => $cam,
+            'borrar_perm' => $perbor[0]['total']
+            
         );
     }
 

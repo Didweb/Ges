@@ -92,22 +92,22 @@ section#nova_feina input, select, textarea {float:left; margin-left:5px;
  * Imagenes
  * */
 section#nueva_foto { float:right; width:45%; }
-section#nueva_foto h2 {font-size:16px; color:#999999;}
+section#nueva_foto h2 {font-size:16px; color:#999999;  margin-left:-90px;}
 section#nueva_foto form {float:left; background-color:#E8EBEC; padding:25px; 
-				width:90%; margin-bottom:40px; margin-left:-50px;
+				width:91%; margin-bottom:40px; margin-left:-90px;
 				border-radius: 5px 5px 5px 5px;
 				-moz-border-radius: 5px 5px 5px 5px;
 				-webkit-border-radius: 5px 5px 5px 5px;}
 
-section#nueva_foto  label { width:50%; background-color:red;
-			text-align:right; padding-right:4px; font-size:13px; 
+.cap_f  label {dispaly:block; float:left; width:75px; 
+			text-align:right;  font-size:13px; 
 			color:#999999; padding:3px; margin-bottom:5px;}
 
-section#nueva_foto input { margin-left:5px;
-			margin-bottom:5px; padding:3px; font-size:13px; width:50%;
+.cap_f input { margin-left:5px;
+			margin-bottom:5px; padding:3px; font-size:13px; width:400px;
 			}
 
-.cap_f{ float:left; width:100%; }
+.cap_f	{ float:left; width:100%;  margin-bottom:10px;}
 
 section#mostrar_fotos { float:left; width:45%; margin-left:-40px;} 
 section#mostrar_fotos h2 {font-size:16px; color:#999999;}
@@ -122,11 +122,19 @@ section#mostrar_fotos h2 {font-size:16px; color:#999999;}
 .marco	{float:left; border:1px solid #F2F8FA; width:100px; 
 		height:100px; overflow:hidden; }
  
-section#mostrar_fotos form {float:left; width:225px; padding-left:10px;
+.cuadro_img form {float:left; width:225px; padding-left:10px;
 			color:#999999; font-size:13px;
 			}
-section#mostrar_fotos label {clear:both; width:150px;}
+.cuadro_img label {clear:both; width:100%; display:block; margin-top:5px;}
+.cuadro_img input {clear:both; width:100%; }
+.cuadro_img button {clear:both; width:50%; margin-top:15px; margin-left:50px;}
+.cuadro_img button {background-color:#B8FB83; color:#126C0D; 
+				padding:6px; font-weight:bold; border:1px solid #0B7E03;
+				border-radius: 5px 5px 5px 5px;
+				-moz-border-radius: 5px 5px 5px 5px;
+				-webkit-border-radius: 5px 5px 5px 5px;}
 
+.cuadro_img button:hover {background-color:#C8FB04; color:#032B03; }
 
 .bo_borrar_foto {position:absolute;
 			background-image:url(../images/borrar.png); 
@@ -166,6 +174,17 @@ nav#boton_accion button {background-color:#8DFB83; color:#1A6C0D;
 nav#boton_accion button:hover {background-color:#C4FB04; color:#042B03; 
 				}
 
+div#info_creacion	{clear:both; float:left; width:100%; font-size:12px; 
+			color:#A0A7AB; }
+div#info_creacion span {dispaly:block; float:left; width:60px;  }
+
+.mensa_borra {float:right; margin-right:100px;  margin-bottom:15px; padding:15px; background-color:#E4E6E8;
+			  color:#999999; text-align:center; border:1px solid #BCA09E;
+			  border-radius: 5px 5px 5px 5px;
+				-moz-border-radius: 5px 5px 5px 5px;
+				-webkit-border-radius: 5px 5px 5px 5px;
+			}
+
 /*
  * Flash
  * */
@@ -186,4 +205,30 @@ nav#boton_accion button:hover {background-color:#C4FB04; color:#042B03;
 				-moz-border-radius: 5px 5px 5px 5px;
 				-webkit-border-radius: 5px 5px 5px 5px;}
 
+/*
+ * Login
+ * */
 
+section#contenidos_login {clear:both; float:left; text-align:center; width:100%; padding:15px; }
+section#contenidos_login h1 {font-size:16px; color:#999999;} 
+section#contenidos_login p {font-size:13px; color:#999999;}  
+ 
+#f_login	{margin:auto; width:500px; 
+			padding:10px; text-align:center; color:#1E3952;
+			border-radius: 5px 5px 5px 5px; background-color:#D5D6D7;
+			-moz-border-radius: 5px 5px 5px 5px;
+			-webkit-border-radius: 5px 5px 5px 5px;
+			
+			}
+.ca_log	{clear:both; float:lef; text-align:left; margin-bottom:8px;}
+.lab_log   { display: block; text-align:right; padding-right:5px;  
+			float: left; width:200px;   }
+#f_login input { width:150px;}
+#boton_login  {background-color:#8DFB83; color:#1A6C0D; 
+				padding:3px; font-weight:bold; border:1px solid #077E03;
+				border-radius: 5px 5px 5px 5px;
+				-moz-border-radius: 5px 5px 5px 5px;
+				-webkit-border-radius: 5px 5px 5px 5px;}
+
+#boton_login:hover {background-color:#C4FB04; color:#042B03; 
+				}

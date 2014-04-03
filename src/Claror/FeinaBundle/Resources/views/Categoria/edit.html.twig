@@ -46,6 +46,13 @@
 </section>
 
 <aside id="eliminar">
+{% if borrar_perm>0 %}
+<div class="mensa_borra">
+Aquesta categoria no es pot eliminar.<br />
+ A causa de que alguna feina  depèn d'aquesta categoria.
+</div>
+{% else %}
 {{ form(delete_form) }}
+{% endif%}
 </aside>
 {% endblock %}

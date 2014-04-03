@@ -62,7 +62,10 @@
 		{{ form_rest(edit_form) }}
 		</nav>
 		</form>
-
+<div id="info_creacion">		
+<span>Creat:</span> <b>{{ entity.created| date('d-m-Y')  }}</b> - {{ entity.created| date('H:m:s')  }}<br />
+<span>Modificat:</span> <b>{{ entity.updated| date('d-m-Y') }}</b> - {{ entity.updated| date('H:m:s') }}
+</div>
 </section>
 
 <section id="nueva_foto">

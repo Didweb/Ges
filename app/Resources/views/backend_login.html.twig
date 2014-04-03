@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link href="{{ asset('css/paginacion.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block javascripts %}{% endblock %}
+
+{% block body %}
+
+{% block contenidos %}{% endblock %}
+{% endblock %}
