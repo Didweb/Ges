@@ -32,10 +32,10 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:
         global:
-            version: v1.0
-            cliente_mayor: Trepax.com
-            cliente_detalle: xxx
-            url_web: www.xxx.cat
+            version: v1.1
+            cliente_mayor: webMayor.com
+            cliente_detalle: nom
+            url_web: www.webclientedetalle.cat
 
 # Assetic Configuration
 assetic:
