@@ -1,0 +1,14 @@
+home_gestor:
+    pattern:  /{_locale}/gestor
+    defaults: { _controller: GestorFeinaBundle:Fijas:index }
+    requirements:
+        _locale: ca|es
+    prefix: /{_locale}/     
+    
+Anota:
+    resource: "@GestorFeinaBundle/Controller/"
+    prefix:   /
+    type:     annotation
+    requirements:
+        _locale: ca|es
+    prefix: /{_locale}/        

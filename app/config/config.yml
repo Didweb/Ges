@@ -2,7 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: doctrine_extensions.yml }
-    - { resource: "@ClarorFeinaBundle/Resources/config/services.yml" }
+    - { resource: "@GestorFeinaBundle/Resources/config/services.yml" }
     
 framework:
     #esi:             ~
@@ -34,8 +34,8 @@ twig:
         global:
             version: v1.0
             cliente_mayor: Trepax.com
-            cliente_detalle: Vidres Claror
-            url_web: www.vidresclaror.cat
+            cliente_detalle: xxx
+            url_web: www.xxx.cat
 
 # Assetic Configuration
 assetic:
@@ -94,5 +94,5 @@ knp_paginator:
     template:
 #        pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
 #        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
-        pagination: ClarorFeinaBundle:Pagination:sliding.html.twig     # sliding pagination controls template
-        sortable: ClarorFeinaBundle:Pagination:sortable_link.html.twig # sort link template
+        pagination: GestorFeinaBundle:Pagination:sliding.html.twig     # sliding pagination controls template
+        sortable: GestorFeinaBundle:Pagination:sortable_link.html.twig # sort link template

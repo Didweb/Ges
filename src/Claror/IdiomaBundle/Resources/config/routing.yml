@@ -1,3 +1,0 @@
-cambio_idioma:
-    pattern:  /cambio-idioma/{newlang}
-    defaults: { _controller: ClarorIdiomaBundle:Idioma:cambio }

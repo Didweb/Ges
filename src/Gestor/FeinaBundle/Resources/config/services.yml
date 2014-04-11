@@ -1,0 +1,9 @@
+parameters:
+
+
+services:
+    vabadus.form.type.entity_id:
+        class: Gestor\FeinaBundle\Form\Type\EntityIdType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: entity_id }

@@ -3,6 +3,6 @@
 /app/cache/*
 /app/logs/*
 /vendor/
-/web/fotos-vidres/p/*
-/web/fotos-vidres/g/*
+/web/fotos/p/*
+/web/fotos/g/*
 /app/config/parameters.yml

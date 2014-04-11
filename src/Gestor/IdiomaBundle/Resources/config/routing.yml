@@ -1,0 +1,3 @@
+cambio_idioma:
+    pattern:  /cambio-idioma/{newlang}
+    defaults: { _controller: GestorIdiomaBundle:Idioma:cambio }

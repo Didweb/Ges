@@ -16,9 +16,9 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new Claror\FeinaBundle\ClarorFeinaBundle(),
-            new Claror\SecurityBundle\ClarorSecurityBundle(),
-            new Claror\IdiomaBundle\ClarorIdiomaBundle(),
+            new Gestor\FeinaBundle\GestorFeinaBundle(),
+            new Gestor\SecurityBundle\GestorSecurityBundle(),
+            new Gestor\IdiomaBundle\GestorIdiomaBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
         );
 
