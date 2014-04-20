@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Gestor\SecurityBundle\GestorSecurityBundle(),
             new Gestor\IdiomaBundle\GestorIdiomaBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Gestor\MenuBundle\GestorMenuBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

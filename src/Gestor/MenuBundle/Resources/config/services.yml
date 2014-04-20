@@ -1,0 +1,7 @@
+parameters:
+#    gestor_menu.example.class: Gestor\MenuBundle\Example
+
+services:
+#    gestor_menu.example:
+#        class: %gestor_menu.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

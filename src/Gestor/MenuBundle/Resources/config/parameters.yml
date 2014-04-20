@@ -1,0 +1,2 @@
+parameters:
+    EntiMenu: 1*Faena*CUD|1*Fabricante*CUD|1*Categoria*CUD

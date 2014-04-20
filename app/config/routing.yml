@@ -1,3 +1,7 @@
+gestor_menu:
+    resource: "@GestorMenuBundle/Resources/config/routing.yml"
+    prefix:   /
+
 claror_idioma:
     resource: "@GestorIdiomaBundle/Resources/config/routing.yml"
     prefix:   /

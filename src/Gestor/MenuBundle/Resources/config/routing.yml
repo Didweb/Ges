@@ -1,0 +1,3 @@
+gestor_menu_salida:
+    pattern:  /{_locale}/menu-salida
+    defaults: { _controller: GestorMenuBundle:Menu:index }
