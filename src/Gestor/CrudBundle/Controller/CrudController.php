@@ -4,7 +4,7 @@ namespace Gestor\CrudBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-
+use Gestor\CrudBundle\Entity\Lista;
 
 class CrudController extends Controller
 {
@@ -26,38 +26,64 @@ class CrudController extends Controller
 			
 				$valores[$n] = array('nommet'	=> 'get'.$mimebros[$n]['campo'],
 									'forma'		=> $mimebros[$n]['formato'],
-									'valor'		=> $mimebros[$n]['valor']); 
+									'valor'		=> $mimebros[$n]['valor']);
+				$nomcampos[$n]=	$mimebros[$n]['campo'];				 
+				$n++; }
+		/*
+		$contV = count($valores)-1;
+		$en = array();
+		$n=0;
+		$v=1;
+		foreach ($entity as $valor){
 			
-		
-			$n++;
-			
+				if($v==$contV) {$v=1;}
+				 
+					for($b=$v;$b<=$contV;$b++){
+							$en[$n]= array(
+										$b => array('campo'=>$valor->$valores[$b]['nommet'](),
+													'formato'=>	$valores[$b]['forma'],
+													'valor'=>	$valores[$b]['valor']
+														));
+							
+					$n++;}
+					
+			$v++;
 			}
+			*/
+		
 		
 		$contV = count($valores)-1;
 		$en = array();
 		$n=0;
 		$v=1;
 		foreach ($entity as $valor){
-			if($v==$contV){$v=1;} 
-				for($b=$v;$b<=$contV;$b++){
-						$en[$n]= array($b => array('campo'=>$valor->$valores[$b]['nommet'](),
-												   'formato'=>	$valores[$b]['forma'],
-												   'valor'=>	$valores[$b]['valor']
-													));
-						
-					
+			
+				if($v==$contV) {$v=1;}
+				 
+					for($b=$v;$b<=$contV;$b++){
+						$en[$n] = new Lista();
+						$en[$n]->setNomentidad($entidad);
+						$en[$n]->setId($valor->getId());
+						$en[$n]->setCampo($valor->$valores[$b]['nommet']());
+						$en[$n]->setFormato($valores[$b]['forma']);
+						$en[$n]->setValor($valores[$b]['valor']);
+						/*	$en[$n]= array(
+										$b => array('campo'=>$valor->$valores[$b]['nommet'](),
+													'formato'=>	$valores[$b]['forma'],
+													'valor'=>	$valores[$b]['valor']
+														));
+							*/
 					$n++;}
 					
-			
 			$v++;
 			}
-     
 		
-     
+			
         return $this->render('GestorCrudBundle:Crud:listar.html.twig',
 							array(	'entity' 		=> $en,
 									'nomentidad'	=> $entidad,
-									'mimebros'		=> $mimebros));
+									'mimebros'		=> $mimebros,
+									'nomcampos'	=> $nomcampos));
     }
 
 	public function MiembrosLista($entidad)

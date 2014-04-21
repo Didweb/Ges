@@ -3,12 +3,16 @@
 <section id="col_una">
 <h1>Listado de {{ nomentidad }}</h1>
 
-{% set col = mimebros|length-1 %}<br />
+{% set col = mimebros|length %}<br />
 <table style="border:1px solid #333333;"> 
         <thead>
-            <tr>
-               {% for i in 1..col %}
-               <th class="alaiz">{{ i }}</th>
+           <tr  style="border:1px solid #ff0000;>
+             
+                {% for noms in nomcampos  %}
+                 
+                {% if noms !=nomentidad %}
+				<th style="border:1px solid #333333;">{{ noms }}</th>
+               {% endif %}
                {% endfor %}
     
             </tr>
@@ -17,27 +21,19 @@
       
 
 <tbody>
-
-{% for key,val in entity  %}
-<tr class="" >
-
-	{% for key2,val2 in val  %}
-	
-<td>	
-	{% if val2.formato=='nada' %}
-		{{ val2.campo }}
-	{% elseif val2.formato=='fecha' %}
-		{{ val2.campo|date('d-m-Y') }}
-	{% elseif val2.formato=='corta'  %}
-		{{ val2.campo[:val2.valor] }}
-	{% endif %}	 
-		
-	 </td>	
-	{% endfor %}
-	
-</tr>
-{% endfor %}
-
+        {% for valor in entity %}
+            <tr>
+				<td>
+				{% if valor.formato=='nada' %}
+					{{ valor.campo }}
+				{% elseif valor.formato=='fecha' %}
+					{{ valor.campo|date('d-m-Y') }}
+				{% elseif valor.formato=='corta'  %}
+					{{ valor.campo[:valor.valor] }}
+				{% endif %}	
+				</td>
+            </tr> 
+        {% endfor %}
 </tbody>
  </table> 
 
