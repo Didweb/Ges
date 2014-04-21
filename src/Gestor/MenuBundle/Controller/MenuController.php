@@ -30,7 +30,7 @@ class MenuController extends Controller
 		$separar = explode("|",$solicitud);
 		
 		
-		$tot		= array();
+		$tot = array();
 		
 		for ($n=0;$n<=count($separar)-1;$n++) {
 				$entity[$n] = new Menu();

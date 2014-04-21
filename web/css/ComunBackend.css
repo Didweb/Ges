@@ -19,4 +19,9 @@ footer {
 section#col_una {
 	clear:both;
 	float:left;
+	padding:15px;
 	width:100% }		
+
+h1 {
+	font-size:15px;
+	color:#666666}

@@ -1,3 +1,7 @@
 gestor_menu_salida:
     pattern:  /{_locale}/menu-salida
     defaults: { _controller: GestorMenuBundle:Menu:index }
+
+gestor_listar:
+    pattern:  /{_locale}/listar/{entidad}
+    defaults: { _controller: GestorCrudBundle:Crud:listar }

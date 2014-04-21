@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: doctrine_extensions.yml }
     - { resource: "@GestorMenuBundle/Resources/config/parameters.yml" }
+    - { resource: "@GestorCrudBundle/Resources/config/parameters.yml" }
     
 framework:
     #esi:             ~
@@ -32,7 +33,7 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:
         global:
-            version: v1.1
+            version: v1.3
             cliente_mayor: webMayor.com
             cliente_detalle: nom
             url_web: www.webclientedetalle.cat
