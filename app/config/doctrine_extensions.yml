@@ -3,7 +3,7 @@
 services:
     # KernelRequest listener
     extension.listener:
-        class: Gestor\FeinaBundle\Listener\DoctrineExtensionListener
+        class: Gestor\CrudBundle\Listener\DoctrineExtensionListener
         calls:
             - [ setContainer, [ @service_container ] ]
         tags:
