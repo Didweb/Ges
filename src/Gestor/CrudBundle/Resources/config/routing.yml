@@ -1,0 +1,6 @@
+gestor_crud_homepage:
+    pattern:  /{_locale}/home
+    defaults: { _controller: GestorCrudBundle:Fijas:index }
+    requirements:
+        _locale: ca|es
+    prefix: /{_locale}/ 

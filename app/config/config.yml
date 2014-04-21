@@ -2,7 +2,6 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: doctrine_extensions.yml }
-    - { resource: "@GestorFeinaBundle/Resources/config/services.yml" }
     - { resource: "@GestorMenuBundle/Resources/config/parameters.yml" }
     
 framework:

@@ -1,0 +1,22 @@
+/*
+ * Footer
+ * */
+
+footer {
+	clear:both; 
+	float:left; 
+	width:100%; 
+	text-align:center;
+	padding-top:15px; 
+	padding-bottom:25px; 
+	background-color:#EAEBED;
+	font-size:13px; 
+	color:#999999 }
+
+/*
+ * Body
+ * */
+section#col_una {
+	clear:both;
+	float:left;
+	width:100% }		

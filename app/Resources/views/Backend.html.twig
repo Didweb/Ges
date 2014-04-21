@@ -1,0 +1,15 @@
+{% extends '::BaseBackend.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link href="{{ asset('css/paginacion.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block javascripts %}{% endblock %}
+
+{% block body %}
+<header>
+{{ render(controller('GestorMenuBundle:Menu:index')) }} 
+{% include 'GestorFeinaBundle:Default:idioma.html.twig' %} 
+</header>
+{% block contenidos %}{% endblock %}
+{% endblock %}

@@ -2,24 +2,63 @@
 namespace Gestor\MenuBundle\Entity;
 
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class Menu
 {
-	private $EnitMenu;
+	private $Nom;
 	
-	public function getEntiMenu()
+	private $grup;
+	
+	private $crud;
+
+	
+	public function __construct() {
+        $this->crud 	= new ArrayCollection();
+	}
+
+	public function setGrup($grup)
 	{
-		return $this->entimenu;
+		$this->grup = $grup;
+		return $this;
+	}
+
+	
+	public function getGrup()
+	{
+		return $this->grup;
+	}
+
+
+	public function setNom($nom)
+	{
+		$this->nom = $nom;
+		return $this;
+	}
+
+	
+	public function getNom()
+	{
+		return $this->nom;
+	}
+	
+
+	
+	public function setCrud($crud)
+	{
+		
+		$this->crud = $crud;
+		return $this;
+	}	
+	
+	
+	public function getCrud()
+	{
+		return $this->crud;
 	}
 	
 	
-	public function setEntiMenu($entimenu)
-	{
-		$this->entimenu = $entimenu;
-        return $this;
-	}
-	
-	
+
 	
 	
 }

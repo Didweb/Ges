@@ -1,0 +1,44 @@
+nav#principal {
+	clear:both; 
+	float:left; 
+	margin-top:10px;
+	width:100%;
+	margin-bottom:10px;
+	-webkit-box-shadow: inset 0px -5px 9px -1px rgba(48, 50, 50, 0.18);
+	-moz-box-shadow:    inset 0px -5px 9px -1px rgba(48, 50, 50, 0.18);
+	box-shadow:         inset 0px -5px 9px -1px rgba(48, 50, 50, 0.18)}
+
+	
+.capsula	{
+	float:left;
+	padding:8px;
+	margin-left:10px;
+	margin-right:10px;
+	border-top:1px solid rgba(48, 50, 50, 0.18);
+	border-left:1px solid rgba(48, 50, 50, 0.18);
+	border-right:1px solid rgba(48, 50, 50, 0.18);
+	-moz-border-radius-topleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+	 border-top-left-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
+	color:#666666;
+	font-size:14px;
+	background-color:#ffffff}
+		
+.atras {
+	-webkit-box-shadow: inset 0px -5px 9px -1px rgba(48, 50, 50, 0.18);
+	-moz-box-shadow:    inset 0px -5px 9px -1px rgba(48, 50, 50, 0.18);
+	box-shadow:         inset 0px -5px 9px -1px rgba(48, 50, 50, 0.18);
+	}
+.atras:hover {
+	background-color:#F8F8CF}	
+/*
+ * Link
+ * */
+nav#principal a {
+	text-decoration:none }
+	
+nav#principal a:hover {
+	color:#333333; }	

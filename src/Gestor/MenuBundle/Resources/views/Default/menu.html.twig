@@ -1,0 +1,14 @@
+<nav id="principal">
+	{% if donde=='home' |lower %}
+	<div class="capsula  ">Home</div>
+	{% else %}
+	<a href="" class="capsula atras">Home</a>
+	{% endif %}
+	{% for m in resultado %}
+	{% if donde==m.nom |lower %}
+	<div class="capsula">{{ m.nom }}</div>
+	{% else %}
+	<a href="" class="capsula atras">{{ m.nom }}</a>
+	{% endif %}
+	{% endfor %}
+</nav>
