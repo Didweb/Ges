@@ -8,7 +8,7 @@
 	{% if donde==m.nom |lower %}
 	<div class="capsula">{{ m.nom }}</div>
 	{% else %}
-	<a href="{{ path('gestor_listar',{'entidad':m.nom|lower })}}" class="capsula atras">{{ m.nom }}</a>
+	<a href="{{ path('gestor_listar',{'entidad':m.nom|lower,'pagina':1 })}}" class="capsula atras">{{ m.nom }}</a>
 	{% endif %}
 	{% endfor %}
 </nav>

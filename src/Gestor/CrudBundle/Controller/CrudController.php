@@ -8,7 +8,7 @@ use Gestor\CrudBundle\Entity\Lista;
 
 class CrudController extends Controller
 {
-    public function listarAction($entidad)
+    public function listarAction($entidad,$pagina)
     {
 		$entidad = ucwords($entidad);
 		$em = $this->getDoctrine()->getManager();
@@ -27,8 +27,11 @@ class CrudController extends Controller
 				$valores[$n] = array('nommet'	=> 'get'.$mimebros[$n]['campo'],
 									'forma'		=> $mimebros[$n]['formato'],
 									'valor'		=> $mimebros[$n]['valor']);
+									
 				$nomcampos[$n]=	$mimebros[$n]['campo'];				 
 				$n++; }
+
+
 
 		$contV = count($valores)-1;
 		$en = array();
@@ -48,16 +51,27 @@ class CrudController extends Controller
 						
 					 $n++;}
 			$v++;
-			}
+		}
 		
-			
+		
+		$paginacion = $this->get('pagi');
+		$paginacion->inicio($en,$contV,$pagina,$rpag=3,$pagpaginador=2);
+		
         return $this->render('GestorCrudBundle:Crud:listar.html.twig',
-							array(	'entity' 		=> $en,
+							array(	'entity' 		=> $paginacion->getDatosmatriz(),
 									'nomentidad'	=> $entidad,
 									'mimebros'		=> $mimebros,
-									'nomcampos'	=> $nomcampos));
+									'nomcampos'		=> $nomcampos,
+									'datospag'		=>$paginacion));
     }
 
+
+	/***********************************************************
+	 * 
+	 * 	Sacamos los valores del parametros de configuracion para
+	 * determinar el nombre de campo, formato y valores
+	 * 
+	 ************************************************************ */
 	public function MiembrosLista($entidad)
 	{
 		

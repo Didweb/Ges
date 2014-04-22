@@ -1,0 +1,51 @@
+
+{% if datospag.totalpaginas > 1 %}
+<div class="pagination">
+
+    {% if datospag.primera is defined and datospag.pagina != datospag.primera %}
+        <span class="first">
+            <a href="{{ path('gestor_listar',{'entidad':nomentidad|lower,'pagina':datospag.primera})}}">xxx</a>
+        </span>
+    {% endif %}
+
+
+    {% if datospag.previa is defined and datospag.pagina>1 %}
+        <span class="previous">
+            <a href="{{ path('gestor_listar',{'entidad':nomentidad|lower,'pagina':datospag.previa})}}">&lt;</a>
+        </span>
+    {% endif %}
+
+
+    {% for page in datospag.pagpaginador %}
+        {% if page != datospag.pagina %}
+        {% if page >0 or page < datospag.ultima %}
+            <span class="page">
+                <a href="{{ path('gestor_listar',{'entidad':nomentidad|lower,'pagina':page })}}">{{ page }}</a>
+            </span>
+            {% endif %}
+        {% else %}
+            <span class="current">{{ page }}</span>
+        {% endif %}
+
+    {% endfor %}
+
+
+
+    {% if datospag.proxima is defined and datospag.pagina<datospag.ultima %}
+        <span class="next">
+            <a href="{{ path('gestor_listar',{'entidad':nomentidad|lower,'pagina':datospag.proxima})}}">&gt;</a>
+        </span>
+    {% endif %}
+
+    {% if datospag.ultima is defined and datospag.pagina != datospag.ultima %}
+        <span class="last">
+            <a href="{{ path('gestor_listar',{'entidad':nomentidad|lower,'pagina':datospag.ultima })}}">xxx</a>
+        </span>
+    {% endif %}
+	
+
+
+
+</div>
+{% endif %}
+

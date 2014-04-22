@@ -3,5 +3,7 @@ gestor_menu_salida:
     defaults: { _controller: GestorMenuBundle:Menu:index }
 
 gestor_listar:
-    pattern:  /{_locale}/listar/{entidad}
+    pattern:  /{_locale}/listar/{pagina}/{entidad}
     defaults: { _controller: GestorCrudBundle:Crud:listar }
+    requirements:
+        pagina:  \d+
