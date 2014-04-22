@@ -1,2 +1,2 @@
 parameters:
-    MiemLis: Noticia*titulo*texto/corta-10*creacion/fecha|Categoria*nombre*descripcion/corta-10
+    MiemLis: Noticia*titulo*creacion/fecha*texto*autor|Categoria*nombre*descripcion/corta-10

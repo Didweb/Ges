@@ -12,15 +12,15 @@ class CrudController extends Controller
     {
 		$entidad = ucwords($entidad);
 		$em = $this->getDoctrine()->getManager();
+		
 		$entity = $em->getRepository('GestorCrudBundle:'.$entidad)->findAll();
+
 
 		if (!$entity) {
             throw $this->createNotFoundException('Entidad ['.$entidad.'] no encontrada [listarAction.CrudController].');
 			}
-		
-		
 		$mimebros = $this->MiembrosLista($entidad);
-     
+		
 		$n=0;
 		foreach ($mimebros as $n=>$v){
 			
@@ -29,7 +29,7 @@ class CrudController extends Controller
 									'valor'		=> $mimebros[$n]['valor']);
 				$nomcampos[$n]=	$mimebros[$n]['campo'];				 
 				$n++; }
-		/*
+
 		$contV = count($valores)-1;
 		$en = array();
 		$n=0;
@@ -38,43 +38,15 @@ class CrudController extends Controller
 			
 				if($v==$contV) {$v=1;}
 				 
-					for($b=$v;$b<=$contV;$b++){
-							$en[$n]= array(
-										$b => array('campo'=>$valor->$valores[$b]['nommet'](),
-													'formato'=>	$valores[$b]['forma'],
-													'valor'=>	$valores[$b]['valor']
-														));
-							
-					$n++;}
-					
-			$v++;
-			}
-			*/
-		
-		
-		$contV = count($valores)-1;
-		$en = array();
-		$n=0;
-		$v=1;
-		foreach ($entity as $valor){
-			
-				if($v==$contV) {$v=1;}
-				 
-					for($b=$v;$b<=$contV;$b++){
+					for($b=1;$b<=$contV;$b++){
 						$en[$n] = new Lista();
 						$en[$n]->setNomentidad($entidad);
 						$en[$n]->setId($valor->getId());
 						$en[$n]->setCampo($valor->$valores[$b]['nommet']());
 						$en[$n]->setFormato($valores[$b]['forma']);
 						$en[$n]->setValor($valores[$b]['valor']);
-						/*	$en[$n]= array(
-										$b => array('campo'=>$valor->$valores[$b]['nommet'](),
-													'formato'=>	$valores[$b]['forma'],
-													'valor'=>	$valores[$b]['valor']
-														));
-							*/
-					$n++;}
-					
+						
+					 $n++;}
 			$v++;
 			}
 		
@@ -120,12 +92,7 @@ class CrudController extends Controller
 									 'formato' => 'nada',
 									 'valor' => 'nada'); }
 					
-				}
-
-								
-			}
-					
-		}
+				} } }
 
 		return $MiLi;	
 	}

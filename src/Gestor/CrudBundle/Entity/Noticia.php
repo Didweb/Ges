@@ -35,6 +35,14 @@ class Noticia
      */
     private $texto;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="autor", type="string")
+     */
+    private $autor;
+
     /**
      * @var \DateTime
      *
@@ -82,6 +90,31 @@ class Noticia
     {
         return $this->titulo;
     }
+
+
+    /**
+     * Set autor
+     *
+     * @param string $autor
+     * @return Noticia
+     */
+    public function setAutor($autor)
+    {
+        $this->autor = $autor;
+
+        return $this;
+    }
+
+    /**
+     * Get autor
+     *
+     * @return string 
+     */
+    public function getAutor()
+    {
+        return $this->autor;
+    }
+
 
     /**
      * Set texto

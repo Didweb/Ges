@@ -1,17 +1,18 @@
 {% extends '::Backend.html.twig' %}
 {% block contenidos %}
 <section id="col_una">
-<h1>Listado de {{ nomentidad }}</h1>
+{% set col = mimebros|length-1 %}
+<h1>Listado de {{ nomentidad }} {{ col }}</h1>
 
-{% set col = mimebros|length %}<br />
+<br />
 <table style="border:1px solid #333333;"> 
         <thead>
-           <tr  style="border:1px solid #ff0000;>
+           <tr>
              
                 {% for noms in nomcampos  %}
                  
                 {% if noms !=nomentidad %}
-				<th style="border:1px solid #333333;">{{ noms }}</th>
+				<th>{{ noms }}</th>
                {% endif %}
                {% endfor %}
     
@@ -21,19 +22,31 @@
       
 
 <tbody>
+		{% set vuelta=1 %}
         {% for valor in entity %}
-            <tr>
+        
+			{% if vuelta==1 %}
+				<tr>
+			{% endif %}	
 				<td>
-				{% if valor.formato=='nada' %}
-					{{ valor.campo }}
-				{% elseif valor.formato=='fecha' %}
-					{{ valor.campo|date('d-m-Y') }}
-				{% elseif valor.formato=='corta'  %}
-					{{ valor.campo[:valor.valor] }}
-				{% endif %}	
+					{% if valor.formato=='nada' %}
+						{{ valor.campo }}
+					{% elseif valor.formato=='fecha' %}
+						{{ valor.campo|date('d-m-Y') }}
+					{% elseif valor.formato=='corta'  %}
+						{{ valor.campo[:valor.valor] }}
+					{% endif %}	
 				</td>
-            </tr> 
+				
+			{% if vuelta==col %}
+				{% set vuelta=1 %}
+				</tr> 
+			{% else %}
+			{% set vuelta=vuelta+1 %}
+          
+           {% endif %}
         {% endfor %}
+         
 </tbody>
  </table> 
 
