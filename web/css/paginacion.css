@@ -30,7 +30,7 @@
 
 
 			
-.first ,.previous ,.next ,.last  {float:left; width:30px; 
+.first ,.previous ,.next ,.last  {float:left; display:block; width:30px; 
 			height:30px; background-repeat:no-repeat; display:block; 
 			cursor:pointer; background-position:0px 5px;
 			opacity:0.4; filter:alpha(opacity=40);

@@ -3,25 +3,21 @@
 <div class="pagination">
 
     {% if datospag.primera is defined and datospag.pagina != datospag.primera %}
-        <span class="first">
-            <a href="{{ path('gestor_listar',{'entidad':nomentidad|lower,'pagina':datospag.primera})}}">xxx</a>
-        </span>
+            <a class="first" href="{{ path('gestor_listar',{'entidad':nomentidad|lower,'pagina':datospag.primera})}}"></a>
     {% endif %}
 
 
     {% if datospag.previa is defined and datospag.pagina>1 %}
-        <span class="previous">
-            <a href="{{ path('gestor_listar',{'entidad':nomentidad|lower,'pagina':datospag.previa})}}">&lt;</a>
-        </span>
+            <a class="previous" href="{{ path('gestor_listar',{'entidad':nomentidad|lower,'pagina':datospag.previa})}}"></a>
     {% endif %}
 
 
     {% for page in datospag.pagpaginador %}
         {% if page != datospag.pagina %}
         {% if page >0 or page < datospag.ultima %}
-            <span class="page">
+			<span class="page">
                 <a href="{{ path('gestor_listar',{'entidad':nomentidad|lower,'pagina':page })}}">{{ page }}</a>
-            </span>
+            </span>    
             {% endif %}
         {% else %}
             <span class="current">{{ page }}</span>
@@ -32,15 +28,11 @@
 
 
     {% if datospag.proxima is defined and datospag.pagina<datospag.ultima %}
-        <span class="next">
-            <a href="{{ path('gestor_listar',{'entidad':nomentidad|lower,'pagina':datospag.proxima})}}">&gt;</a>
-        </span>
+            <a class="next" href="{{ path('gestor_listar',{'entidad':nomentidad|lower,'pagina':datospag.proxima})}}"></a>
     {% endif %}
 
     {% if datospag.ultima is defined and datospag.pagina != datospag.ultima %}
-        <span class="last">
-            <a href="{{ path('gestor_listar',{'entidad':nomentidad|lower,'pagina':datospag.ultima })}}">xxx</a>
-        </span>
+            <a class="last" href="{{ path('gestor_listar',{'entidad':nomentidad|lower,'pagina':datospag.ultima })}}"></a>
     {% endif %}
 	
 
