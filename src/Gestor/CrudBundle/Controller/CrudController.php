@@ -7,28 +7,41 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 use Gestor\CrudBundle\Entity\Lista;
+use Gestor\CrudBundle\Entity\Buscador;
+use Gestor\CrudBundle\Form\BuscadorType;
 
 class CrudController extends Controller
 {
+	
     public function listarAction(Request $request,$entidad,$pagina,$orden='ASC',$campo='')
     {
-		$session = new Session();
-		$session->start();	
-		
+		$session = $request->getSession();
 		$entidad = ucwords($entidad);
 		
-		$entity = $this->getConsulta($session,$entidad,$orden,$campo);
-		//$em = $this->getDoctrine()->getManager();
-		//$entity = $em->createQuery('SELECT a FROM   GestorCrudBundle:'.$entidad.' a')->getResult();
-            
-		//$entity = $em->getRepository('GestorCrudBundle:'.$entidad)->findAll();
-
-
-		if (!$entity) {
-            throw $this->createNotFoundException('Entidad ['.$entidad.'] no encontrada [listarAction.CrudController].');
+		$buscador = $request->request->get('buscador','no');
+		$consulta='';
+		if($buscador=='si'){
+				$entib = new Buscador();
+				$forb = $this->createForm(new BuscadorType(), $entib);
+				$forb->bind($request);
+				
+			$consulta = $entib->getDato();
+			
 			}
-		$mimebros = $this->MiembrosLista($entidad);
 		
+		$entity = $this->getConsulta($session,$entidad,$orden,$campo,$consulta);
+
+
+
+		
+		if (!$entity) {
+			$this->get('session')->getFlashBag()->add('listado','Ningun resultado para la busqueda de <b>'.$consulta.'</b> .');
+			$entity = $this->getConsulta($session,$entidad,$orden,$campo,'');
+			} else {
+			$this->get('session')->getFlashBag()->add('listado','Listado filtrado por la busqueda <b>'.$consulta.'</b>.');	
+				}
+		
+		$mimebros = $this->MiembrosLista($entidad);
 		$n=0;
 		foreach ($mimebros as $n=>$v){
 			
@@ -65,6 +78,8 @@ class CrudController extends Controller
 		$paginacion = $this->get('pagi');
 		$paginacion->inicio($session,$en,$contV,$pagina,$rpag=3,$pagpaginador=2);
 
+		$buscador = $this->buscador();
+
         return $this->render('GestorCrudBundle:Crud:listar.html.twig',
 							array(	'entity' 		=> $paginacion->getDatosmatriz(),
 									'nomentidad'	=> $entidad,
@@ -73,28 +88,68 @@ class CrudController extends Controller
 									'datospag'		=> $paginacion,
 									'orden'			=> $session->get('orden'),
 									'contraorden'	=> $session->get('contraorden'),
-									'campo'			=> $campo
+									'campo'			=> $campo,
+									'form_buscador'	=> $buscador->createView()
 									));
     }
+
+
+
+	
+	
+	/************************************************************
+	 * 
+	 * Creamos Formulario buscador.
+	 * 
+	 ************************************************************ */ 
+	public function buscador()
+	{
+		
+		$busca = new Buscador();
+		$form   = $this->createForm(new BuscadorType(), $busca);
+        
+        return $form;
+	}
+
 
 	
 	/***********************************************************
 	 * 
 	 * 	Creamos las consultas segun se oportuno para consultas de listado
-	 * COnsultas con busquedas o ordenar filtros.
+	 * Consultas con busquedas o ordenar filtros.
 	 * 
 	 * 
 	 ************************************************************ */ 
-	public function getConsulta($session,$entidad,$orden,$campo)
+	public function getConsulta($session,$entidad,$orden,$campo,$consulta)
 	{
-		$session->start();	
+		//$session->start();	
 		$ordenes = $this->getOrden($session,$orden);
 		
-		if($campo==''){
+		if($campo==''){ echo "Consulta 1";
 			$em = $this->getDoctrine()->getManager();
 			$entity = $em->createQuery('SELECT a FROM   GestorCrudBundle:'.$entidad.' a')->getResult();
 			
-			} else{
+			} elseif($consulta != ''){ echo "Consulta 2 / ".$consulta;
+			
+			$monto='';
+			$or = ' or ';
+			$miembros = $this->MiembrosLista($entidad);
+			for($n=0;$n<=count($miembros)-1;$n++){
+				if($n>1){ $monto.=$or; }
+				
+				if($miembros[$n]['campo']!=$entidad){
+					$monto.=' a.'.strtolower($miembros[$n]['campo']).' LIKE :consulta '; }
+				
+				}
+				
+			$em = $this->getDoctrine()->getManager();
+			$entity = $em->createQuery('SELECT a FROM   GestorCrudBundle:'.$entidad.' a
+										WHERE '.$monto.'
+										')
+										->setParameter('consulta', '%'.$consulta.'%')
+										->getResult();
+				
+			}else{ echo "Consulta 3 / ".$consulta;
 			$em = $this->getDoctrine()->getManager();
 			$entity = $em->createQuery('SELECT a FROM   GestorCrudBundle:'.$entidad.' a 
 										ORDER BY  a.'.$campo.' '.$ordenes['orden'].'

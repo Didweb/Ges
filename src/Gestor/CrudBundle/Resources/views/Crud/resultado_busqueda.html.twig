@@ -3,15 +3,6 @@
 <section id="col_una">
 {% set col = mimebros|length-1 %}
 <h1>Listado de {{ nomentidad }}</h1>
-
- {% for MSNflash in app.session.flashbag.get('listado') %}
-    <div class="flash_ok">
-        {{ MSNflash | raw }}
-        <br />
-        <a href="{{ path('gestor_listar_orden_col',{'orden':'ASC','pagina':datospag.pagina,'campo':campo|lower,'entidad':nomentidad|lower})}}">Eliminar Filtro</a>
-    </div>
-{% endfor %}
-
 {% include 'GestorCrudBundle:Crud:buscador.html.twig' %}
 <br />
 <table style="border:1px solid #333333;"> 
