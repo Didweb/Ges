@@ -18,7 +18,7 @@ class CrudController extends Controller
 		$session = $request->getSession();
 		$entidad = ucwords($entidad);
 		
-		$consulta = $this->mantenbusqueda($request,$session);
+		$consulta = $this->mantenbusqueda($request,$session,$entidad);
 		
 		$entity = $this->getConsulta($session,$entidad,$orden,$campo,$consulta);
 
@@ -91,7 +91,7 @@ class CrudController extends Controller
 	 * reordenar y paginar con la consulta realizada
 	 * 
 	 ************************************************************ */ 
-	public function mantenbusqueda($request,$session)
+	public function mantenbusqueda($request,$session,$entidad)
 	{
 		
 		if($request->query->has('buscador')) {
@@ -109,14 +109,14 @@ class CrudController extends Controller
 			$forb->bind($request);
 				
 			$consulta = $entib->getDato();
-			$session->set('consulta',$consulta);
-			$consulta =  $session->get('consulta'); } 
+			$session->set('consulta'.$entidad,$consulta);
+			$consulta =  $session->get('consulta'.$entidad); } 
 			
 		elseif($buscador=='no'){
-			$consulta = $session->set('consulta',''); } 
+			$consulta = $session->set('consulta'.$entidad,''); } 
 			
 		else{
-			$consulta = $session->get('consulta'); }
+			$consulta = $session->get('consulta'.$entidad); }
 		
 		return $consulta;
 	}
