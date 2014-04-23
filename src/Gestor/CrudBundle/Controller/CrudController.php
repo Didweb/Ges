@@ -18,28 +18,19 @@ class CrudController extends Controller
 		$session = $request->getSession();
 		$entidad = ucwords($entidad);
 		
-		$buscador = $request->request->get('buscador','no');
-		$consulta='';
-		if($buscador=='si'){
-				$entib = new Buscador();
-				$forb = $this->createForm(new BuscadorType(), $entib);
-				$forb->bind($request);
-				
-			$consulta = $entib->getDato();
-			
-			}
+		$consulta = $this->mantenbusqueda($request,$session);
 		
 		$entity = $this->getConsulta($session,$entidad,$orden,$campo,$consulta);
-
-
 
 		
 		if (!$entity) {
 			$this->get('session')->getFlashBag()->add('listado','Ningun resultado para la busqueda de <b>'.$consulta.'</b> .');
 			$entity = $this->getConsulta($session,$entidad,$orden,$campo,'');
-			} else {
+			
+			} elseif($entity && $consulta!='') {
 			$this->get('session')->getFlashBag()->add('listado','Listado filtrado por la busqueda <b>'.$consulta.'</b>.');	
-				}
+			
+			} 
 		
 		$mimebros = $this->MiembrosLista($entidad);
 		$n=0;
@@ -94,8 +85,41 @@ class CrudController extends Controller
     }
 
 
-
-	
+	/************************************************************
+	 * 
+	 * Se encarga de eliminar o mantener la busqueda para que se pueda
+	 * reordenar y paginar con la consulta realizada
+	 * 
+	 ************************************************************ */ 
+	public function mantenbusqueda($request,$session)
+	{
+		
+		if($request->query->has('buscador')) {
+			$buscador = $request->query->get('buscador'); } 
+		
+		elseif  ($request->request->has('buscador')){
+				$buscador = $request->request->get('buscador'); }
+				
+		else{$buscador='';}
+			
+		
+		if($buscador=='si'){
+			$entib = new Buscador();
+			$forb = $this->createForm(new BuscadorType(), $entib);
+			$forb->bind($request);
+				
+			$consulta = $entib->getDato();
+			$session->set('consulta',$consulta);
+			$consulta =  $session->get('consulta'); } 
+			
+		elseif($buscador=='no'){
+			$consulta = $session->set('consulta',''); } 
+			
+		else{
+			$consulta = $session->get('consulta'); }
+		
+		return $consulta;
+	}
 	
 	/************************************************************
 	 * 
@@ -122,14 +146,14 @@ class CrudController extends Controller
 	 ************************************************************ */ 
 	public function getConsulta($session,$entidad,$orden,$campo,$consulta)
 	{
-		//$session->start();	
+			
 		$ordenes = $this->getOrden($session,$orden);
 		
-		if($campo==''){ echo "Consulta 1";
+		if($campo==''){ 
 			$em = $this->getDoctrine()->getManager();
 			$entity = $em->createQuery('SELECT a FROM   GestorCrudBundle:'.$entidad.' a')->getResult();
 			
-			} elseif($consulta != ''){ echo "Consulta 2 / ".$consulta;
+			} elseif($consulta != ''){
 			
 			$monto='';
 			$or = ' or ';
@@ -145,11 +169,12 @@ class CrudController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			$entity = $em->createQuery('SELECT a FROM   GestorCrudBundle:'.$entidad.' a
 										WHERE '.$monto.'
+										ORDER BY  a.'.$campo.' '.$ordenes['orden'].'
 										')
 										->setParameter('consulta', '%'.$consulta.'%')
 										->getResult();
 				
-			}else{ echo "Consulta 3 / ".$consulta;
+			}else{ 
 			$em = $this->getDoctrine()->getManager();
 			$entity = $em->createQuery('SELECT a FROM   GestorCrudBundle:'.$entidad.' a 
 										ORDER BY  a.'.$campo.' '.$ordenes['orden'].'

@@ -8,7 +8,7 @@
     <div class="flash_ok">
         {{ MSNflash | raw }}
         <br />
-        <a href="{{ path('gestor_listar_orden_col',{'orden':'ASC','pagina':datospag.pagina,'campo':campo|lower,'entidad':nomentidad|lower})}}">Eliminar Filtro</a>
+        <a href="{{ path('gestor_listar_orden_col',{'orden':'ASC','pagina':datospag.pagina,'campo':campo|lower,'entidad':nomentidad|lower,'buscador':'no'})}}">Eliminar Filtro</a>
     </div>
 {% endfor %}
 
