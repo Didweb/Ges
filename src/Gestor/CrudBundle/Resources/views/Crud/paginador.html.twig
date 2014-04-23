@@ -1,22 +1,21 @@
-
 {% if datospag.totalpaginas > 1 %}
 <div class="pagination">
-
     {% if datospag.primera is defined and datospag.pagina != datospag.primera %}
-            <a class="first" href="{{ path('gestor_listar',{'entidad':nomentidad|lower,'pagina':datospag.primera})}}"></a>
+            <a class="first" href="{{ path('gestor_listar_orden_col',{'orden':orden,'pagina':datospag.primera,'campo':campo|lower,'entidad':nomentidad|lower})}}"></a>
     {% endif %}
 
 
     {% if datospag.previa is defined and datospag.pagina>1 %}
-            <a class="previous" href="{{ path('gestor_listar',{'entidad':nomentidad|lower,'pagina':datospag.previa})}}"></a>
+            <a class="previous" href="{{ path('gestor_listar_orden_col',{'orden':orden,'pagina':datospag.previa,'campo':campo|lower,'entidad':nomentidad|lower})}}"></a>
     {% endif %}
+
 
 
     {% for page in datospag.pagpaginador %}
         {% if page != datospag.pagina %}
         {% if page >0 or page < datospag.ultima %}
 			<span class="page">
-                <a href="{{ path('gestor_listar',{'entidad':nomentidad|lower,'pagina':page })}}">{{ page }}</a>
+                <a href="{{ path('gestor_listar_orden_col',{'orden':orden,'pagina':page,'campo':campo|lower,'entidad':nomentidad|lower})}}">{{ page }}</a>
             </span>    
             {% endif %}
         {% else %}
@@ -28,16 +27,13 @@
 
 
     {% if datospag.proxima is defined and datospag.pagina<datospag.ultima %}
-            <a class="next" href="{{ path('gestor_listar',{'entidad':nomentidad|lower,'pagina':datospag.proxima})}}"></a>
+            <a class="next" href="{{ path('gestor_listar_orden_col',{'orden':orden,'pagina':datospag.proxima,'campo':campo|lower,'entidad':nomentidad|lower})}}"></a>
     {% endif %}
+
 
     {% if datospag.ultima is defined and datospag.pagina != datospag.ultima %}
-            <a class="last" href="{{ path('gestor_listar',{'entidad':nomentidad|lower,'pagina':datospag.ultima })}}"></a>
+            <a class="last" href="{{ path('gestor_listar_orden_col',{'orden':orden,'pagina':datospag.ultima,'campo':campo|lower,'entidad':nomentidad|lower})}}"></a>
     {% endif %}
-	
-
-
-
 </div>
 {% endif %}
 

@@ -31,9 +31,8 @@ class paginacion
 	
 	private $proxima;
 	
-	public function inicio($datos,$contV,$pagina,$rpag=10,$pagpaginador=3)
+	public function inicio($session,$datos,$contV,$pagina,$rpag=10,$pagpaginador=3)
 	{
-		$session = new Session();
 		$session->start();
 		$request = Request::createFromGlobals();
 

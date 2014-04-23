@@ -39,6 +39,7 @@ class MenuController extends Controller
 				
 				$entity[$n]->setGrup($tot[$n][0]);
 				$entity[$n]->setNom($tot[$n][1]);
+				$entity[$n]->setCampoorden($tot[$n][2]);
 				$entity[$n]->setCrud($elcrud);
 			
 			}

@@ -12,6 +12,7 @@ class Menu
 	
 	private $crud;
 
+	private $campoorden;
 	
 	public function __construct() {
         $this->crud 	= new ArrayCollection();
@@ -27,6 +28,18 @@ class Menu
 	public function getGrup()
 	{
 		return $this->grup;
+	}
+
+	public function setCampoorden($campoorden)
+	{
+		$this->campoorden = $campoorden;
+		return $this;
+	}
+
+	
+	public function getCampoorden()
+	{
+		return $this->campoorden;
 	}
 
 

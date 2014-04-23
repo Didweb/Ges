@@ -25,3 +25,25 @@ section#col_una {
 h1 {
 	font-size:15px;
 	color:#666666}
+
+/*
+ * Botones
+ * */
+ 
+.bo_orden {
+	background-repeat:no-repeat;
+	width:22px;
+	height:22px;
+	display:block;
+	margin:3px;
+	opacity:0.4; filter:alpha(opacity=40);
+	} 
+.bo_orden:hover {
+	opacity:1.0; filter:alpha(opacity=100);
+	}
+ 
+.ASC {
+	background-image:url(../images/orden_asc.png);}
+	
+.DESC {
+	background-image:url(../images/orden_desc.png);}	

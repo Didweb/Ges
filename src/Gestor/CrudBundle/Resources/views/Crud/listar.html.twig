@@ -12,7 +12,13 @@
                 {% for noms in nomcampos  %}
                  
                 {% if noms !=nomentidad %}
-				<th>{{ noms }}</th>
+				<th>
+				{% if campo==noms|lower %}
+				<a href="{{ path('gestor_listar_orden_col',{'orden':contraorden,'pagina':datospag.pagina,'campo':noms|lower,'entidad':nomentidad|lower})}}" class="bo_orden {{ contraorden }}"></a>
+				{% else%}
+				<a href="{{ path('gestor_listar_orden_col',{'orden':'ASC','pagina':datospag.pagina,'campo':noms|lower,'entidad':nomentidad|lower})}}" class="bo_orden ASC"></a>
+				{% endif %}
+				{{ noms }}</th>
                {% endif %}
                {% endfor %}
     

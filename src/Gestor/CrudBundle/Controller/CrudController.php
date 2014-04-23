@@ -2,18 +2,26 @@
 
 namespace Gestor\CrudBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 use Gestor\CrudBundle\Entity\Lista;
 
 class CrudController extends Controller
 {
-    public function listarAction($entidad,$pagina)
+    public function listarAction(Request $request,$entidad,$pagina,$orden='ASC',$campo='')
     {
-		$entidad = ucwords($entidad);
-		$em = $this->getDoctrine()->getManager();
+		$session = new Session();
+		$session->start();	
 		
-		$entity = $em->getRepository('GestorCrudBundle:'.$entidad)->findAll();
+		$entidad = ucwords($entidad);
+		
+		$entity = $this->getConsulta($session,$entidad,$orden,$campo);
+		//$em = $this->getDoctrine()->getManager();
+		//$entity = $em->createQuery('SELECT a FROM   GestorCrudBundle:'.$entidad.' a')->getResult();
+            
+		//$entity = $em->getRepository('GestorCrudBundle:'.$entidad)->findAll();
 
 
 		if (!$entity) {
@@ -55,16 +63,72 @@ class CrudController extends Controller
 		
 		
 		$paginacion = $this->get('pagi');
-		$paginacion->inicio($en,$contV,$pagina,$rpag=3,$pagpaginador=2);
-		
+		$paginacion->inicio($session,$en,$contV,$pagina,$rpag=3,$pagpaginador=2);
+
         return $this->render('GestorCrudBundle:Crud:listar.html.twig',
 							array(	'entity' 		=> $paginacion->getDatosmatriz(),
 									'nomentidad'	=> $entidad,
 									'mimebros'		=> $mimebros,
 									'nomcampos'		=> $nomcampos,
-									'datospag'		=>$paginacion));
+									'datospag'		=> $paginacion,
+									'orden'			=> $session->get('orden'),
+									'contraorden'	=> $session->get('contraorden'),
+									'campo'			=> $campo
+									));
     }
 
+	
+	/***********************************************************
+	 * 
+	 * 	Creamos las consultas segun se oportuno para consultas de listado
+	 * COnsultas con busquedas o ordenar filtros.
+	 * 
+	 * 
+	 ************************************************************ */ 
+	public function getConsulta($session,$entidad,$orden,$campo)
+	{
+		$session->start();	
+		$ordenes = $this->getOrden($session,$orden);
+		
+		if($campo==''){
+			$em = $this->getDoctrine()->getManager();
+			$entity = $em->createQuery('SELECT a FROM   GestorCrudBundle:'.$entidad.' a')->getResult();
+			
+			} else{
+			$em = $this->getDoctrine()->getManager();
+			$entity = $em->createQuery('SELECT a FROM   GestorCrudBundle:'.$entidad.' a 
+										ORDER BY  a.'.$campo.' '.$ordenes['orden'].'
+										')->getResult();	
+			
+			}
+		
+		return $entity ;
+		
+	}
+
+	public function getOrden($session,$orden)
+	{
+		$session->start();	
+		
+		$orden = $orden;
+		
+		if($orden=='ASC'){
+			$contraorden='DESC';
+			} elseif($orden=='DESC'){
+			$contraorden='ASC';
+			}
+		
+		if($session->has('orden')){
+			$session->set('orden',$orden); 
+			$session->set('contraorden',$contraorden); 
+			
+			} elseif ($orden!=$session->get('orden')) {
+			$session->set('orden',$orden);
+			$session->set('contraorden',$contraorden); 
+			}
+			
+			return $ordenes=array('orden'=>$orden,'contraorden'=>$contraorden);
+	}
 
 	/***********************************************************
 	 * 

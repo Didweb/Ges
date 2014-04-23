@@ -1,2 +1,2 @@
 parameters:
-    EntiMenu: 1*Noticia*CUD|1*Categoria*CRUD
+    EntiMenu: 1*Noticia*creacion*CUD|1*Categoria*nombre*CRUD

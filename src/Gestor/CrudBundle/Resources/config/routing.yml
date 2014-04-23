@@ -4,3 +4,13 @@ gestor_crud_homepage:
     requirements:
         _locale: ca|es
     prefix: /{_locale}/ 
+
+gestor_listar_orden_col:
+    pattern:  /{_locale}/listar/{pagina}/{orden}/{campo}/{entidad}
+    defaults: { _controller: GestorCrudBundle:Crud:listar  }
+    requirements:
+        _locale: ca|es
+        pagina:  \d+ 
+        orden: ASC|DESC
+    prefix: /{_locale}/ 
+    
