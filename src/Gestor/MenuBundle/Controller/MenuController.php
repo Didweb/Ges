@@ -10,7 +10,7 @@ use Gestor\MenuBundle\Entity\Menu;
 
 class MenuController extends Controller
 {
-
+	
 	
     public function indexAction(Request $request)
     {
@@ -19,7 +19,7 @@ class MenuController extends Controller
 		$donde = $donde[count($donde)-1];
         return $this->render('GestorMenuBundle:Default:menu.html.twig',
 							array(	'resultado'	=> $separado,
-									'donde' => $donde));
+									'donde' 	=> $donde));
     }
 
 	
@@ -35,7 +35,7 @@ class MenuController extends Controller
 		for ($n=0;$n<=count($separar)-1;$n++) {
 				$entity[$n] = new Menu();
 				$tot[$n] 	= explode("*",$separar[$n]);
-				$elcrud 	= str_split($tot[$n][2]);
+				$elcrud 	= str_split($tot[$n][3]);
 				
 				$entity[$n]->setGrup($tot[$n][0]);
 				$entity[$n]->setNom($tot[$n][1]);
@@ -46,5 +46,7 @@ class MenuController extends Controller
 
 		return $entity;	
 	}
+
+
 
 }

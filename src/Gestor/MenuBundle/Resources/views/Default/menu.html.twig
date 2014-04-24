@@ -1,14 +1,41 @@
 <nav id="principal">
-	{% if donde=='home' |lower %}
-	<div class="capsula  ">Home</div>
-	{% else %}
-	<a href="" class="capsula atras">Home</a>
-	{% endif %}
+
+		{% if donde=='home' |lower %}
+			<div class="capsula  ">Home</div>
+		{% else %}
+			<a href="" class="capsula atras">Home</a>
+		{% endif %}
+		
 	{% for m in resultado %}
-	{% if donde==m.nom |lower %}
-	<div class="capsula">{{ m.nom }}</div>
-	{% else %}
-	<a href="{{ path('gestor_listar_orden_col',{'orden':'DESC','pagina':1,'campo':m.campoorden|lower,'entidad':m.nom|lower})}}" class="capsula atras">{{ m.nom }}</a>
-	{% endif %}
+	
+		{% if donde==m.nom |lower %}
+			<div class="capsula">{{ m.nom }}</div>
+		{% else %}
+			<a href="{{ path('gestor_listar_orden_col',{'orden':'DESC','pagina':1,'campo':m.campoorden|lower,'entidad':m.nom|lower})}}" class="capsula atras">{{ m.nom }}</a>
+		{% endif %}
+		
+	{% endfor %}
+	
+</nav>
+<nav id="secundario">
+	{% for m in resultado %}
+	
+
+
+		{% if donde==m.nom |lower %}
+			{% if donde!='home' |lower %}
+			<a href='{{ path('gestor_listar_orden_col',{'orden':'DESC','pagina':1,'campo':m.campoorden|lower,'entidad':m.nom|lower})}}' >Listar</a>
+			{% endif %}
+		
+		
+			{% for m2 in m.crud %}
+				{% if m2=='C' %}
+				 <a href='{{ path('gestor_editar_orden_col',{'entidad':m.nom |lower})}}' >Crear</a>
+				 {% endif %}
+			{% endfor %}
+			
+		{% endif %}
+		
 	{% endfor %}
 </nav>
+

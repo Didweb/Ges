@@ -10,7 +10,7 @@ use Gestor\CrudBundle\Entity\Lista;
 use Gestor\CrudBundle\Entity\Buscador;
 use Gestor\CrudBundle\Form\BuscadorType;
 
-class CrudController extends Controller
+class ListaController extends Controller
 {
 	
     public function listarAction(Request $request,$entidad,$pagina,$orden='ASC',$campo='')
@@ -26,6 +26,7 @@ class CrudController extends Controller
 		if (!$entity) {
 			$this->get('session')->getFlashBag()->add('listado','Ningun resultado para la busqueda de <b>'.$consulta.'</b> .');
 			$entity = $this->getConsulta($session,$entidad,$orden,$campo,'');
+			$session->set('consulta'.$entidad,''); 
 			
 			} elseif($entity && $consulta!='') {
 			$this->get('session')->getFlashBag()->add('listado','Listado filtrado por la busqueda <b>'.$consulta.'</b>.');	

@@ -1,0 +1,27 @@
+{% extends '::Backend.html.twig' %}
+{% block contenidos %}
+<section id="col_una">
+
+<h1>Editar</h1>
+
+	{% for MSNflash in app.session.flashbag.get('editar') %}
+		<div class="flash_ok">
+			{{ MSNflash | raw }}
+		</div>
+	{% endfor %}
+
+
+
+<form action="" method="post" {{ form_enctype(edit_form) }}>
+				
+	<input type="hidden" name="_method" value="PUT" />
+	<input type="hidden" name="buscador" value="si" />
+	{{ form_errors(edit_form) }}
+
+		{{ form(edit_form) }}
+		
+	 {{ form_rest(edit_form) }}
+ </form> 
+
+</section>
+{% endblock %}

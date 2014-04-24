@@ -5,12 +5,21 @@ gestor_crud_homepage:
         _locale: ca|es
     prefix: /{_locale}/ 
 
+
 gestor_listar_orden_col:
     pattern:  /{_locale}/listar/{pagina}/{orden}/{campo}/{entidad}
-    defaults: { _controller: GestorCrudBundle:Crud:listar  }
+    defaults: { _controller: GestorCrudBundle:Lista:listar  }
     requirements:
         _locale: ca|es
         pagina:  \d+ 
         orden: ASC|DESC
     prefix: /{_locale}/ 
-    
+ 
+
+
+gestor_editar_orden_col:
+    pattern:  /{_locale}/editar/{entidad}
+    defaults: { _controller: GestorCrudBundle:Editar:edita  }
+    requirements:
+        _locale: ca|es
+    prefix: /{_locale}/     
