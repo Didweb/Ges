@@ -1,0 +1,25 @@
+{% extends '::Backend.html.twig' %}
+{% block contenidos %}
+<section id="col_una">
+
+<h1>Eliminar Registro</h1>
+
+	{% for MSNflash in app.session.flashbag.get('editar_ok') %}
+		<div class="flash_ok">
+			{{ MSNflash | raw }}
+		</div>
+	{% endfor %}
+
+
+<p>
+Estas seguro de que quieres eliminar este registro?
+<br />
+<b>Este proceso es irreversible</b>
+<br /><br />
+<a href="{{ path('gestor_editar_registro',{'id':id,'entidad':entidad})}}">Volver, quiero conservar el registro</a> <br />
+<a href="{{ path('gestor_eliminar_1_registro',{'ok':'si','id':id,'entidad':entidad} )}}">Sí, quiero elimnar este registro</a>
+</p>
+
+
+</section>
+{% endblock %}

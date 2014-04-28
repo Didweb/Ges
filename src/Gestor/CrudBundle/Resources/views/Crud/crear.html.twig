@@ -2,7 +2,7 @@
 {% block contenidos %}
 <section id="col_una">
 
-<h1>Editar</h1>
+<h1>Crear</h1>
 
 	{% for MSNflash in app.session.flashbag.get('editar_ok') %}
 		<div class="flash_ok">
@@ -12,7 +12,7 @@
 
 
 
-<form action="{{ path('gestor_actualizar_registro', {'entidad':entidad, 'id':entity.id } ) }}" method="post" {{ form_enctype(edit_form) }}>
+<form action="{{ path('gestor_editar_crear', {'entidad':entidad} ) }}" method="post" {{ form_enctype(edit_form) }}>
 				
 	<input type="hidden" name="_method" value="PUT" />
 	{{ form_errors(edit_form) }}
@@ -24,10 +24,6 @@
 		
 	 {{ form_rest(edit_form) }}
  </form> 
-
-<hr />
-<a href="{{ path('gestor_eliminar_1_registro', { 'entidad': entidad , 'id':entity.id,'ok':'no'}) }}">Eliminar</a>
-
 
 </section>
 {% endblock %}

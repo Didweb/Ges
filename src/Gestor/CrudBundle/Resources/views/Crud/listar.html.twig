@@ -12,8 +12,16 @@
     </div>
 {% endfor %}
 
+
+
+
 {% include 'GestorCrudBundle:Crud:buscador.html.twig' %}
 <br />
+{% for MSNflash in app.session.flashbag.get('listado_elimina') %}
+    <div class="flash_ok">
+        {{ MSNflash | raw }}
+    </div>
+{% endfor %}
 <table style="border:1px solid #333333;"> 
         <thead>
            <tr>
@@ -30,7 +38,7 @@
 				{{ noms }}</th>
                {% endif %}
                {% endfor %}
-    
+			<th>Action</th>
             </tr>
             
         </thead>
@@ -55,6 +63,7 @@
 				
 			{% if vuelta==col %}
 				{% set vuelta=1 %}
+				<td> <a href="{{ path('gestor_editar_registro',{ 'entidad':nomentidad |lower,'id':valor.id })}}">Editar</a></td>
 				</tr> 
 			{% else %}
 			{% set vuelta=vuelta+1 %}

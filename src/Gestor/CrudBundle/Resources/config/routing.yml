@@ -17,9 +17,43 @@ gestor_listar_orden_col:
  
 
 
-gestor_editar_orden_col:
-    pattern:  /{_locale}/editar/{entidad}
-    defaults: { _controller: GestorCrudBundle:Editar:edita  }
+gestor_editar_nuevo:
+    pattern:  /{_locale}/nuevo/{entidad}
+    defaults: { _controller: GestorCrudBundle:Editar:nuevo  }
     requirements:
         _locale: ca|es
     prefix: /{_locale}/     
+ 
+
+
+gestor_editar_registro:
+    pattern:  /{_locale}/editar/{id}/{entidad}
+    defaults: { _controller: GestorCrudBundle:Editar:editar  }
+    requirements:
+        _locale: ca|es
+    prefix: /{_locale}/  
+
+gestor_actualizar_registro:
+    pattern:  /{_locale}/actualizar/{id}/{entidad}
+    defaults: { _controller: GestorCrudBundle:Editar:actualizar  }
+    requirements:
+        _locale: ca|es
+    prefix: /{_locale}/  
+
+
+gestor_eliminar_1_registro:
+    pattern:  /{_locale}/eliminar/{id}/{ok}/{entidad}
+    defaults: { _controller: GestorCrudBundle:Editar:eliminar  }
+    requirements:
+        _locale: ca|es
+    prefix: /{_locale}/  
+
+
+gestor_editar_crear:
+    pattern:  /{_locale}/crear/{entidad}
+    defaults: { _controller: GestorCrudBundle:Editar:crear  }
+    requirements:
+        _locale: ca|es
+    prefix: /{_locale}/ 
+
+

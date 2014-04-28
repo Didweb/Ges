@@ -4,6 +4,8 @@ imports:
     - { resource: doctrine_extensions.yml }
     - { resource: "@GestorMenuBundle/Resources/config/parameters.yml" }
     - { resource: "@GestorCrudBundle/Resources/config/parameters.yml" }
+
+
     
 framework:
     #esi:             ~

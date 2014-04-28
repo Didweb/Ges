@@ -30,8 +30,8 @@
 		
 			{% for m2 in m.crud %}
 				{% if m2=='C' %}
-				 <a href='{{ path('gestor_editar_orden_col',{'entidad':m.nom |lower})}}' >Crear</a>
-				 {% endif %}
+				 <a href='{{ path('gestor_editar_nuevo',{'entidad':m.nom |lower})}}' >Crear</a>
+				{% endif %}
 			{% endfor %}
 			
 		{% endif %}
