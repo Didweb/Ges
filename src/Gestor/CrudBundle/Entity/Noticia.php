@@ -3,6 +3,7 @@
 namespace Gestor\CrudBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Noticia

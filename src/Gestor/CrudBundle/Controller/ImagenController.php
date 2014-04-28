@@ -11,7 +11,7 @@ use Gestor\CrudBundle\Entity\Imagen;
 use Gestor\CrudBundle\Form\ImagenType;
 use Gestor\CrudBundle\Form\ImagenShowType;
 
-
+use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 /**
  * Imagen controller.
  *
@@ -45,7 +45,7 @@ class ImagenController extends Controller
      */
     public function createAction(Request $request,$entidad)
     {
-		 
+		 $container =$this->container;
 		
         $entity = new Imagen();
         //$form = $this->createCreateForm($entity);
@@ -84,9 +84,9 @@ class ImagenController extends Controller
 					->add('faena_ok',
 					'Imatge pujada al servidor de forma correcta.');	
 			$elnombre = $entity->getSlug().'.'.$entity->getExtension();
-          $entityGet = 'get'.ucwords($entidad);
+			$entityGet = 'get'.ucwords($entidad);
           
-           $entity->upload(100,100,$elnombre);
+			$entity->upload($container,100,100,$elnombre);
 
             return $this->redirect($this->generateUrl('gestor_editar_registro', array(
 											'id' 		=> $entity->$entityGet()->getId(),
@@ -300,7 +300,7 @@ class ImagenController extends Controller
      */
     public function deleteAction(Request $request, $idfoto,$id,$entidad)
     {
-        
+        $container = $this->container;
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('GestorCrudBundle:Imagen')->find($idfoto);
 
@@ -309,7 +309,7 @@ class ImagenController extends Controller
             }
 			$nomruta = $entity->getSlug().'.'.$entity->getExtension();
 			
-		$entity->borrarArchivos($nomruta);
+			$entity->borrarArchivos($container,$nomruta);
             $em->remove($entity);
             $em->flush();
             

@@ -31,7 +31,9 @@ class paginacion
 	
 	private $proxima;
 	
-	public function inicio($session,$datos,$contV,$pagina,$rpag=10,$pagpaginador=3)
+	private $ncampos;
+	
+	public function inicio($session,$datos,$contV,$pagina,$rpag=10,$pagpaginador=3,$ncampos)
 	{
 		$session->start();
 		$request = Request::createFromGlobals();
@@ -50,6 +52,7 @@ class paginacion
 		$this->setPrevia();
 		$this->setProxima();
 		$this->setPagpaginador($pagpaginador);
+		$this->setNcampos($ncampos);
 		$this->setDatosmatriz($datos);
 		
 	}
@@ -85,6 +88,19 @@ class paginacion
         return $this->pagina;
     }
   
+
+	public function setNcampos($ncampos)
+	{
+		$this->ncampos = $ncampos-1;
+        return $this;
+	}
+
+
+    public function getNcampos()
+    {
+        return $this->ncampos;
+    }
+    
     
 	public function setPrimera()
 	{
@@ -172,14 +188,16 @@ class paginacion
    
 	public function setDatosmatriz($datos)
 	{
-		$grupo1 =($this->getRegpagina()*4);
+		
+		$grupo1 =($this->getRegpagina()*$this->getNcampos());
+		
 		if($this->pagina==1)
 			{$inicio=0;}
 			else{
 				$inicio = ($grupo1*$this->pagina)-$grupo1; }
 		
-		$final	= $grupo1;
-		$salida = array_slice($datos, $inicio , $final);
+		$salida = array_slice($datos, $inicio ,  $grupo1);
+		
 		$this->datosmatriz = $salida;
         return $this;
 	}

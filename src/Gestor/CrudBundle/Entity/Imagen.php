@@ -6,6 +6,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Symfony\Component\DependencyInjection\ContainerInterface as Container;
+
 /**
  * Imagen
  *
@@ -82,36 +84,31 @@ class Imagen
 
 
 
-    public function getAbsolutePath()
+    public function getAbsolutePath(Container $container)
     {
         return null === $this->path
             ? null
-            : $this->getUploadRootDir().'/'.$this->path;
+            : $this->getUploadRootDir($container).'/'.$this->path;
     }
 
-    public function getWebPath()
+    public function getWebPath(Container $container)
     {
         return null === $this->path
             ? null
-            : $this->getUploadDir().'/'.$this->path;
+            : $this->getUploadDir($container).'/'.$this->path;
     }
 
-    protected function getUploadRootDir()
+    protected function getUploadRootDir(Container $container)
     {
-        // la ruta absoluta del directorio donde se deben
-        // guardar los archivos cargados
-       // return __DIR__.'/../../../../web/'.$this->getUploadDir();
-        return '/var/www/ges/web/'.$this->getUploadDir();
-         //return '/usr/home/claror.com/web/'.$this->getUploadDir();
-        
-        //return $this->get('kernel')->getRootDir() . '/../web'.$this->getUploadDir();
+        return __DIR__.'/../../../../web/'.$this->getUploadDir($container);
+       
     }
 
-    protected function getUploadDir()
-    {
-        // se deshace del __DIR__ para no meter la pata
-        // al mostrar el documento/imagen cargada en la vista.
-        return 'fotos';
+    protected function getUploadDir($container)
+    {	
+		$this->container = $container;
+        $carpeta = $this->container->getParameter('img_carpeta');
+        return $carpeta;
     }
 
 
@@ -259,10 +256,10 @@ class Imagen
         return $this->extension;
     }
 
-	public function eliminararchivo($nomruta)
+	public function eliminararchivo(Container $container,$nomruta)
 		{
-		$ruta=$this->getUploadDir()."/g/".$nomruta;
-		$rutap=$this->getUploadDir()."/p/".$nomruta;
+		$ruta=$this->getUploadDir($container)."/g/".$nomruta;
+		$rutap=$this->getUploadDir($container)."/p/".$nomruta;
 			if (file_exists($ruta)) {
 				unlink($ruta);
 				unlink($rutap); }
@@ -271,9 +268,13 @@ class Imagen
 
 
 
-	public function upload($size_ancho,$size_alto,$ultimo)
+	public function upload(Container $container,$size_ancho,$size_alto,$ultimo)
 		{
-			
+			$this->container = $container;
+			$img_ancho_p 	= $this->container->getParameter('img_ancho_p');
+			$img_alto_p 	= $this->container->getParameter('img_alto_p');
+			$img_ancho_g 	= $this->container->getParameter('img_ancho_g');
+			$img_alto_g 	= $this->container->getParameter('img_alto_g');
 		    
 		   if (null === $this->getFile()) {
 			return;
@@ -284,20 +285,17 @@ class Imagen
 			
 		
 		    //Subimos el archivo con el nuevo nombre
-		    $this->getFile()->move($this->getUploadRootDir().'/g/',$ultimo);
+		    $this->getFile()->move($this->getUploadRootDir($container).'/g/',$ultimo);
 		
 		   
 			//$pImageOrigen=$this->getFile()->getClientOriginalName();
-			$tmpname	= $this->getUploadRootDir()."/g/".$ultimo;	
-			$save_dir_p	= $this->getUploadRootDir().'/p/';
-			$save_dir_g	= $this->getUploadRootDir().'/g/';
+			$tmpname	= $this->getUploadRootDir($container)."/g/".$ultimo;	
+			$save_dir_p	= $this->getUploadRootDir($container).'/p/';
+			$save_dir_g	= $this->getUploadRootDir($container).'/g/';
 			$save_name	= $ultimo;
 			
-			$this->img_resize( $tmpname, 240,196, $save_dir_p, $save_name );
-			$this->img_resize( $tmpname, 1024,768, $save_dir_g, $save_name );
-					
-
-
+			$this->img_resize( $tmpname, $img_ancho_p,$img_alto_p, $save_dir_p, $save_name );
+			$this->img_resize( $tmpname, $img_ancho_g,$img_alto_g, $save_dir_g, $save_name );
 		
 		    // limpia la propiedad «file» ya que no la necesitas más
 		    $this->file = null;
@@ -340,8 +338,7 @@ class Imagen
 				$av = $x*$c;        
 				$ah = $y*$c;        
 				}  
-			//echo "<strong>$av, $ah</strong>";
-			//echo "---".$save_dir;
+		
 		$im = imagecreate($av, $ah);
 		$im = imagecreatetruecolor($av,$ah);
 			//para fondo blanco
@@ -356,10 +353,10 @@ class Imagen
 	    }
 
 
-public function borrarArchivos($nomruta)
+public function borrarArchivos($container,$nomruta)
 	{
-	$ruta=$this->getUploadDir()."/g/".$nomruta;
-	$rutap=$this->getUploadDir()."/p/".$nomruta;
+	$ruta=$this->getUploadDir($container)."/g/".$nomruta;
+	$rutap=$this->getUploadDir($container)."/p/".$nomruta;
 			if (file_exists($ruta)) {
 				unlink($ruta);
 				unlink($rutap); }	

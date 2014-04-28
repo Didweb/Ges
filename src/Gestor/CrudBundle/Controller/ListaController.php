@@ -45,7 +45,6 @@ class ListaController extends Controller
 				$n++; }
 
 
-
 		$contV = count($valores)-1;
 		$en = array();
 		$n=0;
@@ -68,7 +67,7 @@ class ListaController extends Controller
 		
 		
 		$paginacion = $this->get('pagi');
-		$paginacion->inicio($session,$en,$contV,$pagina,$rpag=3,$pagpaginador=2);
+		$paginacion->inicio($session,$en,$contV,$pagina,$rpag=3,$pagpaginador=2,$ncampos=count($nomcampos));
 
 		$buscador = $this->buscador();
 
