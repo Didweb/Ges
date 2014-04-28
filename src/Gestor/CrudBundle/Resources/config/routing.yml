@@ -57,3 +57,49 @@ gestor_editar_crear:
     prefix: /{_locale}/ 
 
 
+
+
+gestor_imagen_new:
+    pattern:  /{_locale}/nueva-imagen/{entidad}
+    defaults: { _controller: GestorCrudBundle:Imagen:new  }
+    requirements:
+        _locale: ca|es
+    prefix: /{_locale}/ 
+
+gestor_imagen_show:
+    pattern:  /{_locale}/mostrar-imagen/{id}/{entidad}
+    defaults: { _controller: GestorCrudBundle:Imagen:show  }
+    requirements:
+        _locale: ca|es
+    prefix: /{_locale}/ 
+
+
+gestor_imagen_edit:
+    pattern:  /{_locale}/editar-imagen/{id}/{entidad}
+    defaults: { _controller: GestorCrudBundle:Imagen:edit  }
+    requirements:
+        _locale: ca|es
+    prefix: /{_locale}/ 
+
+
+gestor_imagen_create:
+    pattern:  /{_locale}/crear-imagen/{entidad}
+    defaults: { _controller: GestorCrudBundle:Imagen:create  }
+    requirements:
+        _locale: ca|es
+    prefix: /{_locale}/ 
+
+gestor_imagen_update:
+    pattern:  /{_locale}/update-imagen/{id}/{entidad}
+    defaults: { _controller: GestorCrudBundle:Imagen:update  }
+    requirements:
+        _locale: ca|es
+    prefix: /{_locale}/ 
+
+
+gestor_imagen_delete:
+    pattern:  /{_locale}/eliminar-imagen/{idfoto}/{id}/{entidad}
+    defaults: { _controller: GestorCrudBundle:Imagen:delete  }
+    requirements:
+        _locale: ca|es
+    prefix: /{_locale}/ 

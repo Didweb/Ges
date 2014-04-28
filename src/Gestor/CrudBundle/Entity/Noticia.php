@@ -58,6 +58,18 @@ class Noticia
     private $modificacion;
 
 
+	/**
+	 * @ORM\OneToMany(targetEntity="Imagen", mappedBy="noticia", cascade={"all"})
+	 * 
+	 */ 
+	 protected $imagenes;
+
+	public function __construct()
+	{
+		$this->imagenes = new ArrayCollection();
+	}
+
+
     /**
      * Get id
      *

@@ -8,3 +8,9 @@ services:
 #    gestor_crud.example:
 #        class: %gestor_crud.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+    vabadus.form.type.entity_id:
+        class: Gestor\CrudBundle\Form\Type\EntityIdType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: entity_id }

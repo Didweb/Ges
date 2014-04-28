@@ -18,9 +18,7 @@
 	{{ form_errors(edit_form) }}
 	{{ form_widget(edit_form) }}
 		
-		<div>
-			<button type="submit" title="Editar" >Editar</button>
-		</div>	
+		<div> <button type="submit" title="Editar" >Editar</button> </div>	
 		
 	 {{ form_rest(edit_form) }}
  </form> 
@@ -29,5 +27,17 @@
 <a href="{{ path('gestor_eliminar_1_registro', { 'entidad': entidad , 'id':entity.id,'ok':'no'}) }}">Eliminar</a>
 
 
+<div>
+{% if NecesitaImg=='si' %}
+<section id="nueva_foto">
+{{ render(controller('GestorCrudBundle:Imagen:new',{'identidad':entity.id,'entidad':entidad})) }}
 </section>
+
+<section id="mostrar_fotos">
+{{ render(controller('GestorCrudBundle:Imagen:show',{'identidad':entity.id,'entidad':entidad})) }}
+</section>
+{% endif %}
+</div>
+</section>
+
 {% endblock %}

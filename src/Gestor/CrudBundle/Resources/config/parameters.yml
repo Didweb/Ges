@@ -1,2 +1,5 @@
 parameters:
     MiemLis: Noticia*titulo*creacion/fecha*texto/corta-2*autor|Categoria*nombre*descripcion/corta-10
+    RutaBaseImg: /var/www/ges/web/
+    CarpetaImg: fotos
+    EntidadesConImg: noticia

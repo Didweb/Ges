@@ -1,0 +1,57 @@
+			} 
+/*
+ * Imagenes
+ * */
+section#nueva_foto { float:right; width:45%; }
+section#nueva_foto h2 {font-size:16px; color:#999999;  margin-left:-90px;}
+section#nueva_foto form {float:left; background-color:#E8EBEC; padding:25px; 
+				width:91%; margin-bottom:40px; margin-left:-90px;
+				border-radius: 5px 5px 5px 5px;
+				-moz-border-radius: 5px 5px 5px 5px;
+				-webkit-border-radius: 5px 5px 5px 5px;}
+
+.cap_f  label {dispaly:block; float:left; width:75px; 
+			text-align:right;  font-size:13px; 
+			color:#999999; padding:3px; margin-bottom:5px;}
+
+.cap_f input { margin-left:5px;
+			margin-bottom:5px; padding:3px; font-size:13px; width:400px;
+			}
+
+.cap_f	{ float:left; width:100%;  margin-bottom:10px;}
+
+section#mostrar_fotos { float:left; width:45%; margin-left:-40px;} 
+section#mostrar_fotos h2 {font-size:16px; color:#999999;}
+
+.cuadro_img	{float:left; width:350px; height:150px; 
+			background-color:#E6ECEE;
+			margin:5px; padding:5px; border-radius: 5px 5px 5px 5px;
+				-moz-border-radius: 5px 5px 5px 5px;
+				-webkit-border-radius: 5px 5px 5px 5px;}
+
+ 
+.marco	{float:left; border:1px solid #F2F8FA; width:100px; 
+		height:100px; overflow:hidden; }
+ 
+.cuadro_img form {float:left; width:225px; padding-left:10px;
+			color:#999999; font-size:13px;
+			}
+.cuadro_img label {clear:both; width:100%; display:block; margin-top:5px;}
+.cuadro_img input {clear:both; width:100%; }
+.cuadro_img button {clear:both; width:50%; margin-top:15px; margin-left:50px;}
+.cuadro_img button {background-color:#B8FB83; color:#126C0D; 
+				padding:6px; font-weight:bold; border:1px solid #0B7E03;
+				border-radius: 5px 5px 5px 5px;
+				-moz-border-radius: 5px 5px 5px 5px;
+				-webkit-border-radius: 5px 5px 5px 5px;}
+
+.cuadro_img button:hover {background-color:#C8FB04; color:#032B03; }
+
+.bo_borrar_foto {position:absolute;
+			background-image:url(../images/borrar.png); 
+			width:22px; height:22px; display:block; margin-top:115px;
+			opacity:0.4; filter:alpha(opacity=40);
+			background-repeat:no-repeat;}
+.bo_borrar_foto:hover {opacity:1.0; filter:alpha(opacity=100);}
+
+ 

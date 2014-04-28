@@ -1,0 +1,25 @@
+
+<h2>Imatges per aquesta feina</h2>
+
+{% set x=0 %}
+
+{% for elfor in edit_form_img %}
+			
+	<div class="cuadro_img">			
+			
+		{% for key,img in entity if key==x %}
+		<div class="marco">
+			<img src="{{asset('fotos/p/')}}{{ img.slug }}.{{ img.extension }} " title="{{ img.nombre }}" />
+		</div>	
+			<a href="{{ path('gestor_imagen_delete',{'idfoto':img.id,'id':identidad,'entidad':entidad}) }}"  title="Eliminar Imagen" class="bo_borrar_foto"></a>
+		{% endfor %}
+		{{ form(elfor) }}
+{% set x=x+1 %}
+
+	</div>	
+		{% endfor %}
+
+
+
+
+

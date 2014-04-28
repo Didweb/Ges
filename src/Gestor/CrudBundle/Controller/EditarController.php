@@ -100,7 +100,8 @@ class EditarController extends Controller
         return $this->render('GestorCrudBundle:Crud:editar.html.twig',
 							array(	'entity' 		=> $entity,
 									'entidad'		=> $entidad,
-									'edit_form'			=> $edit_form->createView()
+									'edit_form'		=> $edit_form->createView(),
+									'NecesitaImg'	=> $this->NecesitaImg(ucwords($entidad))
 									) );
         
     }
@@ -206,4 +207,23 @@ class EditarController extends Controller
 			
 		return $res;
 	}
+	
+	private function NecesitaImg($nom)
+	{
+		$nom = strtolower($nom);
+		$res = 'no';
+		$solicitud = $this->container->getParameter('EntidadesConImg');
+		$separar = explode("*",$solicitud);
+		
+		
+		for ($n=0;$n<=count($separar)-1;$n++) {
+			if($separar[$n]==$nom)
+				{$res = 'si';}
+		}
+			
+				
+			
+		return $res;
+	}
+	
 }
