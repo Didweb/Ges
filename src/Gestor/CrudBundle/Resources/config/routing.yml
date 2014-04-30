@@ -90,7 +90,7 @@ gestor_imagen_create:
     prefix: /{_locale}/ 
 
 gestor_imagen_update:
-    pattern:  /{_locale}/update-imagen/{id}/{entidad}
+    pattern:  /{_locale}/update-imagen/{idfoto}/{identidad}/{entidad}
     defaults: { _controller: GestorCrudBundle:Imagen:update  }
     requirements:
         _locale: ca|es

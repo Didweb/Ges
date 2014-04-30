@@ -256,6 +256,20 @@ class Imagen
         return $this->extension;
     }
 
+
+	public function CambioNombreImg(Container $container,$nombreViejo,$nombreNuevo)
+	{
+		$ruta	= $this->getUploadDir($container);
+		$rutapV	= $this->getUploadDir($container)."/p/".$nombreViejo;
+		$rutagV	= $this->getUploadDir($container)."/g/".$nombreViejo;
+		
+			if (file_exists($rutapV) && file_exists($rutagV) ) {
+				rename($rutapV, $ruta.'/p/'.$nombreNuevo);
+				rename($rutagV, $ruta.'/g/'.$nombreNuevo); }
+		
+		
+	}
+
 	public function eliminararchivo(Container $container,$nomruta)
 		{
 		$ruta=$this->getUploadDir($container)."/g/".$nomruta;

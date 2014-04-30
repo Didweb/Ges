@@ -100,26 +100,7 @@ class ImagenController extends Controller
         );
     }
 
-    /**
-    * Creates a form to create a Imagen entity.
-    *
-    * @param Imagen $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-   /* private function createCreateForm(Imagen $entity,$entidad)
-    {
-		 $form = formImg($entidad,$entity);	
-		
-        $form = $this->createForm(new ImagenType(), $entity, array(
-            'action' => $this->generateUrl('gestor_imagen_create'),
-            'method' => 'POST',
-        ));
 
-        $form->add('submit', 'submit', array('label' => 'Pujar imatge'));
-
-        return $form;
-    }*/
 
     /**
      * Displays a form to create a new Imagen entity.
@@ -193,7 +174,7 @@ class ImagenController extends Controller
         }
 		$losf = array();
 		for ($i=0;$i<=count($entity)-1;$i++){
-			 $editForm = $this->createEditForm($entity[$i],$entidad)
+			 $editForm = $this->createEditForm($entity[$i],$entidad,$identidad)
 			->createView();
 			
 			$losf[$i]=$editForm;
@@ -249,12 +230,13 @@ class ImagenController extends Controller
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Imagen $entity,$entidad)
+    private function createEditForm(Imagen $entity,$entidad,$identidad)
     {
         $form = $this->createForm(new ImagenShowType(), $entity, array(
             'action' => $this->generateUrl('gestor_imagen_update', array(
-								'id' => $entity->getId(),
-								'entidad'=>$entidad
+								'idfoto' 	=> $entity->getId(),
+								'identidad' => $identidad,
+								'entidad'	=> $entidad
 								)),
             'method' => 'PUT',
         ));
@@ -268,31 +250,34 @@ class ImagenController extends Controller
      *
      * 
      * @Method("PUT")
-     * @Template("GestorCrudBundle:Imagen:edit.html.twig")
      */
-    public function updateAction(Request $request, $id,$entidad)
+    public function updateAction(Request $request, $idfoto,$entidad,$identidad)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('GestorCrudBundle:Imagen')->find($id);
-
+        $entity = $em->getRepository('GestorCrudBundle:Imagen')->find($idfoto);
+		$nombreViejo = $entity->getSlug().'.'.$entity->getExtension();
+		
         if (!$entity) {
             throw $this->createNotFoundException('No se ha encontrado la entidad Imagen [updateAction en ImagenController].');
         }
 
-        $editForm = $this->createEditForm($entity,$entidad);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isValid()) {
+       
+        $editForm = $this->createForm(new ImagenShowType(), $entity);
+        $editForm->bind($request);
+        
+        $entity->setSlug($entity->getNombre());
+		$nombreNuevo = $entity->getSlug().'.'.$entity->getExtension();
+        
             $em->flush();
 
-            return $this->redirect($this->generateUrl('gestor_editar_registro', array('id' => $id,'entidad'=>$entidad)));
-        }
+			$container = $this->container;
+			$entity->CambioNombreImg($container,$nombreViejo,$nombreNuevo);
+			
+		$this->get('session')->getFlashBag()->add('editar_ok', 'Imagen modificada.');	
+			
+        return $this->redirect($this->generateUrl('gestor_editar_registro', array('id' => $identidad,'entidad'=>$entidad)));
 
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-        );
     }
     /**
      * Deletes a Imagen entity.
@@ -300,7 +285,7 @@ class ImagenController extends Controller
      */
     public function deleteAction(Request $request, $idfoto,$id,$entidad)
     {
-        $container = $this->container;
+			$container = $this->container;
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('GestorCrudBundle:Imagen')->find($idfoto);
 
