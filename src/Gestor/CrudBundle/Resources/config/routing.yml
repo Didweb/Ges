@@ -2,7 +2,7 @@ gestor_crud_homepage:
     pattern:  /{_locale}/home
     defaults: { _controller: GestorCrudBundle:Fijas:index }
     requirements:
-        _locale: ca|es
+        _locale: ca|es|en|fr|de
     prefix: /{_locale}/ 
 
 
@@ -10,7 +10,7 @@ gestor_listar_orden_col:
     pattern:  /{_locale}/listar/{pagina}/{orden}/{campo}/{entidad}
     defaults: { _controller: GestorCrudBundle:Lista:listar  }
     requirements:
-        _locale: ca|es
+        _locale: ca|es|en|fr|de
         pagina:  \d+ 
         orden: ASC|DESC
     prefix: /{_locale}/ 
@@ -21,7 +21,7 @@ gestor_editar_nuevo:
     pattern:  /{_locale}/nuevo/{entidad}
     defaults: { _controller: GestorCrudBundle:Editar:nuevo  }
     requirements:
-        _locale: ca|es
+        _locale: ca|es|en|fr|de
     prefix: /{_locale}/     
  
 
@@ -30,14 +30,14 @@ gestor_editar_registro:
     pattern:  /{_locale}/editar/{id}/{entidad}
     defaults: { _controller: GestorCrudBundle:Editar:editar  }
     requirements:
-        _locale: ca|es
+        _locale: ca|es|en|fr|de
     prefix: /{_locale}/  
 
 gestor_actualizar_registro:
     pattern:  /{_locale}/actualizar/{id}/{entidad}
     defaults: { _controller: GestorCrudBundle:Editar:actualizar  }
     requirements:
-        _locale: ca|es
+        _locale: ca|es|en|fr|de
     prefix: /{_locale}/  
 
 
@@ -45,7 +45,7 @@ gestor_eliminar_1_registro:
     pattern:  /{_locale}/eliminar/{id}/{ok}/{entidad}
     defaults: { _controller: GestorCrudBundle:Editar:eliminar  }
     requirements:
-        _locale: ca|es
+        _locale: ca|es|en|fr|de
     prefix: /{_locale}/  
 
 
@@ -53,7 +53,7 @@ gestor_editar_crear:
     pattern:  /{_locale}/crear/{entidad}
     defaults: { _controller: GestorCrudBundle:Editar:crear  }
     requirements:
-        _locale: ca|es
+        _locale: ca|es|en|fr|de
     prefix: /{_locale}/ 
 
 
@@ -63,14 +63,14 @@ gestor_imagen_new:
     pattern:  /{_locale}/nueva-imagen/{entidad}
     defaults: { _controller: GestorCrudBundle:Imagen:new  }
     requirements:
-        _locale: ca|es
+        _locale: ca|es|en|fr|de
     prefix: /{_locale}/ 
 
 gestor_imagen_show:
     pattern:  /{_locale}/mostrar-imagen/{id}/{entidad}
     defaults: { _controller: GestorCrudBundle:Imagen:show  }
     requirements:
-        _locale: ca|es
+        _locale: ca|es|en|fr|de
     prefix: /{_locale}/ 
 
 
@@ -78,7 +78,7 @@ gestor_imagen_edit:
     pattern:  /{_locale}/editar-imagen/{id}/{entidad}
     defaults: { _controller: GestorCrudBundle:Imagen:edit  }
     requirements:
-        _locale: ca|es
+        _locale: ca|es|en|fr|de
     prefix: /{_locale}/ 
 
 
@@ -86,14 +86,14 @@ gestor_imagen_create:
     pattern:  /{_locale}/crear-imagen/{entidad}
     defaults: { _controller: GestorCrudBundle:Imagen:create  }
     requirements:
-        _locale: ca|es
+        _locale: ca|es|en|fr|de
     prefix: /{_locale}/ 
 
 gestor_imagen_update:
     pattern:  /{_locale}/update-imagen/{idfoto}/{identidad}/{entidad}
     defaults: { _controller: GestorCrudBundle:Imagen:update  }
     requirements:
-        _locale: ca|es
+        _locale: ca|es|en|fr|de
     prefix: /{_locale}/ 
 
 
@@ -101,5 +101,5 @@ gestor_imagen_delete:
     pattern:  /{_locale}/eliminar-imagen/{idfoto}/{id}/{entidad}
     defaults: { _controller: GestorCrudBundle:Imagen:delete  }
     requirements:
-        _locale: ca|es
+        _locale: ca|es|en|fr|de
     prefix: /{_locale}/ 

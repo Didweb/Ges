@@ -1,1 +1,15 @@
-Cambio Idioma.
+<br />
+	<nav id="idiomas">
+	
+	{% for idioma in idiomas %}
+	{% if idiomaactual==idioma %}
+	<b>[ {{ idioma }} ]</b>
+	{% else %}
+	[ <a href="{{ path('cambio_idioma',{'newlang':idioma})}}" > {{ idioma }} </a> ] 
+	{% endif %}
+	{% endfor %}
+	
+<br /><br />Idioma actual sistema: {{ app.request.get('_locale') }}
+<br />idioma en controlador: {{ idiomaactual }}
+	</nav>
+

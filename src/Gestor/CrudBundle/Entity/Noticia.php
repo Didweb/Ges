@@ -2,6 +2,7 @@
 
 namespace Gestor\CrudBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo; 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -24,14 +25,14 @@ class Noticia
 
     /**
      * @var string
-     *
+     * @Gedmo\Translatable
      * @ORM\Column(name="titulo", type="string", length=255)
      */
     private $titulo;
 
     /**
      * @var string
-     *
+     * @Gedmo\Translatable
      * @ORM\Column(name="texto", type="text")
      */
     private $texto;

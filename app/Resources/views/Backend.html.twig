@@ -9,7 +9,7 @@
 {% block body %}
 <header>
 {{ render(controller('GestorMenuBundle:Menu:index')) }} 
-{# include 'GestorFeinaBundle:Default:idioma.html.twig' #} 
+{{ render(controller('GestorIdiomaBundle:Idioma:MenuIdioma',{'actual':app.request.get('_locale')})) }} 
 </header>
 {% block contenidos %}{% endblock %}
 {% endblock %}

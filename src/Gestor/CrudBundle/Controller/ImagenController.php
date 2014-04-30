@@ -48,7 +48,7 @@ class ImagenController extends Controller
 		 $container =$this->container;
 		
         $entity = new Imagen();
-        //$form = $this->createCreateForm($entity);
+        
         $form = $this->formImg($entidad,$entity);
         $form->handleRequest($request);
 

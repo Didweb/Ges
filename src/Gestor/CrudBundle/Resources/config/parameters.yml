@@ -7,3 +7,5 @@ parameters:
     img_alto_p: 196
     img_ancho_g: 1024
     img_alto_g: 768
+# parametros para idiomas
+    idiomas_crud: es,ca

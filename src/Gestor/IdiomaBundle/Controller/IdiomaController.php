@@ -22,7 +22,8 @@ class IdiomaController extends Controller
 		$idioma		= $request->query->get('newlang');
 		$pillabots = $this->_bot_detected();
 		if($pillabots==TRUE) { 
-			$idioma_final='ca'; 
+			$id = $this->getLocales();
+			$idioma_final=$id[0]; 
 			$request->setLocale($idioma_final);
 		}
 		else
@@ -65,7 +66,10 @@ class IdiomaController extends Controller
 
 	private function getLocales()
 	{
-		return array('ca', 'es');
+		
+        $losidiomas = $this->container->getParameter('idiomas_crud');
+        $losidiomas = explode(',',$losidiomas);
+		return $losidiomas;
 	}
 
 
@@ -79,5 +83,16 @@ class IdiomaController extends Controller
 		  }
 
 		}
+
+
+	public function MenuIdiomaAction($actual)
+	{
+		$idiomas = $this->getLocales();
+		return $this->render('GestorIdiomaBundle:Default:index.html.twig',
+						array(
+						'idiomas'		=> $idiomas,
+						'idiomaactual'	=>$actual));
+		
+	}
 
 }
