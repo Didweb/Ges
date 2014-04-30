@@ -130,6 +130,30 @@ class Noticia
 
 
     /**
+     * Set imagenes
+     *
+     * @param string $autor
+     * @return Noticia
+     */
+    public function setImagenes($imagenes)
+    {
+        $this->imagenes = $imagenes;
+
+        return $this;
+    }
+
+    /**
+     * Get imagenes
+     *
+     * @return string 
+     */
+    public function getImagenes()
+    {
+        return $this->imagenes;
+    }
+
+
+    /**
      * Set texto
      *
      * @param string $texto

@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-
+use Gestor\CrudBundle\Entity\Imagen;
 
 class EditarController extends Controller
 {       
@@ -163,26 +163,32 @@ class EditarController extends Controller
 									'id'	   => $entity->getId()	
 									
 									));
-			}
-		elseif($ok=='si'){
+		} elseif($ok=='si'){
 			
             if (!$entity) {
                 throw $this->createNotFoundException('Entidad '.$entidad.' no encontrada en [eliminarAction opcion ok:si]');
             }
 			$this->get('session')->getFlashBag()->add('listado_elimina', 'Se ha eliminado el registro de froma correcta.');
+           
+			$entity_foto = $em->getRepository('GestorCrudBundle:Imagen')->findByTodasLasFotos($id,$entidad);
+			
+		    $entity_f = new Imagen;
+		    $container =$this->container;
+            foreach ($entity->getImagenes() as $nom){
+				$nomruta = $nom->getSlug().'.'.$nom->getExtension();
+				$entity_f->borrarArchivos($container,$nomruta); }
+           
+           
             $em->remove($entity);
             $em->flush();
-			
 			return $this->redirect($this->generateUrl('gestor_listar_orden_col', 
 														array(
 														'pagina'	=> 1,
 														'orden'		=> 'DESC',
 														'campo'		=> $this->SacaCampoOrder(ucwords($entidad)),
 														'entidad'	=>$entidad)));
-			
-			}
 
-	
+		}
 	}
 	
 
