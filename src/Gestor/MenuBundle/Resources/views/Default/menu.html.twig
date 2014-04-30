@@ -3,7 +3,7 @@
 		{% if donde=='home' |lower %}
 			<div class="capsula  ">Home</div>
 		{% else %}
-			<a href="" class="capsula atras">Home</a>
+			<a href="{{ path('gestor_crud_homepage')}}" class="capsula atras">Home</a>
 		{% endif %}
 		
 	{% for m in resultado %}

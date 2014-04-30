@@ -1,6 +1,12 @@
 {% extends '::Backend.html.twig' %}
 {% block contenidos %}
 <section id="col_una">
-Contenidos Index Nuevo <b>GES</b>
+<h1>Home</h1>
+
+{% for ent in entidades %}
+{{ ent.entidad }} => {{ ent.Nreg }}
+{% endfor %}
+
+
 </section>
 {% endblock %}

@@ -1,6 +1,6 @@
 gestor_crud_homepage:
     pattern:  /{_locale}/home
-    defaults: { _controller: GestorCrudBundle:Fijas:index }
+    defaults: { _controller: GestorCrudBundle:Estadistica:Estadisticas }
     requirements:
         _locale: ca|es|en|fr|de
     prefix: /{_locale}/ 
@@ -103,3 +103,5 @@ gestor_imagen_delete:
     requirements:
         _locale: ca|es|en|fr|de
     prefix: /{_locale}/ 
+
+
