@@ -10,7 +10,8 @@ use Gestor\CrudBundle\Entity\Imagen;
 
 class EditarController extends Controller
 {       
-	
+	private $creacionEdit=0;
+	private $modificacionEdit=0;
 	
 	public function nuevoAction($entidad)
 	{
@@ -56,6 +57,9 @@ class EditarController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
+            $this->BuscaMetodos($entity,'create');
+            
             $em->persist($entity);
             $em->flush();
 			$this->get('session')->getFlashBag()
@@ -97,11 +101,15 @@ class EditarController extends Controller
 		
         $edit_form = $this->createForm(new $entidadNameSpaceType(), $entity);
 
+		$this->BuscaMetodos($entity,'edit');
+		
         return $this->render('GestorCrudBundle:Crud:editar.html.twig',
 							array(	'entity' 		=> $entity,
 									'entidad'		=> $entidad,
 									'edit_form'		=> $edit_form->createView(),
-									'NecesitaImg'	=> $this->NecesitaImg(ucwords($entidad))
+									'NecesitaImg'	=> $this->NecesitaImg(ucwords($entidad)),
+									'creacionEdit'	=> $this->creacionEdit,
+									'modificacionEdit'=> $this->modificacionEdit,
 									) );
         
     }
@@ -115,6 +123,7 @@ class EditarController extends Controller
     public function actualizarAction(Request $request,$entidad,$id)
     {
 		$entidadNameSpace 		= 'GestorCrudBundle:'.ucwords($entidad);
+		$entidadNameSpaceEntidad 		= 'Gestor\CrudBundle\Entity\\'.ucwords($entidad);
 		$entidadNameSpaceType 	= 'Gestor\CrudBundle\Form\\'.ucwords($entidad).'Type';
 		
 		$em = $this->getDoctrine()->getManager();
@@ -125,12 +134,16 @@ class EditarController extends Controller
             throw $this->createNotFoundException('No se ha encontrado la entidad ['.$entidad.'] ');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+       
         $editForm = $this->createForm(new $entidadNameSpaceType(), $entity);
         $editForm->bind($request);	
 		
 		
+		
 		  if ($editForm->isValid()) {
+			
+			$this->BuscaMetodos($entity,'update');
+			
 		    $em->persist($entity);
             $em->flush();
 			$this->get('session')->getFlashBag()->add('editar_ok', 'Registro actualizado con éxito.');
@@ -232,5 +245,54 @@ class EditarController extends Controller
 			
 		return $res;
 	}
+
+	private function BuscaMetodos($entity,$estado)
+	{
 	
+		$mc = get_class_methods($entity);
+		foreach ($mc as $elmc) {
+				
+				if($estado=='create'){
+					
+					if($elmc=='setModificacion'){
+						$entity->setModificacion(new \DateTime("now"));
+						}
+						
+					if($elmc=='setCreacion'){
+						$entity->setCreacion(new \DateTime("now"));
+						}	
+					
+				} elseif ($estado=='update'){
+					
+					if($elmc=='setCreacion'){
+						$entity->setCreacion($entity->getCreacion());
+						}
+					
+
+					if($elmc=='setModificacion'){
+						$entity->setModificacion(new \DateTime("now"));
+						echo $entity->getModificacion()->format('Y-m-d H:i:s');
+						}
+
+					
+				} elseif ($estado=='edit'){
+				
+					if($elmc=='setModificacion'){
+						$this->modificacionEdit = ' Modificado: '.$entity->getModificacion()->format('d-m-Y H:i:s');
+					}
+
+					if($elmc=='setCreacion'){
+						$this->creacionEdit = ' Creado: '.$entity->getCreacion()->format('d-m-Y H:i:s');
+					}
+
+					
+				}	
+				
+
+					
+
+				
+			}	
+		return 0;
+	}	
 }

@@ -47,14 +47,14 @@ class Noticia
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="creacion", type="datetime")
+     * @ORM\Column(name="creacion", type="datetime", nullable=true)
      */
     private $creacion;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="modificacion", type="datetime")
+     * @ORM\Column(name="modificacion", type="datetime", nullable=true)
      */
     private $modificacion;
 
@@ -185,7 +185,6 @@ class Noticia
     public function setCreacion($creacion)
     {
         $this->creacion = $creacion;
-
         return $this;
     }
 
@@ -208,7 +207,6 @@ class Noticia
     public function setModificacion($modificacion)
     {
         $this->modificacion = $modificacion;
-
         return $this;
     }
 

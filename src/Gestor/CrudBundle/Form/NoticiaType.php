@@ -18,8 +18,6 @@ class NoticiaType extends AbstractType
             ->add('titulo')
             ->add('texto')
             ->add('autor')
-            ->add('creacion')
-            ->add('modificacion')
         ;
     }
     

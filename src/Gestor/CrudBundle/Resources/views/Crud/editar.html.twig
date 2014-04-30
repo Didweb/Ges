@@ -24,6 +24,15 @@
  </form> 
 
 <hr />
+{% if creacionEdit!='0' %}
+<br /> {{ creacionEdit }}
+{% endif %}
+
+
+{% if modificacionEdit!='0' %}
+<br /> {{ modificacionEdit }}
+{% endif %}
+<hr />
 <a href="{{ path('gestor_eliminar_1_registro', { 'entidad': entidad , 'id':entity.id,'ok':'no'}) }}">Eliminar</a>
 
 
