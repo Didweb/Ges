@@ -172,6 +172,7 @@ class EditarController extends Controller
            
 			$entity_foto = $em->getRepository('GestorCrudBundle:Imagen')->findByTodasLasFotos($id,$entidad);
 			
+			// Eliminamos las imagenes relacionadas
 		    $entity_f = new Imagen;
 		    $container =$this->container;
             foreach ($entity->getImagenes() as $nom){
