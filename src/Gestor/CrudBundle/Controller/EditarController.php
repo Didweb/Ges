@@ -183,15 +183,19 @@ class EditarController extends Controller
             }
 			$this->get('session')->getFlashBag()->add('listado_elimina', 'Se ha eliminado el registro de froma correcta.');
            
-			$entity_foto = $em->getRepository('GestorCrudBundle:Imagen')->findByTodasLasFotos($id,$entidad);
-			
-			// Eliminamos las imagenes relacionadas
-		    $entity_f = new Imagen;
-		    $container =$this->container;
-            foreach ($entity->getImagenes() as $nom){
-				$nomruta = $nom->getSlug().'.'.$nom->getExtension();
-				$entity_f->borrarArchivos($container,$nomruta); }
-           
+			$entity_f = new Imagen;
+			$mc = get_class_methods($entity_f);
+			if($mc=='get'.ucwords($entidad)){
+				$entity_foto = $em->getRepository('GestorCrudBundle:Imagen')->findByTodasLasFotos($id,$entidad);
+				
+				
+				// Eliminamos las imagenes relacionadas
+				
+				$container =$this->container;
+				foreach ($entity->getImagenes() as $nom){
+					$nomruta = $nom->getSlug().'.'.$nom->getExtension();
+					$entity_f->borrarArchivos($container,$nomruta); }
+            }
            
             $em->remove($entity);
             $em->flush();
