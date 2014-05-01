@@ -1,12 +1,35 @@
 {% extends '::Backend.html.twig' %}
 {% block contenidos %}
 <section id="col_una">
-<h1>Home</h1>
 
-{% for ent in entidades %}
-{{ ent.entidad }} => {{ ent.Nreg }}
-{% endfor %}
+<section  id="listado">
+<h1>Estadísticas</h1>
 
 
+<table  id="lista">
+	<thead>
+		   <tr>
+		   <th></th>
+		   <th>Registros</th>
+		   </tr>
+	</thead> 
+	<tbody> 
+			   {% set n=1 %}     
+			{% for ent in entidades %}
+				{% if n is divisibleby(2)  %}
+					{% set linea="impar" %} 
+				{% else %}
+					{% set linea="par" %}
+				{% endif %}
+			
+			
+			<tr class="{{ linea }}"> <td>{{ ent.entidad }}</td><td> {{ ent.Nreg }} </td></tr>
+			{% set n=n+1 %}
+			{% endfor %}
+			
+	</tbody>
+</table>
+
+</section>
 </section>
 {% endblock %}

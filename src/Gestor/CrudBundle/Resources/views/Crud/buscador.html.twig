@@ -1,18 +1,19 @@
-<form action="{{ path('gestor_listar_orden_col',{'orden':'ASC','pagina':datospag.pagina,'campo':campo|lower,'entidad':nomentidad|lower})}}" method="post" {{ form_enctype(form_buscador) }}>
-				
+<aside id="buscador">
+<form action="{{ path('gestor_listar_orden_col',{'orden':'ASC','pagina':datospag.pagina,'campo':campo|lower,'entidad':nomentidad|lower})}}" method="post" {{ form_enctype(form_buscador) }}>		
 	<input type="hidden" name="_method" value="PUT" />
 	<input type="hidden" name="buscador" value="si" />
 	{{ form_errors(form_buscador) }}
 
-		<div>
+		<div id="caja_bus">
 			{{ form_errors(form_buscador.dato) }}
 			{{ form_widget(form_buscador.dato) }}
 		</div>
 		
 		
-		<div>
+		<div id ="bo_bus">
 			<button type="submit" title="Buscar" >Buscar</button>
 		</div>
 		
 	 {{ form_rest(form_buscador) }}
  </form> 
+</aside> 

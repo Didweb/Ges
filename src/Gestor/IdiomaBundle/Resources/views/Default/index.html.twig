@@ -1,15 +1,10 @@
-<br />
-	<nav id="idiomas">
-	
+<nav id="idiomas">
 	{% for idioma in idiomas %}
 	{% if idiomaactual==idioma %}
-	<b>[ {{ idioma }} ]</b>
+	    <img src="{{ asset('images/')}}{{idioma}}.png" alt="Idioma actual {{ idioma }}" >
 	{% else %}
-	[ <a href="{{ path('cambio_idioma',{'newlang':idioma})}}" > {{ idioma }} </a> ] 
+	    <a href="{{ path('cambio_idioma',{'newlang':idioma})}}" class="bo_idi" title="Cambiar de idioma"><img src="{{ asset('images/')}}{{idioma}}.png" alt="Cambio Idioma {{ idioma }}" ></a> 
 	{% endif %}
 	{% endfor %}
-	
-<br /><br />Idioma actual sistema: {{ app.request.get('_locale') }}
-<br />idioma en controlador: {{ idiomaactual }}
-	</nav>
+</nav>
 

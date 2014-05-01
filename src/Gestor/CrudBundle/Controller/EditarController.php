@@ -282,11 +282,11 @@ class EditarController extends Controller
 				} elseif ($estado=='edit'){
 				
 					if($elmc=='setModificacion'){
-						$this->modificacionEdit = ' Modificado: '.$entity->getModificacion()->format('d-m-Y H:i:s');
+						$this->modificacionEdit = $entity->getModificacion()->format('d-m-Y H:i:s');
 					}
 
 					if($elmc=='setCreacion'){
-						$this->creacionEdit = ' Creado: '.$entity->getCreacion()->format('d-m-Y H:i:s');
+						$this->creacionEdit = $entity->getCreacion()->format('d-m-Y H:i:s');
 					}
 
 					

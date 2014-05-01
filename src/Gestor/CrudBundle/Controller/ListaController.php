@@ -24,7 +24,7 @@ class ListaController extends Controller
 
 		
 		if (!$entity) {
-			$this->get('session')->getFlashBag()->add('listado','Ningun resultado para la busqueda de <b>'.$consulta.'</b> .');
+			$this->get('session')->getFlashBag()->add('listado_ko','Ningun resultado para la busqueda de <b>'.$consulta.'</b> .');
 			$entity = $this->getConsulta($session,$entidad,$orden,$campo,'');
 			$session->set('consulta'.$entidad,''); 
 			
@@ -67,7 +67,7 @@ class ListaController extends Controller
 		
 		
 		$paginacion = $this->get('pagi');
-		$paginacion->inicio($session,$en,$contV,$pagina,$rpag=3,$pagpaginador=2,$ncampos=count($nomcampos));
+		$paginacion->inicio($session,$en,$contV,$pagina,$rpag=25,$pagpaginador=2,$ncampos=count($nomcampos));
 
 		$buscador = $this->buscador();
 

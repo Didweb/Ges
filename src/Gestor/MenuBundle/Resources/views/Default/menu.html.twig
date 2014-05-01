@@ -18,6 +18,8 @@
 	
 </nav>
 <nav id="secundario">
+
+{% if donde!='home' |lower%}
 	{% for m in resultado %}
 	
 
@@ -33,9 +35,12 @@
 				 <a href='{{ path('gestor_editar_nuevo',{'entidad':m.nom |lower})}}' >Crear</a>
 				{% endif %}
 			{% endfor %}
-			
+		
 		{% endif %}
 		
 	{% endfor %}
+	{% else %}
+		<div class="elhome">Página principal</div>
+	{% endif %}
 </nav>
 

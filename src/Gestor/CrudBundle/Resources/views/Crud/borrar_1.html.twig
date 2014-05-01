@@ -1,7 +1,7 @@
 {% extends '::Backend.html.twig' %}
 {% block contenidos %}
 <section id="col_una">
-
+<div id="edita_iz">
 <h1>Eliminar Registro</h1>
 
 	{% for MSNflash in app.session.flashbag.get('editar_ok') %}
@@ -11,15 +11,19 @@
 	{% endfor %}
 
 
-<p>
-Estas seguro de que quieres eliminar este registro?
-<br />
-<b>Este proceso es irreversible</b>
-<br /><br />
-<a href="{{ path('gestor_editar_registro',{'id':id,'entidad':entidad})}}">Volver, quiero conservar el registro</a> <br />
-<a href="{{ path('gestor_eliminar_1_registro',{'ok':'si','id':id,'entidad':entidad} )}}">Sí, quiero elimnar este registro</a>
-</p>
+	<p>
+	Estas seguro de que quieres eliminar este registro?
+	<br />
+	<b>Este proceso es irreversible</b>
+	</p>
+	
+	
+	<a href="{{ path('gestor_editar_registro',{'id':id,'entidad':entidad})}}" id="noelimina">Volver, quiero conservar el registro</a>
+	
 
+	<a href="{{ path('gestor_eliminar_1_registro',{'ok':'si','id':id,'entidad':entidad} )}}" id="sielimina">Sí, quiero elimnar este registro</a>
+	
 
+</div>
 </section>
 {% endblock %}

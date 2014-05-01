@@ -8,7 +8,8 @@
     <div class="flash_ok">
         {{ MSNflash | raw }}
         <br />
-        <a href="{{ path('gestor_listar_orden_col',{'orden':'ASC','pagina':datospag.pagina,'campo':campo|lower,'entidad':nomentidad|lower,'buscador':'no'})}}">Eliminar Filtro</a>
+        <a href="{{ path('gestor_listar_orden_col',{'orden':'ASC','pagina':datospag.pagina,'campo':campo|lower,'entidad':nomentidad|lower,'buscador':'no'})}}" class="elimina_filtro"
+        title="Eliminar el filtro de la busqueda actual." >Eliminar Filtro</a>
     </div>
 {% endfor %}
 
@@ -16,13 +17,20 @@
 
 
 {% include 'GestorCrudBundle:Crud:buscador.html.twig' %}
-<br />
+
 {% for MSNflash in app.session.flashbag.get('listado_elimina') %}
     <div class="flash_ok">
         {{ MSNflash | raw }}
     </div>
 {% endfor %}
-<table style="border:1px solid #333333;"> 
+{% for MSNflash in app.session.flashbag.get('listado_ko') %}
+    <div class="flash_ko">
+        {{ MSNflash | raw }}
+    </div>
+{% endfor %}
+
+<section id="listado">
+<table id="lista"> 
         <thead>
            <tr>
              
@@ -38,7 +46,7 @@
 				{{ noms }}</th>
                {% endif %}
                {% endfor %}
-			<th>Action</th>
+			<th></th>
             </tr>
             
         </thead>
@@ -46,10 +54,15 @@
 
 <tbody>
 		{% set vuelta=1 %}
+		{% set n=1 %}
         {% for valor in entity %}
-        
+			{% if n is divisibleby(2)  %}
+				{% set linea="impar" %} 
+            {% else %}
+				{% set linea="par" %}
+            {% endif %}
 			{% if vuelta==1 %}
-				<tr>
+				<tr class="{{ linea }}">
 			{% endif %}	
 				<td>
 					{% if valor.formato=='nada' %}
@@ -63,7 +76,8 @@
 				
 			{% if vuelta==col %}
 				{% set vuelta=1 %}
-				<td> <a href="{{ path('gestor_editar_registro',{ 'entidad':nomentidad |lower,'id':valor.id })}}">Editar</a></td>
+				<td> <a href="{{ path('gestor_editar_registro',{ 'entidad':nomentidad |lower,'id':valor.id })}}" class="bo_editar"></a></td>
+				{% set n=n+1 %}
 				</tr> 
 			{% else %}
 			{% set vuelta=vuelta+1 %}
@@ -73,7 +87,7 @@
          
 </tbody>
  </table> 
-
+</section>
 {% include 'GestorCrudBundle:Crud:paginador.html.twig' %}
 
 

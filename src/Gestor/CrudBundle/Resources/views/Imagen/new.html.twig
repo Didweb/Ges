@@ -1,5 +1,5 @@
 
-    <h2>Insertar nova imatge</h2>
+    <h2>Subir nueva imagen...</h2>
 
     
     
@@ -8,8 +8,7 @@
 				method="post" {{ form_enctype(form) }}>
 				<input type="hidden" name="_method" value="POST" />
 	{{ form_errors(form) }}
-{{ form_widget(form) }}
-	{# <div class="cap_f">
+ <div class="cap_f">
 			{{ form_label(form.nombre,"Nom:") }}
 			{{ form_errors(form.nombre) }}
 			{{ form_widget(form.nombre) }}
@@ -24,9 +23,9 @@
 			{{ form_errors(form.file) }}
 			{{ form_widget(form.file) }}
 	</div>
-	#}
+	
        <nav id="boton_accion">
-       <div> <button type="submit" title="Insertar foto" >Insertar</button> </div>	
+       <button type="submit" title="Insertar foto" >Insertar</button> 
 		
 		</nav>
 	{{ form_rest(form) }}	

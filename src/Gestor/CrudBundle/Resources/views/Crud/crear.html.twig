@@ -2,7 +2,8 @@
 {% block contenidos %}
 <section id="col_una">
 
-<h1>Crear</h1>
+<div id="edita_iz">
+<h1>Crear {{ entidad }}</h1>
 
 	{% for MSNflash in app.session.flashbag.get('editar_ok') %}
 		<div class="flash_ok">
@@ -24,6 +25,7 @@
 		
 	 {{ form_rest(edit_form) }}
  </form> 
+</div>
 
 </section>
 {% endblock %}

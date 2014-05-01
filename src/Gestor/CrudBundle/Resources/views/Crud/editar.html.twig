@@ -2,8 +2,9 @@
 {% block contenidos %}
 <section id="col_una">
 
-<h1>Editar</h1>
+<h1>Editar {{ entidad }}</h1>
 
+<div id="edita_iz">
 	{% for MSNflash in app.session.flashbag.get('editar_ok') %}
 		<div class="flash_ok">
 			{{ MSNflash | raw }}
@@ -23,30 +24,36 @@
 	 {{ form_rest(edit_form) }}
  </form> 
 
-<hr />
+<div id="extras">
 {% if creacionEdit!='0' %}
-<br /> {{ creacionEdit }}
+<br />Creado: <b>{{ creacionEdit }}</b>
 {% endif %}
 
 
 {% if modificacionEdit!='0' %}
-<br /> {{ modificacionEdit }}
-{% endif %}
-<hr />
-<a href="{{ path('gestor_eliminar_1_registro', { 'entidad': entidad , 'id':entity.id,'ok':'no'}) }}">Eliminar</a>
-
-
-<div>
-{% if NecesitaImg=='si' %}
-<section id="nueva_foto">
-{{ render(controller('GestorCrudBundle:Imagen:new',{'identidad':entity.id,'entidad':entidad})) }}
-</section>
-
-<section id="mostrar_fotos">
-{{ render(controller('GestorCrudBundle:Imagen:show',{'identidad':entity.id,'entidad':entidad})) }}
-</section>
+<br />Modificado: <b>{{ modificacionEdit }}</b>
 {% endif %}
 </div>
+<div id="elimina">
+<a href="{{ path('gestor_eliminar_1_registro', { 'entidad': entidad , 'id':entity.id,'ok':'no'}) }}" >Eliminar</a>
+</div>
+</div>
+
+
+
+
+<div id="edita_de">
+	{% if NecesitaImg=='si' %}
+	<section id="nueva_foto">
+	{{ render(controller('GestorCrudBundle:Imagen:new',{'identidad':entity.id,'entidad':entidad})) }}
+	</section>
+
+	<section id="mostrar_fotos">
+	{{ render(controller('GestorCrudBundle:Imagen:show',{'identidad':entity.id,'entidad':entidad})) }}
+	</section>
+	{% endif %}
+</div>
+
 </section>
 
 {% endblock %}
