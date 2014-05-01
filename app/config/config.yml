@@ -35,7 +35,7 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:
         global:
-            version: v1.3
+            version: v2.0
             cliente_mayor: webMayor.com
             cliente_detalle: nom
             url_web: www.webclientedetalle.cat
