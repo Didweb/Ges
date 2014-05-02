@@ -11,7 +11,9 @@ footer {
 	padding-bottom:25px; 
 	background-color:#EAEBED;
 	font-size:13px; 
-	color:#999999 }
+	color:#999999;
+	position: fixed;
+	bottom: 0 !important; }
 
 /*
  * Body
@@ -19,8 +21,9 @@ footer {
 section#col_una {
 	clear:both;
 	float:left;
-	padding:15px;
-	width:100% }		
+	padding:1%;
+	width:98%;
+	margin-bottom:80px}		
 
 h1 {
 	font-size:15px;
@@ -300,3 +303,26 @@ div#edita_iz form div button:hover {background-color:#C8FB04; color:#032B03; }
 	border-radius: 5px 5px 5px 5px;
 	-moz-border-radius: 5px 5px 5px 5px;
 	-webkit-border-radius: 5px 5px 5px 5px;}
+
+/*
+ * Salir sesion
+ * */
+aside#sesion  {
+	position:absolute;
+	top: 5px;
+	right:15px;
+	float:right;
+	font-size:12px;
+	}
+	 
+aside#sesion a {
+	float:left;
+	margin-left:15px;
+	opacity:0.4; filter:alpha(opacity=40);}
+aside#sesion a:hover {
+	opacity:1.0; filter:alpha(opacity=100);}	
+
+.nomuser	{
+	float:left;
+	color:#7F7F7F;
+	padding-top:4px;}

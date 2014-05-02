@@ -44,3 +44,7 @@
 	{% endif %}
 </nav>
 
+<aside id="sesion">
+<div class="nomuser">Hola <b>{{ app.user.username }}</b></div>
+<a href="{{ path('logout') }}" title="Salir de la sesión" class="salir_sesion"><img src="{{ asset('images/salir.png')}}" alt="Salir del gestor"/></a>
+</aside>
