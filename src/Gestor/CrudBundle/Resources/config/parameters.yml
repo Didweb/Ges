@@ -8,4 +8,6 @@ parameters:
     img_ancho_g: 1024
     img_alto_g: 768
 # parametros para idiomas
-    idiomas_crud: es,ca
+    idiomas_crud: ca,es
+# parametros para sitemap
+    elsitemap: Noticia*locale/-fija-/titulo/id|Categoria*locale/nombre/id   

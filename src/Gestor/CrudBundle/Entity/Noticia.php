@@ -30,6 +30,8 @@ class Noticia
      */
     private $titulo;
 
+  
+
     /**
      * @var string
      * @Gedmo\Translatable
@@ -60,6 +62,9 @@ class Noticia
     private $modificacion;
 
 
+
+
+
 	/**
 	 * @ORM\OneToMany(targetEntity="Imagen", mappedBy="noticia", cascade={"all"})
 	 * 
@@ -72,6 +77,8 @@ class Noticia
 	}
 
 
+
+
     /**
      * Get id
      *
@@ -81,6 +88,9 @@ class Noticia
     {
         return $this->id;
     }
+
+
+
 
     /**
      * Set titulo

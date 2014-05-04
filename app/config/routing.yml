@@ -1,3 +1,7 @@
+gestor_sitemap:
+    resource: "@GestorSitemapBundle/Resources/config/routing.yml"
+    prefix:   /
+
 gestor_crud:
     resource: "@GestorCrudBundle/Resources/config/routing.yml"
     prefix:   /

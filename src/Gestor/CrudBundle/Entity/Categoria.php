@@ -2,6 +2,7 @@
 
 namespace Gestor\CrudBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo; 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,7 +24,7 @@ class Categoria
 
     /**
      * @var string
-     *
+     * @Gedmo\Translatable
      * @ORM\Column(name="nombre", type="string", length=255)
      */
     private $nombre;
