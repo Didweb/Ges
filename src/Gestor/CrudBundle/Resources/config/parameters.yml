@@ -1,14 +1,17 @@
 parameters:
     MiemLis: Noticia*titulo*creacion/fecha*texto/corta-2*autor|Categoria*nombre*descripcion/corta-10
     EntidadesConImg: noticia
+    
 # Parametros para configurar acceso a las imagenes de entidad Imagenes
     img_carpeta: fotos
     img_ancho_p: 240
     img_alto_p: 196
     img_ancho_g: 1024
     img_alto_g: 768
+    
 # parametros para idiomas
     idiomas_crud: ca,es
+    
 # parametros para sitemap
     elsitemap: Noticia*locale/-fija-/titulo/id|Categoria*locale/nombre/id   
     

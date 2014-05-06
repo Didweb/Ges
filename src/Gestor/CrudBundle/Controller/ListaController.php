@@ -19,7 +19,6 @@ class ListaController extends Controller
 		$entidad = ucwords($entidad);
 		
 		$consulta = $this->mantenbusqueda($request,$session,$entidad);
-		
 		$entity = $this->getConsulta($session,$entidad,$orden,$campo,$consulta);
 
 		
@@ -146,12 +145,12 @@ class ListaController extends Controller
 	 ************************************************************ */ 
 	public function getConsulta($session,$entidad,$orden,$campo,$consulta)
 	{
-			
+		$namspace = $this->container->getParameter('nameEN');	
 		$ordenes = $this->getOrden($session,$orden);
 		
 		if($campo==''){ 
 			$em = $this->getDoctrine()->getManager();
-			$entity = $em->createQuery('SELECT a FROM   GestorCrudBundle:'.$entidad.' a')->getResult();
+			$entity = $em->createQuery('SELECT a FROM   '.$namspace.$entidad.' a')->getResult();
 			
 			} elseif($consulta != ''){
 			
@@ -167,7 +166,7 @@ class ListaController extends Controller
 				}
 				
 			$em = $this->getDoctrine()->getManager();
-			$entity = $em->createQuery('SELECT a FROM   GestorCrudBundle:'.$entidad.' a
+			$entity = $em->createQuery('SELECT a FROM   '.$namspace.$entidad.' a
 										WHERE '.$monto.'
 										ORDER BY  a.'.$campo.' '.$ordenes['orden'].'
 										')
@@ -176,7 +175,7 @@ class ListaController extends Controller
 				
 			}else{ 
 			$em = $this->getDoctrine()->getManager();
-			$entity = $em->createQuery('SELECT a FROM   GestorCrudBundle:'.$entidad.' a 
+			$entity = $em->createQuery('SELECT a FROM   '.$namspace.$entidad.' a 
 										ORDER BY  a.'.$campo.' '.$ordenes['orden'].'
 										')->getResult();	
 			

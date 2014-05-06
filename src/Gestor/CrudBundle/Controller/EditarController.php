@@ -205,7 +205,7 @@ class EditarController extends Controller
 														'pagina'	=> 1,
 														'orden'		=> 'DESC',
 														'campo'		=> $this->SacaCampoOrder(ucwords($entidad)),
-														'entidad'	=>$entidad)));
+														'entidad'	=> $entidad)));
 
 		}
 	}
