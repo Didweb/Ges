@@ -2,8 +2,10 @@
 namespace Gestor\CrudBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
-
+ /*
+ * 
+ * @ORM\Entity(repositoryClass="Gestor\CrudBundle\Entity\ListaRepository")
+ */
 class Lista
 {
 	

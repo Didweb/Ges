@@ -31,8 +31,9 @@ class EditarController extends Controller
 	 */ 
 	public function formulario($entidad)
 	{
-		$entidadNameSpace 	= 'Gestor\CrudBundle\Entity\\'.ucwords($entidad);
-		$entidadNameSpaceType 	= 'Gestor\CrudBundle\Form\\'.ucwords($entidad).'Type';
+		
+		$entidadNameSpace 		= $this->container->getParameter('rutaEN').ucwords($entidad);
+		$entidadNameSpaceType 	= $this->container->getParameter('rutaTY').ucwords($entidad).'Type';
 		
 		$entity = new $entidadNameSpace();
 		$form   = $this->createForm(new $entidadNameSpaceType(), $entity);
@@ -48,8 +49,8 @@ class EditarController extends Controller
 	 */ 
     public function crearAction(Request $request,$entidad)
     {
-		$entidadNameSpace 		= 'Gestor\CrudBundle\Entity\\'.ucwords($entidad);
-		$entidadNameSpaceType 	= 'Gestor\CrudBundle\Form\\'.ucwords($entidad).'Type';
+		$entidadNameSpace 		= $this->container->getParameter('rutaEN').ucwords($entidad);
+		$entidadNameSpaceType 	= $this->container->getParameter('rutaTY').ucwords($entidad).'Type';
 		
         $entity = new $entidadNameSpace();
         $form = $this->createForm(new $entidadNameSpaceType(),$entity);
@@ -88,8 +89,8 @@ class EditarController extends Controller
 	 */ 
     public function editarAction(Request $request,$entidad,$id)
     {
-		$entidadNameSpace 		= 'GestorCrudBundle:'.ucwords($entidad);
-		$entidadNameSpaceType 	= 'Gestor\CrudBundle\Form\\'.ucwords($entidad).'Type';
+		$entidadNameSpace 		= $this->container->getParameter('nameEN').ucwords($entidad);
+		$entidadNameSpaceType 	= $this->container->getParameter('rutaTY').ucwords($entidad).'Type';
 		
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository($entidadNameSpace)->find($id);
@@ -122,9 +123,9 @@ class EditarController extends Controller
 	 */ 
     public function actualizarAction(Request $request,$entidad,$id)
     {
-		$entidadNameSpace 		= 'GestorCrudBundle:'.ucwords($entidad);
-		$entidadNameSpaceEntidad 		= 'Gestor\CrudBundle\Entity\\'.ucwords($entidad);
-		$entidadNameSpaceType 	= 'Gestor\CrudBundle\Form\\'.ucwords($entidad).'Type';
+		$entidadNameSpace 			= $this->container->getParameter('nameEN').ucwords($entidad);
+		$entidadNameSpaceEntidad 	= $this->container->getParameter('rutaEN').ucwords($entidad);
+		$entidadNameSpaceType 		= $this->container->getParameter('rutaTY').ucwords($entidad).'Type';
 		
 		$em = $this->getDoctrine()->getManager();
 
@@ -163,8 +164,8 @@ class EditarController extends Controller
 	 */ 
     public function eliminarAction(Request $request,$entidad,$id,$ok)
     {
-		$entidadNameSpace 		= 'GestorCrudBundle:'.ucwords($entidad);
-		$entidadNameSpaceType 	= 'Gestor\CrudBundle\Form\\'.ucwords($entidad).'Type';
+		$entidadNameSpace 		= $this->container->getParameter('nameEN').ucwords($entidad);
+		$entidadNameSpaceType 	= $this->container->getParameter('rutaTY').ucwords($entidad).'Type';
 	
 		$em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository($entidadNameSpace)->find($id);
