@@ -13,7 +13,7 @@ parameters:
     idiomas_crud: ca,es
     
 # parametros para sitemap
-    elsitemap: Noticia*locale/-fija-/titulo/id|Categoria*locale/nombre/id   
+    elsitemap: Noticia*locale/#fija-a#/titulo/id|Categoria*locale/nombre/id   
     
 # Namespace Entidad base y Type 
     rutaEN: Gestor\CrudBundle\Entity\

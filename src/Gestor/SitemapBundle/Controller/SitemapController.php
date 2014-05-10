@@ -95,8 +95,8 @@ class SitemapController extends Controller
 										if($des[$j]=='locale'){
 											$componer .= '/'.$this->locales[$g];}
 											
-										elseif(preg_match("/^-.*-$/",$des[$j]))	{
-											$limpia = preg_replace('/\-/', '', $des[$j]);
+										elseif(preg_match("/^#.*#$/",$des[$j]))	{
+											$limpia = preg_replace('/\#/', '', $des[$j]);
 											$componer .= '/'.$limpia;}
 											
 										else{
