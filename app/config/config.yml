@@ -5,8 +5,14 @@ imports:
     - { resource: "@GestorMenuBundle/Resources/config/parameters.yml" }
     - { resource: "@GestorCrudBundle/Resources/config/parameters.yml" }
     - { resource: "@GestorCrudBundle/Resources/config/services.yml" }
+    - { resource: "@DidwebResizeBundle/Resources/config/services.yml" }
 
-
+didweb_resize:
+    img_ancho_p: 240
+    img_alto_p: 196
+    img_ancho_g: 1024
+    img_alto_g: 768
+    img_directorio: %kernel.root_dir%/../web/fotos
     
 framework:
     #esi:             ~

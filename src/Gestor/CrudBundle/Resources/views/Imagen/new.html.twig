@@ -1,6 +1,11 @@
 
     <h2>Subir nueva imagen...</h2>
-
+    
+	{% for MSNflash in app.session.flashbag.get('error_foto') %}
+		<div class="flash_ko">
+			{{ MSNflash | raw }}
+		</div>
+	{% endfor %}	
     
     
     

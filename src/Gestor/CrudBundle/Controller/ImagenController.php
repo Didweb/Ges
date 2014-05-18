@@ -45,8 +45,8 @@ class ImagenController extends Controller
      */
     public function createAction(Request $request,$entidad)
     {
-		 $container =$this->container;
-		
+		$container =$this->container;
+		$entityGet = 'get'.ucwords($entidad);
         $entity = new Imagen();
         
         $form = $this->formImg($entidad,$entity);
@@ -54,23 +54,20 @@ class ImagenController extends Controller
 
         if ($form->isValid()) {
 			
+		
+			$entity->setExtension();
+			$nb=$entity->getExtension();
 			
-		/*	$tipoarchivo=$entity->getFile()->getType();
-			
-			$nb=$entity->getFile()->getExtension();
-			$elfile = $entity->getFile();
-			echo "<br /> Tipo archivo: ".$tipoarchivo."<br /> ------------------------";
-			echo "<br /> Tipo Extension: ".$nb."<br /> ------------------------";
-			echo "<br /> Tipo el file: ".$elfile."<br /> ------------------------";
-			
-			if($tipoarchivo<>'image/jpeg' &&  $tipoarchivo<>'image/png')
+			if($nb<>'jpeg' &&  $nb<>'png' &&  $nb<>'jpg')
 			{
 			$this->get('session')->getFlashBag()
-					->add('faena_error',
-					'Format d\'arxiu no permès. Formats permesos:Jpg/Jpeg o Png.');	
-			return $this->redirect($this->generateUrl('gestor_faena_edit', array('id' => $entity->getFaena()->getId())));	
+					->add('error_foto',
+					'Formato de archivo [ <b>'.$nb.'</b> ] no permitido.');	
+			return $this->redirect($this->generateUrl('gestor_editar_registro', array(
+													'id' 		=> $entity->$entityGet()->getId(),
+													'entidad' 	=> $entidad )));	
 			}
-			*/
+			
 			
             $em = $this->getDoctrine()->getManager();
             
@@ -84,9 +81,11 @@ class ImagenController extends Controller
 					->add('faena_ok',
 					'Imatge pujada al servidor de forma correcta.');	
 			$elnombre = $entity->getSlug().'.'.$entity->getExtension();
-			$entityGet = 'get'.ucwords($entidad);
+			
           
-			$entity->upload($container,100,100,$elnombre);
+          
+          	$resize = $this->get('didweb_resize.acciones');
+            $resize->upload($elnombre,$entity->getFile());
 
             return $this->redirect($this->generateUrl('gestor_editar_registro', array(
 											'id' 		=> $entity->$entityGet()->getId(),
@@ -113,13 +112,13 @@ class ImagenController extends Controller
     {	
 		$entidadNameSpace 		= 'GestorCrudBundle:'.ucwords($entidad);
 		$entidadNameSpaceType 	= 'Gestor\CrudBundle\Form\\'.ucwords($entidad).'Type';
-		$entidadSet				='set'.ucwords($entidad); 
+		$entidadSet				= 'set'.ucwords($entidad); 
 		 
 		$em = $this->getDoctrine()->getManager();
        
 		$entidadNameSpace 		= 'GestorCrudBundle:'.ucwords($entidad);
 		$entidadNameSpaceType 	= 'Gestor\CrudBundle\Form\\'.ucwords($entidad).'Type';
-		$entidadSet				='set'.ucwords($entidad); 
+		$entidadSet				= 'set'.ucwords($entidad); 
 		
 		$entity = new Imagen();
         $idtot= $em->getReference($entidadNameSpace, $identidad);
@@ -271,8 +270,8 @@ class ImagenController extends Controller
         
             $em->flush();
 
-			$container = $this->container;
-			$entity->CambioNombreImg($container,$nombreViejo,$nombreNuevo);
+			$resize = $this->get('didweb_resize.acciones');
+			$resize->CambioNombreImg($nombreViejo,$nombreNuevo);
 			
 		$this->get('session')->getFlashBag()->add('editar_ok', 'Imagen modificada.');	
 			
@@ -294,7 +293,9 @@ class ImagenController extends Controller
             }
 			$nomruta = $entity->getSlug().'.'.$entity->getExtension();
 			
-			$entity->borrarArchivos($container,$nomruta);
+			$resize = $this->get('didweb_resize.acciones');
+			$resize->borrarArchivos($nomruta);
+			
             $em->remove($entity);
             $em->flush();
             
