@@ -1,5 +1,12 @@
 #ChangeLog Ges
 
+### v2.3
+25-5-2014 - Eduard Pinuaga
+
+- Integrado Bundle Didweb/Slug en el sistema
+- adaptación de Sitemap para utilizar Didweb/Slug
+
+
 ### v2.2
 
 - Integrado Bundle Didweb/Resize v1.0.1
