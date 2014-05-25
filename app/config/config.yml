@@ -6,6 +6,7 @@ imports:
     - { resource: "@GestorCrudBundle/Resources/config/parameters.yml" }
     - { resource: "@GestorCrudBundle/Resources/config/services.yml" }
     - { resource: "@DidwebResizeBundle/Resources/config/services.yml" }
+    - { resource: "@SlugSlugBundle/Resources/config/services.yml" }
 
 didweb_resize:
     img_ancho_p: 240

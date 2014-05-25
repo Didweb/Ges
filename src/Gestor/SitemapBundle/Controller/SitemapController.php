@@ -58,7 +58,7 @@ class SitemapController extends Controller
 	public function montamos($request)
 	{
 		
-		$elslug=$this->get('crear_slug');
+		$elslug=$this->get('didweb_slug.acciones');
 		$loslinks=array();
 		$l=0;
 

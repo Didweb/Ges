@@ -21,7 +21,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "gedmo/doctrine-extensions":      "dev-master",
 		"knplabs/knp-paginator-bundle": "~2.4",
-		"didweb/resize": "1.*"
+		"didweb/resize": "1.*",
+		"didweb/slug": "1.*"
     },
     "scripts": {
         "post-install-cmd": [
