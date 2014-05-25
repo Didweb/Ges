@@ -15,6 +15,3 @@ services:
         tags:
             - { name: form.type, alias: entity_id }
 
-    crear_slug:
-        class:    Gestor\CrudBundle\Util\Slug
-        arguments:    [String]

@@ -58,7 +58,7 @@ class SitemapController extends Controller
 	public function montamos($request)
 	{
 		
-		$elslug=$this->get('crear_slug');
+		$elslug = $this->get('didweb_slug.acciones');
 		$loslinks=array();
 		$l=0;
 
@@ -103,7 +103,7 @@ class SitemapController extends Controller
 											if($g==0)
 											{
 												$trozo = 'get'.ucwords($des[$j]);
-												$slug=$elslug->crearSlug($laent->$trozo());
+												$slug  = $elslug->limpiando($laent->$trozo());
 												$componer .= '/'.$slug;	}
 											else{
 												$entity2 = $em->getRepository($entidadNameSpace)->findById($laent->getId());
@@ -121,7 +121,7 @@ class SitemapController extends Controller
 																		if($des[$j]!='id'){
 																			
 																			if($ttt==$des[$j]){
-																				$slug=$elslug->crearSlug($translations[$tt][$des[$j]]);
+																				$slug = $elslug->limpiando($translations[$tt][$des[$j]]);
 																				$componer2 .= '/'.$slug; 
 																				
 																				

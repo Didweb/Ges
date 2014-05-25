@@ -6,6 +6,7 @@ imports:
     - { resource: "@GestorCrudBundle/Resources/config/parameters.yml" }
     - { resource: "@GestorCrudBundle/Resources/config/services.yml" }
     - { resource: "@DidwebResizeBundle/Resources/config/services.yml" }
+    - { resource: "@SlugSlugBundle/Resources/config/services.yml" }
 
 didweb_resize:
     img_ancho_p: 240
@@ -42,7 +43,7 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:
         global:
-            version: v2.1
+            version: v2.2
             cliente_mayor: webMayor.com
             cliente_detalle: nom
             url_web: www.webclientedetalle.cat

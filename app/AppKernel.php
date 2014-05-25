@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Gestor\CrudBundle\GestorCrudBundle(),
             new Gestor\SitemapBundle\GestorSitemapBundle(),
             new Didweb\Bundle\ResizeBundle\DidwebResizeBundle(),
+            new Slug\SlugBundle\SlugSlugBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
